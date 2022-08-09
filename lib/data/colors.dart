@@ -1,0 +1,6 @@
+import 'package:flutter/material.dart';
+
+Color background = Color.fromRGBO(255, 255, 255, 1);
+Color activeButton = Color.fromRGBO(102, 153, 204, 1);
+Color pressedButton = Color.fromRGBO(148, 183, 219, 1);
+Color inactiveButton = Color.fromRGBO(219, 219, 219, 1);
