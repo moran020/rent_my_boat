@@ -38,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: [
+      body: Row(children: [
         // Заглушка временная
         const SizedBox(
           width: 100,
@@ -51,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 '/home',
               );
             },
-            child: const Text('Переход на домашнюю страницу')),
+            child: const Text('')),
         // Заглушка временная
         const SizedBox(
           width: 100,
