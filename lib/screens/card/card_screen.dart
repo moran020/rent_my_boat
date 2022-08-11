@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../data/colors.dart';
+import 'card_detail.dart';
 
 class Card {
   String? name;
@@ -119,66 +120,84 @@ class _CardScreenState extends State<CardScreen> {
               child: ListView.builder(
                   itemCount: card.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      margin: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Stack(
-                            children: [
-                              Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 150,
-                                decoration: BoxDecoration(
-                                  borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    // Image.asset СЛАЙДЕР!!!!!!!!!!
-                                    image: NetworkImage(card[index].img.toString()),
-                                  ),
-                                ),
-                              ),
-                              card[index].isLabel == true
-                                  ? Container(
-                                      margin: const EdgeInsets.all(16.0),
-                                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                      decoration: BoxDecoration(
-                                        // color: card[index].labelColor.toString(),
-                                        color: todaysDate,
-                                        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
-                                      ),
-                                      child: Text(
-                                        card[index].labelTitle.toString(),
-                                        style: const TextStyle(color: Colors.white),
-                                      ),
-                                    )
-                                  : Container(),
-                            ],
-                          ),
-                          Container(
-                            // margin: const EdgeInsets.all(16.0),
-                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(20.0),
-                                  bottomRight: Radius.circular(20.0),
-                                ),
-                                boxShadow: [BoxShadow(blurRadius: 5, color: Colors.black45, offset: Offset(0, 3))]),
-                            child: Column(
+                    return GestureDetector(
+                      onTap: () {
+                        //navigate to card details
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const CardDetailsScreen(),
+                          )
+                        );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.all(16.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Stack(
                               children: [
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    card[index].name.toString(),
-                                    style: const TextStyle(fontSize: 18),
+                                Container(
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 150,
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      // Image.asset СЛАЙДЕР!!!!!!!!!!
+                                      image: NetworkImage(card[index].img.toString()),
+                                    ),
                                   ),
                                 ),
+                                card[index].isLabel == true
+                                    ? Container(
+                                  margin: const EdgeInsets.all(16.0),
+                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                  decoration: BoxDecoration(
+                                    // color: card[index].labelColor.toString(),
+                                    color: todaysDate,
+                                    borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                                  ),
+                                  child: Text(
+                                    card[index].labelTitle.toString(),
+                                    style: const TextStyle(color: Colors.white),
+                                  ),
+                                )
+                                    : Container(),
                               ],
                             ),
-                          ),
-                        ],
+                            Container(
+                              // margin: const EdgeInsets.all(16.0),
+                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                              decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                    bottomLeft: Radius.circular(20.0),
+                                    bottomRight: Radius.circular(20.0),
+                                  ),
+                                  boxShadow: [BoxShadow(blurRadius: 5, color: Colors.black45, offset: Offset(0, 3))]),
+                              child: Column(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      card[index].name.toString(),
+                                      style: const TextStyle(fontSize: 18),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "${card[index].price.toString()} руб.",
+                                      // style: const TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   }),
