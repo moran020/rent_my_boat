@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../data/colors.dart';
 
-
 class Card {
   String? name;
   String? description;
@@ -112,7 +111,7 @@ class _CardScreenState extends State<CardScreen> {
           children: [
             // тут фильтры
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
               //Текст с локализацией + количество лодок
               child: Text("${card.length} boats available", style: const TextStyle(fontSize: 20.0)),
             ),
@@ -121,22 +120,64 @@ class _CardScreenState extends State<CardScreen> {
                   itemCount: card.length,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
-                      margin: const EdgeInsets.all(20.0),
-                      height: 150.0,
-                      child: Stack(
+                      margin: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Positioned.fill(
-                            child: ClipRRect(
-                              borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                              // Image.asset СЛАЙДЕР!!!!!!!!!!
-                              child: Image.network(
-                                  card[index].img.toString(),
-                                  fit: BoxFit.cover),
+                          Stack(
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    // Image.asset СЛАЙДЕР!!!!!!!!!!
+                                    image: NetworkImage(card[index].img.toString()),
+                                  ),
+                                ),
+                              ),
+                              card[index].isLabel == true
+                                  ? Container(
+                                      margin: const EdgeInsets.all(16.0),
+                                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                      decoration: BoxDecoration(
+                                        // color: card[index].labelColor.toString(),
+                                        color: todaysDate,
+                                        borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                                      ),
+                                      child: Text(
+                                        card[index].labelTitle.toString(),
+                                        style: const TextStyle(color: Colors.white),
+                                      ),
+                                    )
+                                  : Container(),
+                            ],
+                          ),
+                          Container(
+                            // margin: const EdgeInsets.all(16.0),
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(20.0),
+                                  bottomRight: Radius.circular(20.0),
+                                ),
+                                boxShadow: [BoxShadow(blurRadius: 5, color: Colors.black45, offset: Offset(0, 3))]),
+                            child: Column(
+                              children: [
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    card[index].name.toString(),
+                                    style: const TextStyle(fontSize: 18),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-
-
-
                         ],
                       ),
                     );
