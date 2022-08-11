@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'screens/splash_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/owner_form.dart';
 
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const HomeScreen(),
       routes: {
-        //'/home': (context) => const HomeScreen(),
+        '/home': (context) => const HomeScreen(),
         '/owner_form': (context) => const OwnerForm(),
       },
     );
