@@ -13,9 +13,24 @@ class _HomeScreenState extends State<HomeScreen> {
   late bool isPressed_1 = false;
   late bool isPressed_2 = false; 
 
+  List<String> items = ["Ru", "En", "De", "Es"];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: background,
+        actions:  [
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: DropdownButton<String>(
+              icon: Icon(Icons.language, color: activeButton,),
+              onChanged: (e){debugPrint(e);}, 
+              items: items.map((e) => DropdownMenuItem(value: e, child: Text(e),)).toList(),
+              
+            ),
+            ),
+        ]),
       body: Container(
         color: background,
         padding: const EdgeInsets.all(20),
