@@ -4,7 +4,7 @@ import '../data/event.dart';
 import 'package:rent_my_boat/data/colors.dart';
 
 class Calendar extends StatefulWidget {
-  const Calendar({Key? key}) : super(key: key);
+ 
 
   @override
   State<Calendar> createState() => _CalendarState();
@@ -34,11 +34,10 @@ class _CalendarState extends State<Calendar> {
   }
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-            child: SizedBox(
-              height: 282,
-              width: 288,
-              child: TableCalendar(
+    return 
+              Container(
+                padding: EdgeInsets.only(left: 23, right: 23),
+                child: TableCalendar(
             firstDay: DateTime.utc(2020,10,20),
             lastDay: DateTime.utc(2025,10,20),
             focusedDay: DateTime.now(),
@@ -46,56 +45,58 @@ class _CalendarState extends State<Calendar> {
             shouldFillViewport: false,
             calendarFormat: format,
             onFormatChanged: (CalendarFormat _format) {
-                  setState(() {
-                    format = _format;
-                  });
-                },
-                startingDayOfWeek: StartingDayOfWeek.sunday,
-                daysOfWeekVisible: true,
+                    setState(() {
+                      format = _format;
+                    });
+                  },
+                  startingDayOfWeek: StartingDayOfWeek.monday,
+                  daysOfWeekVisible: true,
 
-                //Смена дней
-                onDaySelected: (DateTime selectDay, DateTime focusDay) {
-                  setState(() {
-                    selectedDay = selectDay;
-                    focusedDay = focusDay;
-                  });},
-                selectedDayPredicate: (DateTime date) {
-                  return isSameDay(selectedDay, date);},
-                eventLoader: _getEventsfromDay,
+                  //Смена дней
+                  onDaySelected: (DateTime selectDay, DateTime focusDay) {
+                    setState(() {
+                      selectedDay = selectDay;
+                      focusedDay = focusDay;
+                    });},
+                  selectedDayPredicate: (DateTime date) {
+                    return isSameDay(selectedDay, date);},
+                  eventLoader: _getEventsfromDay,
 
              //Шрифты и стиль календаря
-                calendarStyle: CalendarStyle(
-                  defaultTextStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400, fontFamily: 'Montserrat-Normal'),
-                  isTodayHighlighted: true,
-                  selectedDecoration: BoxDecoration(
-                    color: selectedDate,
-                    shape: BoxShape.circle,
+                  calendarStyle: CalendarStyle(
+                    defaultTextStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400, fontFamily: 'Montserrat-Normal'),
+                    isTodayHighlighted: true,
+                    selectedDecoration: BoxDecoration(
+                      color: selectedDate,
+                      shape: BoxShape.circle,
+                    ),
+                    selectedTextStyle: TextStyle(color: Colors.white),
+                    todayDecoration: BoxDecoration(
+                      color: todaysDate,
+                      shape: BoxShape.circle,
+                    ),
+                    defaultDecoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
+                    weekendDecoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                    ),
                   ),
-                  selectedTextStyle: TextStyle(color: Colors.white),
-                  todayDecoration: BoxDecoration(
-                    color: todaysDate,
-                    shape: BoxShape.circle,
+                  headerStyle: const HeaderStyle(
+                    
+                    formatButtonVisible: false,
+                    titleCentered: true,
+                    formatButtonShowsNext: false,
+                    titleTextStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, fontFamily: 'Montserrat-Normal'),
+                    // Требуется правка расстояния шевронов (должно зависеть от длины строки месяц+год)
+                    rightChevronPadding: EdgeInsets.all(10.0),
+                    leftChevronPadding: EdgeInsets.all(10.0),
+                    leftChevronMargin: EdgeInsets.symmetric(horizontal: 15.0),
+                    rightChevronMargin:  EdgeInsets.symmetric(horizontal: 15.0),
                   ),
-                  defaultDecoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                  weekendDecoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                  ),
-                ),
-                headerStyle: const HeaderStyle(
-                  formatButtonVisible: false,
-                  titleCentered: true,
-                  formatButtonShowsNext: false,
-                  titleTextStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.w600, fontFamily: 'Montserrat-Normal'),
-                  // Требуется правка расстояния шевронов (должно зависеть от длины строки месяц+год)
-                  rightChevronPadding: EdgeInsets.all(10.0),
-                  leftChevronPadding: EdgeInsets.all(10.0),
-                  leftChevronMargin: EdgeInsets.symmetric(horizontal: 15.0),
-                  rightChevronMargin:  EdgeInsets.symmetric(horizontal: 15.0),
-                ),
-              ),
+                
         ),
-        );
+              )
+        ;
   }
 }
