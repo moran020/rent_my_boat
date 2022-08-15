@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'screens/home_screen.dart';
 import 'screens/owner_form.dart';
-import  '../data/language.dart';
+import '../data/language.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
@@ -24,7 +24,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   Locale? _locale;
 
   setLocale(Locale locale) {
@@ -53,13 +52,13 @@ class _MyAppState extends State<MyApp> {
       },
       //localizationsDelegates: AppLocalizations.localizationsDelegates,
       //supportedLocales: AppLocalizations.supportedLocales,
-      localizationsDelegates:  const[
+      localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      
+
       supportedLocales: const [
         Locale('en', ''),
         Locale('ru', ''),

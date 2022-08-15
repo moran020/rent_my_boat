@@ -84,4 +84,5 @@ class _CalendarState extends State<Calendar> {
                       rightChevronMargin:  EdgeInsets.symmetric(horizontal: 7.0),
                       leftChevronIcon: Icon(Icons.chevron_left, size: 38),
                       rightChevronIcon: Icon(Icons.chevron_right, size: 38)), ),) ;} 
+
   }
