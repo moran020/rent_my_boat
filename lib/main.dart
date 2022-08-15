@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-//import 'screens/splash_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/owner_form.dart';
 import  '../data/language.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
+// Добавлен метод initializeDateFormatting, чтобы отображать календарь на разных языках
 void main() {
-  runApp(const MyApp());
+  initializeDateFormatting().then((_) => runApp(MyApp()));
 }
 
 class MyApp extends StatefulWidget {
@@ -69,7 +71,7 @@ class _MyAppState extends State<MyApp> {
       home: const HomeScreen(),
       initialRoute: '/',
       routes: {
-        //'/home': (context) => const HomeScreen(),
+        '/home': (context) => const HomeScreen(),
         '/owner_form': (context) => const OwnerForm(),
       },
       locale: _locale,
