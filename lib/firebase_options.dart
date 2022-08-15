@@ -54,7 +54,8 @@ class DefaultFirebaseOptions {
     appId: '1:565258340178:android:d849d20da2cd4fd5bddc8b',
     messagingSenderId: '565258340178',
     projectId: 'rent-my-boat-822a0',
-    databaseURL: 'https://rent-my-boat-822a0-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://rent-my-boat-822a0-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'rent-my-boat-822a0.appspot.com',
   );
 
@@ -63,9 +64,11 @@ class DefaultFirebaseOptions {
     appId: '1:565258340178:ios:7e95cb07e276af43bddc8b',
     messagingSenderId: '565258340178',
     projectId: 'rent-my-boat-822a0',
-    databaseURL: 'https://rent-my-boat-822a0-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL:
+        'https://rent-my-boat-822a0-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'rent-my-boat-822a0.appspot.com',
-    iosClientId: '565258340178-k77ri53ip6qm4r8ooe5tq6ubhbarfjje.apps.googleusercontent.com',
+    iosClientId:
+        '565258340178-k77ri53ip6qm4r8ooe5tq6ubhbarfjje.apps.googleusercontent.com',
     iosBundleId: 'com.example.rentMyBoat',
   );
 }

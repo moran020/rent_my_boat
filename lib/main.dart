@@ -9,20 +9,14 @@ import 'firebase_options.dart';
 import '../data/language.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 // Разрешение на инициализацию Firebase после вызова runApp
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   MyApp({Key? key}) : super(key: key);
-  //Переменная _firebaseApp для инициализации во FutureBuilder в home
-  final Future<FirebaseApp> _firebaseApp = Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -35,6 +29,11 @@ class MyApp extends StatelessWidget {
 
 class _MyAppState extends State<MyApp> {
   Locale? _locale;
+
+  //Переменная _firebaseApp для инициализации во FutureBuilder в home
+  final Future<FirebaseApp> _firebaseApp = Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
 
   setLocale(Locale locale) {
     setState(() {
