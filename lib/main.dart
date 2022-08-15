@@ -9,6 +9,7 @@ import 'firebase_options.dart';
 import '../data/language.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+
 // Разрешение на инициализацию Firebase после вызова runApp
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
