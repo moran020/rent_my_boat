@@ -62,28 +62,29 @@ class _CardScreenState extends State<CardScreen> {
                                 children: [
                                   Stack(
                                     children: [
-                                      Container(
-                                        width: MediaQuery.of(context).size.width,
-                                        height: 150,
-                                        decoration: BoxDecoration(
-                                          borderRadius: const BorderRadius.only(
-                                              topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                                          image: DecorationImage(
-                                            fit: BoxFit.cover,
-                                            // Image.asset СЛАЙДЕР!!!!!!!!!!
-                                            // image: NetworkImage(card[index].img.toString()),
-                                            image: NetworkImage(
-                                              items[index].carouselImg![0].toString(),
+                                      CarouselSlider(
+                                        options: CarouselOptions(
+                                          height: 150,
+                                          viewportFraction: 1,
+                                        ),
+                                        items: items[index].carouselImg?.map((item) => Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: const BorderRadius.only(
+                                                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+                                            image: DecorationImage(
+                                              fit: BoxFit.cover,
+                                              image: NetworkImage(
+                                                item,
+                                              ),
                                             ),
                                           ),
-                                        ),
+                                        )).toList(),
                                       ),
                                       items[index].isLabel == true
                                           ? Container(
                                               margin: const EdgeInsets.all(16.0),
                                               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                                               decoration: BoxDecoration(
-                                                // color: card[index].labelColor.toString(),
                                                 color: todaysDate,
                                                 borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                                               ),
