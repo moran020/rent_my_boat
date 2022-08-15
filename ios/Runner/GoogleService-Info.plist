@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>565258340178-k77ri53ip6qm4r8ooe5tq6ubhbarfjje.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.565258340178-k77ri53ip6qm4r8ooe5tq6ubhbarfjje</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCWB-4-G9DvEIOVvvCBAIvmE31MzPgCrgk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>565258340178</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.rentMyBoat</string>
+	<key>PROJECT_ID</key>
+	<string>rent-my-boat-822a0</string>
+	<key>STORAGE_BUCKET</key>
+	<string>rent-my-boat-822a0.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:565258340178:ios:7e95cb07e276af43bddc8b</string>
+	<key>DATABASE_URL</key>
+	<string>https://rent-my-boat-822a0-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>
