@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:rent_my_boat/main.dart';
 import  '../data/colors.dart';
+import  '../data/language.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,11 +16,35 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
 
   late bool isPressed_1 = false;
-  late bool isPressed_2 = false; 
+  late bool isPressed_2 = false;
+
+  
+
+  
 
   @override
   Widget build(BuildContext context) {
+
+    var tr = AppLocalizations.of(context)!;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: background,
+        actions:  [
+          Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: DropdownButton<Language>(
+              icon: Icon(Icons.language, color: activeButton,),
+              onChanged: (Language? language) async {
+                if (language != null) {
+                  Locale _locale = await setLocale(language.languageCode);
+                  MyApp.setLocale(context, _locale);
+                }
+              }, 
+              items: Language.languageList().map((e) => DropdownMenuItem<Language>(value: e, child: Text(e.name),)).toList(),
+              
+            ),
+            ),
+        ]),
       body: Container(
         color: background,
         padding: const EdgeInsets.all(20),
@@ -44,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                     
                   }, 
-                  child:  const Text('Я владелец лодки')) ),
+                  child:  Text(tr.capitan)) ),
               const SizedBox( height: 20,),
               SizedBox( 
                 height:75, 
@@ -64,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       isPressed_1 = false;
                     });
                   }, 
-                  child:  const Text('Я хочу арендовать лодку')) ),
+                  child:  Text(tr.tourist)) ),
             ],
             
           ),
