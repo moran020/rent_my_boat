@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'screens/home_screen.dart';
 import 'screens/owner_form.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import '../data/language.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-// Добавлен метод initializeDateFormatting, чтобы отображать календарь на разных языках
 // Разрешение на инициализацию Firebase после вызова runApp
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,6 +21,31 @@ class MyApp extends StatelessWidget {
   final Future<FirebaseApp> _firebaseApp = Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+
+  static void setLocale(BuildContext context, Locale newLocale) {
+    _MyAppState? state = context.findAncestorStateOfType<_MyAppState>();
+    state!.setLocale(newLocale);
+  }
+}
+
+class _MyAppState extends State<MyApp> {
+  Locale? _locale;
+
+  setLocale(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
+
+  @override
+  void didChangeDependencies() {
+    getLocale().then((locale) => {setLocale(locale)});
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +72,31 @@ class MyApp extends StatelessWidget {
               );
             }
           }),
+      localeResolutionCallback: (deviceLocale, supportedLocales) {
+        _locale ??= deviceLocale;
+        return _locale;
+      },
+      //localizationsDelegates: AppLocalizations.localizationsDelegates,
+      //supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('ru', ''),
+        Locale('de', ''),
+        Locale('es', ''),
+      ],
+      initialRoute: '/',
       routes: {
         '/home': (context) => const HomeScreen(),
         '/owner_form': (context) => const OwnerForm(),
       },
+      locale: _locale,
     );
   }
 }
