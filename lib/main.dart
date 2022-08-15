@@ -5,10 +5,8 @@ import 'screens/owner_form.dart';
 import '../data/language.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 void main() {
- 
-runApp(const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
