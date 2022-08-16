@@ -47,22 +47,21 @@ class _HomeScreenState extends State<HomeScreen> {
         ]),
       body: Container(
         color: background,
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(16),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children:  [
-              Image.asset('assets/icons/vector.png', width: 100,),
-              const SizedBox( height: 40,),
+              Image.asset('assets/icons/vector.png', width: 32,),
+              const SizedBox( height: 16,),
               SizedBox( 
-                height:75, 
+                height:45, 
                 width:double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: isPressed_1? pressedButton : activeButton , 
-                    elevation: 5,
                     shape: RoundedRectangleBorder( 
-                        borderRadius: BorderRadius.circular(30)
+                        borderRadius: BorderRadius.circular(100)
                     ),
                   ),
                   onPressed: (){
@@ -73,15 +72,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                     
                   }, 
-                  child:  Text(tr.capitan)) ),
-              const SizedBox( height: 20,),
+                  child:  Text(tr.capitan, style: const TextStyle( fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.5,  ),)) ),
+              const SizedBox( height: 8,),
               SizedBox( 
-                height:75, 
+                height:45, 
                 width: double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: isPressed_2? pressedButton : activeButton ,
-                    elevation: 5,
                     shape: RoundedRectangleBorder( 
                         borderRadius: BorderRadius.circular(30)
                     ), 
@@ -93,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       isPressed_1 = false;
                     });
                   }, 
-                  child:  Text(tr.tourist)) ),
+                  child:  Text(tr.tourist, style: const TextStyle( fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.5,),)) ),
             ],
             
           ),
