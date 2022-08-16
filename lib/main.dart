@@ -98,8 +98,8 @@ class _MyAppState extends State<MyApp> {
       routes: {
         '/home': (context) => const HomeScreen(),
         '/owner_form': (context) => const OwnerForm(),
-
-        '/main_screen_bottom_menu': (context) => const MainScreenBottomMenu(), //тут экраны с боттом меню
+        '/main_screen_bottom_menu': (context) =>
+            const MainScreenBottomMenu(), //тут экраны с боттом меню
         '/card_screen': (context) => const CardScreen(),
         '/card_detail': (context) => const CardDetailsScreen(),
       },
