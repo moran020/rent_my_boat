@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rent_my_boat/main.dart';
-import  '../data/colors.dart';
-import  '../data/language.dart';
+import '../data/colors.dart';
+import '../data/language.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,37 +12,36 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
   late bool isPressed_1 = false;
   late bool isPressed_2 = false;
 
-  
-
-  
-
   @override
   Widget build(BuildContext context) {
-
     var tr = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: background,
-        actions:  [
-          Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: DropdownButton<Language>(
-              icon: Icon(Icons.language, color: activeButton,),
-              onChanged: (Language? language) async {
-                if (language != null) {
-                  Locale _locale = await setLocale(language.languageCode);
-                  MyApp.setLocale(context, _locale);
-                }
-              }, 
-              items: Language.languageList().map((e) => DropdownMenuItem<Language>(value: e, child: Text(e.name),)).toList(),
-              
+      appBar: AppBar(backgroundColor: background, actions: [
+        Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: DropdownButton<Language>(
+            icon: Icon(
+              Icons.language,
+              color: activeButton,
             ),
-            ),
-        ]),
+            onChanged: (Language? language) async {
+              if (language != null) {
+                Locale _locale = await setLocale(language.languageCode);
+                MyApp.setLocale(context, _locale);
+              }
+            },
+            items: Language.languageList()
+                .map((e) => DropdownMenuItem<Language>(
+                      value: e,
+                      child: Text(e.name),
+                    ))
+                .toList(),
+          ),
+        ),
+      ]),
       body: Container(
         color: background,
         padding: const EdgeInsets.all(16),
@@ -72,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
                     
                   }, 
-                  child:  Text(tr.capitan, style: const TextStyle( fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.5,  ),)) ),
+                  child:  Text(tr.capitan, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.5, ),)) ),
               const SizedBox( height: 8,),
               SizedBox( 
                 height:45, 
@@ -81,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: ElevatedButton.styleFrom(
                     primary: isPressed_2? pressedButton : activeButton ,
                     shape: RoundedRectangleBorder( 
-                        borderRadius: BorderRadius.circular(30)
+                        borderRadius: BorderRadius.circular(100)
                     ), 
                   ),
                   onPressed: (){
@@ -91,15 +88,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       isPressed_1 = false;
                     });
                   }, 
-                  child:  Text(tr.tourist, style: const TextStyle( fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.5,),)) ),
+                  child:  Text(tr.tourist, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.5, ),)) ),
             ],
-            
           ),
         ),
       ),
     );
   }
 }
-
-
-

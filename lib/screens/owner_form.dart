@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '/data/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '/data/calendar.dart';
 
 enum TypeBoatList {
   houseboat,
@@ -968,6 +969,7 @@ class FormState extends State {
                 const SizedBox(
                   height: 20,
                 ),
+                Calendar(),
                 const SizedBox(
                   width: double.infinity,
                 )

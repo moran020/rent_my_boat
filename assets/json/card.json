@@ -1,0 +1,55 @@
+{
+  "cards": [
+    {
+      "id": 0,
+      "name": "Лодка",
+      "description": "лодка лодка",
+      "price": "1000",
+      "carouselImg": [
+        "https://mot63.ru/upload/iblock/c16/c168f833e19dca05c1c662b21aa9b51a.jpg",
+        "https://mot63.ru/upload/iblock/c16/c168f833e19dca05c1c662b21aa9b51a.jpg",
+        "https://mot63.ru/upload/iblock/c16/c168f833e19dca05c1c662b21aa9b51a.jpg"
+      ],
+      "isLabel": false,
+      "labelTitle": ""
+    },
+    {
+      "id": 1,
+      "name": "Яхта",
+      "description": "Яхта Яхта",
+      "price": "2000",
+      "carouselImg": [
+        "https://s0.rbk.ru/v6_top_pics/media/img/1/80/756503489146801.jpg",
+        "https://s0.rbk.ru/v6_top_pics/media/img/1/80/756503489146801.jpg",
+        "https://s0.rbk.ru/v6_top_pics/media/img/1/80/756503489146801.jpg"
+      ],
+      "isLabel": true,
+      "labelTitle": "Скидка"
+    },
+    {
+      "id": 2,
+      "name": "Бригантина",
+      "description": "Бригантина Бригантина",
+      "price": "10000",
+      "carouselImg": [
+        "https://media.team2.travel/user_image/26869/f60301aeec28f08c00406f935366a3cf.jpg",
+        "https://media.team2.travel/user_image/26869/f60301aeec28f08c00406f935366a3cf.jpg",
+        "https://media.team2.travel/user_image/26869/f60301aeec28f08c00406f935366a3cf.jpg"
+      ],
+      "isLabel": false,
+      "labelTitle": ""
+    },
+    {
+      "id": 3,
+      "name": "Катер",
+      "description": "Катер Катер",
+      "price": "5000",
+      "carouselImg": [
+        "https://ufa-lodki.ru/articles/wp-content/uploads/2020/12/2_005-1024x683.jpg",
+        "https://ufa-lodki.ru/articles/wp-content/uploads/2020/12/2_005-1024x683.jpg"
+      ],
+      "isLabel": false,
+      "labelTitle": ""
+    }
+  ]
+}
