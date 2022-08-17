@@ -19,10 +19,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     var tr = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(backgroundColor: background, actions: [
+      appBar: AppBar(backgroundColor: background,
+          shadowColor: Colors.transparent,
+          elevation: 0.0,
+        actions: [
         Padding(
           padding: const EdgeInsets.all(15.0),
           child: DropdownButton<Language>(
+            underline: Container(), // empty Container removes grey underline!
             icon: Icon(
               Icons.language,
               color: activeButton,
@@ -56,7 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 width:double.infinity,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: isPressed_1? pressedButton : activeButton , 
+                    primary: isPressed_1? pressedButton : activeButton ,
+                    elevation: 0.0,
+                    shadowColor: Colors.transparent, 
                     shape: RoundedRectangleBorder( 
                         borderRadius: BorderRadius.circular(100)
                     ),
@@ -77,6 +83,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: isPressed_2? pressedButton : activeButton ,
+                    elevation: 0.0,
+                    shadowColor: Colors.transparent,
                     shape: RoundedRectangleBorder( 
                         borderRadius: BorderRadius.circular(100)
                     ), 
