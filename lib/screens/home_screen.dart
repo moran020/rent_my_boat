@@ -19,29 +19,35 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     var tr = AppLocalizations.of(context)!;
     return Scaffold(
-      appBar: AppBar(backgroundColor: background, actions: [
-        Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: DropdownButton<Language>(
-            icon: Icon(
-              Icons.language,
-              color: activeButton,
+      appBar: AppBar(
+          backgroundColor: background,
+          shadowColor: Colors.transparent,
+          elevation: 0.0,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: DropdownButton<Language>(
+                underline:
+                    Container(), // empty Container removes grey underline!
+                icon: Icon(
+                  Icons.language,
+                  color: activeButton,
+                ),
+                onChanged: (Language? language) async {
+                  if (language != null) {
+                    Locale _locale = await setLocale(language.languageCode);
+                    MyApp.setLocale(context, _locale);
+                  }
+                },
+                items: Language.languageList()
+                    .map((e) => DropdownMenuItem<Language>(
+                          value: e,
+                          child: Text(e.name),
+                        ))
+                    .toList(),
+              ),
             ),
-            onChanged: (Language? language) async {
-              if (language != null) {
-                Locale _locale = await setLocale(language.languageCode);
-                MyApp.setLocale(context, _locale);
-              }
-            },
-            items: Language.languageList()
-                .map((e) => DropdownMenuItem<Language>(
-                      value: e,
-                      child: Text(e.name),
-                    ))
-                .toList(),
-          ),
-        ),
-      ]),
+          ]),
       body: Container(
         color: background,
         padding: const EdgeInsets.all(16),
@@ -62,6 +68,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: isPressed_1 ? pressedButton : activeButton,
+                        elevation: 0.0,
+                        shadowColor: Colors.transparent,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(100)),
                       ),
@@ -92,6 +100,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         primary: isPressed_2 ? pressedButton : activeButton,
+                        elevation: 0.0,
+                        shadowColor: Colors.transparent,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(100)),
                       ),
