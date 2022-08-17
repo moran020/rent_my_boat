@@ -67,11 +67,8 @@ class FormState extends State {
   bool _checkedfourtytwo = false;
   bool _checkedfourtythree = false;
 
-  
-
   @override
   Widget build(BuildContext context) {
-
     var tr = AppLocalizations.of(context)!;
     return Scaffold(
         appBar: AppBar(
@@ -121,8 +118,7 @@ class FormState extends State {
                         letterSpacing: 0.5),
                   ),
                   const SizedBox(height: 10),
-                  Text(
-                      tr.introduction,
+                  Text(tr.introduction,
                       style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
@@ -516,59 +512,60 @@ class FormState extends State {
                 const SizedBox(
                   height: 20,
                 ),
-                SizedBox(
-                  width: double.infinity,
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            height: 130,
-                            width: 175,
-                            color: pressedButton,
-                            child: IconButton(
-                                icon: Image.asset('assets/icons/speedboat.png'),
-                                onPressed: (() {})),
-                          ),
-                          Container(
-                            height: 130,
-                            width: 175,
-                            color: pressedButton,
-                            child: IconButton(
-                                icon: Image.asset('assets/icons/ship.png'),
-                                onPressed: (() {})),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 7,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            height: 130,
-                            width: 175,
-                            color: pressedButton,
-                            child: IconButton(
-                                icon: Image.asset('assets/icons/ferry.png'),
-                                onPressed: (() {})),
-                          ),
-                          Container(
-                            height: 130,
-                            width: 175,
-                            color: pressedButton,
-                            child: IconButton(
-                                icon:
-                                    Image.asset('assets/icons/motor_boat.png'),
-                                onPressed: (() {})),
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ),
+                // SizedBox(
+                //   width: double.infinity,
+                //   child: Column(
+                //     children: [
+                //       Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         children: [
+                //           Container(
+                //             height: 130,
+                //             width: 175,
+                //             color: pressedButton,
+                //             child: IconButton(
+                //                 icon: Image.asset('assets/icons/speedboat.png'),
+                //                 onPressed: (() {})),
+                //           ),
+                //           Container(
+                //             height: 130,
+                //             width: 175,
+                //             color: pressedButton,
+                //             child: IconButton(
+                //                 icon: Image.asset('assets/icons/ship.png'),
+                //                 onPressed: (() {})),
+                //           )
+                //         ],
+                //       ),
+                //       const SizedBox(
+                //         height: 7,
+                //       ),
+                //       Row(
+                //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //         children: [
+                //           Container(
+                //             height: 130,
+                //             width: 175,
+                //             color: pressedButton,
+                //             child: IconButton(
+                //                 icon: Image.asset('assets/icons/ferry.png'),
+                //                 onPressed: (() {})),
+                //           ),
+                //           Container(
+                //             height: 130,
+                //             width: 175,
+                //             color: pressedButton,
+                //             child: IconButton(
+                //                 icon:
+                //                     Image.asset('assets/icons/motor_boat.png'),
+                //                 onPressed: (() {})),
+                //           )
+                //         ],
+                //       )
+                //     ],
+                //   ),
+                // ),
+                Images(),
                 const SizedBox(
                   height: 20,
                 ),
@@ -931,8 +928,7 @@ class FormState extends State {
                 const SizedBox(
                   height: 15,
                 ),
-                Text(
-                    tr.instructionThree,
+                Text(tr.instructionThree,
                     style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -960,8 +956,7 @@ class FormState extends State {
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
-                    tr.instructionFour,
+                Text(tr.instructionFour,
                     style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -977,5 +972,73 @@ class FormState extends State {
             ),
           ),
         ));
+  }
+}
+
+class Images extends StatelessWidget {
+  const Images({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      child: Column(
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  height: 100,
+                  color: pressedButton,
+                  child: IconButton(
+                      icon: Image.asset('assets/icons/speedboat.png'),
+                      onPressed: (() {})),
+                ),
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              Expanded(
+                child: Container(
+                  height: 100,
+                  color: pressedButton,
+                  child: IconButton(
+                      icon: Image.asset('assets/icons/ship.png'),
+                      onPressed: (() {})),
+                ),
+              )
+            ],
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Container(
+                  height: 100,
+                  color: pressedButton,
+                  child: IconButton(
+                      icon: Image.asset('assets/icons/ferry.png'),
+                      onPressed: (() {})),
+                ),
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              Expanded(
+                child: Container(
+                  height: 100,
+                  color: pressedButton,
+                  child: IconButton(
+                      icon: Image.asset('assets/icons/motor_boat.png'),
+                      onPressed: (() {})),
+                ),
+              )
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
