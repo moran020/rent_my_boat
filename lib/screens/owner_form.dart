@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/data/colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '/data/calendar.dart';
 
 enum TypeBoatList {
@@ -66,8 +67,12 @@ class FormState extends State {
   bool _checkedfourtytwo = false;
   bool _checkedfourtythree = false;
 
+  
+
   @override
   Widget build(BuildContext context) {
+
+    var tr = AppLocalizations.of(context)!;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: background,
@@ -83,7 +88,7 @@ class FormState extends State {
               child: Padding(
                 padding: const EdgeInsets.only(right: 16.0),
                 child: Text(
-                  'Сохранить',
+                  tr.button_save,
                   style: TextStyle(color: basicText, fontSize: 16),
                 ),
               ),
@@ -108,17 +113,17 @@ class FormState extends State {
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
                     Widget>[
                   const SizedBox(height: 50),
-                  const Text(
-                    'Давайте знакомиться!',
-                    style: TextStyle(
+                  Text(
+                    tr.greeting,
+                    style: const TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w900,
                         letterSpacing: 0.5),
                   ),
                   const SizedBox(height: 10),
-                  const Text(
-                      'Загрузите ваше самое лучшее фото и заполните анкету',
-                      style: TextStyle(
+                  Text(
+                      tr.introduction,
+                      style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
                           letterSpacing: 0.5)),
@@ -139,7 +144,7 @@ class FormState extends State {
                                 width: 2,
                                 color: activeButton,
                               )),
-                              hintText: 'ФИО',
+                              hintText: tr.nameHint,
                               isDense: true,
                             ),
                           ),
@@ -162,7 +167,7 @@ class FormState extends State {
                                         width: 2,
                                         color: activeButton,
                                       )),
-                                      hintText: 'Дата рождения',
+                                      hintText: tr.dateOfBirthHint,
                                       isDense: true,
                                     ),
                                   ),
@@ -183,7 +188,7 @@ class FormState extends State {
                                         width: 2,
                                         color: activeButton,
                                       )),
-                                      hintText: 'E-mail',
+                                      hintText: tr.emailHint,
                                       isDense: true,
                                     ),
                                   ),
@@ -204,7 +209,7 @@ class FormState extends State {
                                 width: 2,
                                 color: activeButton,
                               )),
-                              hintText: 'Телефон',
+                              hintText: tr.phoneNumberHint,
                               isDense: true,
                             ),
                           ),
@@ -221,7 +226,7 @@ class FormState extends State {
                                 width: 2,
                                 color: activeButton,
                               )),
-                              hintText: 'Языки',
+                              hintText: tr.languagesHint,
                               isDense: true,
                             ),
                           ),
@@ -238,7 +243,7 @@ class FormState extends State {
                                 width: 2,
                                 color: activeButton,
                               )),
-                              hintText: 'Производитель лодки',
+                              hintText: tr.manufactorerHint,
                               isDense: true,
                             ),
                           ),
@@ -255,7 +260,7 @@ class FormState extends State {
                                 width: 2,
                                 color: activeButton,
                               )),
-                              hintText: 'Модель лодки',
+                              hintText: tr.modelHint,
                               isDense: true,
                             ),
                           ),
@@ -272,7 +277,7 @@ class FormState extends State {
                                 width: 2,
                                 color: activeButton,
                               )),
-                              hintText: 'Страна, город местонахождения',
+                              hintText: tr.locationHint,
                               isDense: true,
                             ),
                           ),
@@ -295,7 +300,7 @@ class FormState extends State {
                                         width: 2,
                                         color: activeButton,
                                       )),
-                                      hintText: 'Вместимость',
+                                      hintText: tr.year,
                                       isDense: true,
                                     ),
                                   ),
@@ -316,7 +321,7 @@ class FormState extends State {
                                         width: 2,
                                         color: activeButton,
                                       )),
-                                      hintText: 'Длина в метрах',
+                                      hintText: tr.lengthHint,
                                       isDense: true,
                                     ),
                                   ),
@@ -343,7 +348,7 @@ class FormState extends State {
                                         width: 2,
                                         color: activeButton,
                                       )),
-                                      hintText: 'Кол-во кают',
+                                      hintText: tr.cabinsHint,
                                       isDense: true,
                                     ),
                                   ),
@@ -364,7 +369,7 @@ class FormState extends State {
                                         width: 2,
                                         color: activeButton,
                                       )),
-                                      hintText: 'Спальные места',
+                                      hintText: tr.sleepingPlacesHint,
                                       isDense: true,
                                     ),
                                   ),
@@ -387,7 +392,7 @@ class FormState extends State {
                                 width: 2,
                                 color: activeButton,
                               )),
-                              hintText: 'Мощность двигателя',
+                              hintText: tr.enginePowerHint,
                               isDense: true,
                             ),
                           ),
@@ -395,8 +400,8 @@ class FormState extends State {
                       ))
                 ]),
                 const SizedBox(height: 20),
-                const Text('К какой категории относится ваша лодка?',
-                    style: TextStyle(
+                Text(tr.boatCategory,
+                    style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 0.5)),
@@ -410,7 +415,7 @@ class FormState extends State {
                             RadioListTile(
                                 contentPadding: const EdgeInsets.all(0),
                                 activeColor: activeButton,
-                                title: const Text('Хаусбоат'),
+                                title: Text(tr.houseboat),
                                 value: TypeBoatList.houseboat,
                                 groupValue: _type,
                                 onChanged: (TypeBoatList? value) {
@@ -421,7 +426,7 @@ class FormState extends State {
                             RadioListTile(
                                 contentPadding: const EdgeInsets.all(0),
                                 activeColor: activeButton,
-                                title: const Text('Катамаран'),
+                                title: Text(tr.catamaran),
                                 value: TypeBoatList.catamaran,
                                 groupValue: _type,
                                 onChanged: (TypeBoatList? value) {
@@ -432,7 +437,7 @@ class FormState extends State {
                             RadioListTile(
                                 contentPadding: const EdgeInsets.all(0),
                                 activeColor: activeButton,
-                                title: const Text('Парусное судно'),
+                                title: Text(tr.sailboats),
                                 value: TypeBoatList.sailboat,
                                 groupValue: _type,
                                 onChanged: (TypeBoatList? value) {
@@ -443,7 +448,7 @@ class FormState extends State {
                             RadioListTile(
                                 contentPadding: const EdgeInsets.all(0),
                                 activeColor: activeButton,
-                                title: const Text('Яхта'),
+                                title: Text(tr.yacht),
                                 value: TypeBoatList.yacht,
                                 groupValue: _type,
                                 onChanged: (TypeBoatList? value) {
@@ -461,7 +466,7 @@ class FormState extends State {
                             RadioListTile(
                                 contentPadding: const EdgeInsets.all(0),
                                 activeColor: activeButton,
-                                title: const Text('Моторное судно'),
+                                title: Text(tr.motorboat),
                                 value: TypeBoatList.motorboat,
                                 groupValue: _type,
                                 onChanged: (TypeBoatList? value) {
@@ -472,7 +477,7 @@ class FormState extends State {
                             RadioListTile(
                                 contentPadding: const EdgeInsets.all(0),
                                 activeColor: activeButton,
-                                title: const Text('RIB - лодка'),
+                                title: Text(tr.rib),
                                 value: TypeBoatList.ribboat,
                                 groupValue: _type,
                                 onChanged: (TypeBoatList? value) {
@@ -483,7 +488,7 @@ class FormState extends State {
                             RadioListTile(
                                 contentPadding: const EdgeInsets.all(0),
                                 activeColor: activeButton,
-                                title: const Text('Гидроцикл'),
+                                title: Text(tr.jetSki),
                                 value: TypeBoatList.hydrocycle,
                                 groupValue: _type,
                                 onChanged: (TypeBoatList? value) {
@@ -503,8 +508,8 @@ class FormState extends State {
                 const SizedBox(
                   height: 15,
                 ),
-                const Text('Загрузите несколько фото лодки снаружи и внутри',
-                    style: TextStyle(
+                Text(tr.instructionOne,
+                    style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 0.5)),
@@ -567,8 +572,8 @@ class FormState extends State {
                 const SizedBox(
                   height: 20,
                 ),
-                const Text('Отметьте, какое оборудование есть на вашей лодке',
-                    style: TextStyle(
+                Text(tr.instructionTwo,
+                    style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 0.5)),
@@ -581,7 +586,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedone,
-                        title: const Text('Бимини(тент от солнца)'),
+                        title: Text(tr.bimini),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedone = value!)),
@@ -589,7 +594,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedtwo,
-                        title: const Text('Брызгозащитный козырёк'),
+                        title: Text(tr.sprayhood),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedtwo = value!)),
@@ -597,7 +602,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedthree,
-                        title: const Text('Душ на палубе'),
+                        title: Text(tr.deckShower),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedthree = value!)),
@@ -605,7 +610,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedfour,
-                        title: const Text('Обеденный стол'),
+                        title: Text(tr.cockpitTable),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedfour = value!)),
@@ -613,7 +618,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedfive,
-                        title: const Text('Стереосистема'),
+                        title: Text(tr.cockpitSpeakers),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedfive = value!)),
@@ -621,7 +626,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedsix,
-                        title: const Text('Подушки для кабины'),
+                        title: Text(tr.cockpitCushions),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedsix = value!)),
@@ -629,7 +634,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedseven,
-                        title: const Text('Деревянная палуба'),
+                        title: Text(tr.teakDeck),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedseven = value!)),
@@ -637,7 +642,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedeight,
-                        title: const Text('Кормовая Купальная Платформа'),
+                        title: Text(tr.aftBathingPlatform),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedeight = value!)),
@@ -645,7 +650,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkednine,
-                        title: const Text('Лестница для купания'),
+                        title: Text(tr.bathingLadder),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkednine = value!)),
@@ -653,7 +658,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedten,
-                        title: const Text('Горячая вода'),
+                        title: Text(tr.hotWater),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedten = value!)),
@@ -661,7 +666,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedeleven,
-                        title: const Text('Кондиционер'),
+                        title: Text(tr.conditioning),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedeleven = value!)),
@@ -669,7 +674,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedtwelve,
-                        title: const Text('Вентилятор'),
+                        title: Text(tr.fan),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedtwelve = value!)),
@@ -677,7 +682,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedthirteen,
-                        title: const Text('Отопительная система'),
+                        title: Text(tr.heating),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedthirteen = value!)),
@@ -685,7 +690,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedfourteen,
-                        title: const Text('Электрический санузел'),
+                        title: Text(tr.toilet),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedfourteen = value!)),
@@ -693,7 +698,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedfifteen,
-                        title: const Text('USB-розетка'),
+                        title: Text(tr.usb),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedfifteen = value!)),
@@ -701,7 +706,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedsixteen,
-                        title: const Text('Шлюпка'),
+                        title: Text(tr.outboard),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedsixteen = value!)),
@@ -709,7 +714,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedseventeen,
-                        title: const Text('Носовое подруливающее уст.'),
+                        title: Text(tr.bowTruster),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedseventeen = value!)),
@@ -717,7 +722,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedeighteen,
-                        title: const Text('Электрический брашпиль'),
+                        title: Text(tr.windlass),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedeighteen = value!)),
@@ -725,7 +730,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkednineteen,
-                        title: const Text('Электрические лебедки'),
+                        title: Text(tr.winches),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkednineteen = value!)),
@@ -733,7 +738,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedtwenty,
-                        title: const Text('Автопилот'),
+                        title: Text(tr.autopilot),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedtwenty = value!)),
@@ -741,7 +746,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedtwentyone,
-                        title: const Text('Навигационная система/GPS'),
+                        title: Text(tr.navigation),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedtwentyone = value!)),
@@ -749,7 +754,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedtwentytwo,
-                        title: const Text('Измеритель глубины'),
+                        title: Text(tr.sounder),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedtwentytwo = value!)),
@@ -757,7 +762,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedtwentythree,
-                        title: const Text('ОВЧ'),
+                        title: Text(tr.vhf),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedtwentythree = value!)),
@@ -765,7 +770,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedtwentyfour,
-                        title: const Text('Карты и гиды'),
+                        title: Text(tr.maps),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedtwentyfour = value!)),
@@ -773,7 +778,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedtwentyfive,
-                        title: const Text('Холодильник'),
+                        title: Text(tr.fridge),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedtwentyfive = value!)),
@@ -781,7 +786,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedtwentysix,
-                        title: const Text('Тарелки, приборы, кастрюли'),
+                        title: Text(tr.kitchen),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedtwentysix = value!)),
@@ -789,7 +794,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedtwentyseven,
-                        title: const Text('Духовка/плита'),
+                        title: Text(tr.oven),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedtwentyseven = value!)),
@@ -797,7 +802,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedtwentyeight,
-                        title: const Text('Посудомоечная машина'),
+                        title: Text(tr.dishwasher),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedtwentyeight = value!)),
@@ -805,7 +810,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedtwentynine,
-                        title: const Text('Ласты, маски, трубки'),
+                        title: Text(tr.snorkel),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedtwentynine = value!)),
@@ -813,7 +818,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedthirty,
-                        title: const Text('Рыболовные снасти'),
+                        title: Text(tr.fishing),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedthirty = value!)),
@@ -821,7 +826,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedthirtyone,
-                        title: const Text('Палатки, спальные мешки'),
+                        title: Text(tr.tent),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedthirtyone = value!)),
@@ -829,7 +834,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedthirtytwo,
-                        title: const Text('Походная баня и дрова'),
+                        title: Text(tr.sauna),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedthirtytwo = value!)),
@@ -837,7 +842,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedthirtythree,
-                        title: const Text('Генератор'),
+                        title: Text(tr.generator),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedthirtythree = value!)),
@@ -845,7 +850,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedthirtyfour,
-                        title: const Text('Солнечные панели'),
+                        title: Text(tr.panels),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedthirtyfour = value!)),
@@ -853,7 +858,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedthirtyfive,
-                        title: const Text('Инвертор'),
+                        title: Text(tr.inverter),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedthirtyfive = value!)),
@@ -861,7 +866,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedthirtysix,
-                        title: const Text('Розетка 220V'),
+                        title: Text(tr.socket),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedthirtysix = value!)),
@@ -869,7 +874,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedthirtyseven,
-                        title: const Text('Защитная сетка для детей'),
+                        title: Text(tr.mesh),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedthirtyseven = value!)),
@@ -877,7 +882,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedthirtyeight,
-                        title: const Text('Чистое постельное белье'),
+                        title: Text(tr.beddings),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedthirtyeight = value!)),
@@ -885,7 +890,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedthirtynine,
-                        title: const Text('Чистые полотенца'),
+                        title: Text(tr.towels),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedthirtynine = value!)),
@@ -893,7 +898,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedfourty,
-                        title: const Text('Wi-Fi на борту'),
+                        title: Text(tr.wiFi),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedfourty = value!)),
@@ -901,7 +906,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedfourtyone,
-                        title: const Text('Подвесной двигатель'),
+                        title: Text(tr.outboardMotor),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedfourtyone = value!)),
@@ -909,7 +914,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedfourtytwo,
-                        title: const Text('SUP-доска'),
+                        title: Text(tr.sup),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedfourtytwo = value!)),
@@ -917,7 +922,7 @@ class FormState extends State {
                         contentPadding: const EdgeInsets.all(0),
                         activeColor: pressedButton,
                         value: _checkedfourtythree,
-                        title: const Text('Ганнакер'),
+                        title: Text(tr.gennaker),
                         controlAffinity: ListTileControlAffinity.leading,
                         onChanged: (bool? value) =>
                             setState(() => _checkedfourtythree = value!)),
@@ -926,9 +931,9 @@ class FormState extends State {
                 const SizedBox(
                   height: 15,
                 ),
-                const Text(
-                    'Если в списке выше не было указано ваше оборудование, перечислите его',
-                    style: TextStyle(
+                Text(
+                    tr.instructionThree,
+                    style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 0.5)),
@@ -948,16 +953,16 @@ class FormState extends State {
                       width: 2,
                       color: activeButton,
                     )),
-                    hintText: 'Оборудование на борту...',
+                    hintText: tr.instructionThreeHint,
                     isDense: true,
                   ),
                 ),
                 const SizedBox(
                   height: 20,
                 ),
-                const Text(
-                    'Отметьте даты, когда вы готовы совершать плаванье в роли капитана, и когда ваша лодка готова к аренде',
-                    style: TextStyle(
+                Text(
+                    tr.instructionFour,
+                    style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         letterSpacing: 0.5)),
