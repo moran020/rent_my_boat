@@ -69,6 +69,8 @@ class FormState extends State {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    print(width);
     var tr = AppLocalizations.of(context)!;
     return Scaffold(
         appBar: AppBar(
@@ -980,65 +982,74 @@ class Images extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  height: 100,
-                  color: pressedButton,
-                  child: IconButton(
-                      icon: Image.asset('assets/icons/speedboat.png'),
-                      onPressed: (() {})),
+    return Column(
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: photoBackground,
                 ),
+                height: 100,
+                child: IconButton(
+                    icon: Image.asset('assets/icons/speedboat.png'),
+                    onPressed: (() {})),
               ),
-              const SizedBox(
-                width: 8,
-              ),
-              Expanded(
-                child: Container(
-                  height: 100,
-                  color: pressedButton,
-                  child: IconButton(
-                      icon: Image.asset('assets/icons/ship.png'),
-                      onPressed: (() {})),
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            Expanded(
+              child: Container(
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: photoBackground,
                 ),
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  height: 100,
-                  color: pressedButton,
-                  child: IconButton(
-                      icon: Image.asset('assets/icons/ferry.png'),
-                      onPressed: (() {})),
-                ),
+                child: IconButton(
+                    icon: Image.asset('assets/icons/ship.png'),
+                    onPressed: (() {})),
               ),
-              const SizedBox(
-                width: 8,
-              ),
-              Expanded(
-                child: Container(
-                  height: 100,
-                  color: pressedButton,
-                  child: IconButton(
-                      icon: Image.asset('assets/icons/motor_boat.png'),
-                      onPressed: (() {})),
+            )
+          ],
+        ),
+        const SizedBox(
+          height: 8,
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: photoBackground,
                 ),
-              )
-            ],
-          )
-        ],
-      ),
+                child: IconButton(
+                    icon: Image.asset('assets/icons/ferry.png'),
+                    onPressed: (() {})),
+              ),
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            Expanded(
+              child: Container(
+                height: 100,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: photoBackground,
+                ),
+                child: IconButton(
+                    icon: Image.asset('assets/icons/motor_boat.png'),
+                    onPressed: (() {})),
+              ),
+            )
+          ],
+        )
+      ],
     );
   }
 }
