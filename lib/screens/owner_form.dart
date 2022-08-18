@@ -23,6 +23,8 @@ class FormState extends State {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    print(width);
     var tr = AppLocalizations.of(context)!;
     final reference = _database.ref().child('Личные данные');
 
