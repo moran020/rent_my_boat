@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../singles/textformfield.dart';
 
-class ModulTexFormField extends StatefulWidget {
-  const ModulTexFormField({Key? key}) : super(key: key);
+class ModuleTexFormField extends StatefulWidget {
+  const ModuleTexFormField({Key? key}) : super(key: key);
 
   @override
-  State<ModulTexFormField> createState() => _ModulTexFormFieldState();
+  State<ModuleTexFormField> createState() => _ModuleTexFormFieldState();
 }
 
 final _formKey = GlobalKey<FormState>();
@@ -26,16 +27,17 @@ final TextEditingController bedNumderController = TextEditingController();
 final TextEditingController powerBoatController = TextEditingController();
 final TextEditingController addEquipment = TextEditingController();
 
-class _ModulTexFormFieldState extends State<ModulTexFormField> {
+class _ModuleTexFormFieldState extends State<ModuleTexFormField> {
   @override
   Widget build(BuildContext context) {
+    var tr = AppLocalizations.of(context)!;
     return Form(
         key: _formKey,
         child: Column(
           children: <Widget>[
             TextFormFieldCreate(
                 controller: nameController,
-                hintText: 'ФИО',
+                hintText: tr.nameHint,
                 keyboardType: TextInputType.text),
             const SizedBox(height: 10),
             SizedBox(
@@ -45,7 +47,7 @@ class _ModulTexFormFieldState extends State<ModulTexFormField> {
                     flex: 1,
                     child: TextFormFieldCreate(
                         controller: dateOfBirthController,
-                        hintText: 'Дата рождения',
+                        hintText: tr.dateOfBirthHint,
                         keyboardType: TextInputType.text),
                   ),
                   const SizedBox(width: 10),
@@ -53,7 +55,7 @@ class _ModulTexFormFieldState extends State<ModulTexFormField> {
                     flex: 1,
                     child: TextFormFieldCreate(
                         controller: emailController,
-                        hintText: 'E-mail',
+                        hintText: tr.emailHint,
                         keyboardType: TextInputType.emailAddress),
                   ),
                 ],
@@ -62,27 +64,27 @@ class _ModulTexFormFieldState extends State<ModulTexFormField> {
             const SizedBox(height: 10),
             TextFormFieldCreate(
                 controller: phoneNumberController,
-                hintText: 'Номер телефона',
+                hintText: tr.phoneNumberHint,
                 keyboardType: TextInputType.number),
             const SizedBox(height: 10),
             TextFormFieldCreate(
                 controller: languagesController,
-                hintText: 'Языки',
+                hintText: tr.languagesHint,
                 keyboardType: TextInputType.text),
             const SizedBox(height: 10),
             TextFormFieldCreate(
                 controller: manufBoatController,
-                hintText: 'Производитель лодки',
+                hintText: tr.manufactorerHint,
                 keyboardType: TextInputType.text),
             const SizedBox(height: 10),
             TextFormFieldCreate(
                 controller: modelBoatController,
-                hintText: 'Модель лодки',
+                hintText: tr.modelHint,
                 keyboardType: TextInputType.text),
             const SizedBox(height: 10),
             TextFormFieldCreate(
                 controller: locationController,
-                hintText: 'Страна, город местонахождения',
+                hintText: tr.locationHint,
                 keyboardType: TextInputType.text),
             const SizedBox(height: 10),
             SizedBox(
@@ -92,7 +94,7 @@ class _ModulTexFormFieldState extends State<ModulTexFormField> {
                     flex: 1,
                     child: TextFormFieldCreate(
                         controller: capacityController,
-                        hintText: 'Вместимость',
+                        hintText: tr.year,
                         keyboardType: TextInputType.text),
                   ),
                   const SizedBox(width: 10),
@@ -100,7 +102,7 @@ class _ModulTexFormFieldState extends State<ModulTexFormField> {
                     flex: 1,
                     child: TextFormFieldCreate(
                         controller: lenghtBoatController,
-                        hintText: 'Длина в метрах',
+                        hintText: tr.lengthHint,
                         keyboardType: TextInputType.text),
                   ),
                 ],
@@ -114,7 +116,7 @@ class _ModulTexFormFieldState extends State<ModulTexFormField> {
                     flex: 1,
                     child: TextFormFieldCreate(
                         controller: cabinsNumberController,
-                        hintText: 'Кол-во кают',
+                        hintText: tr.cabinsHint,
                         keyboardType: TextInputType.number),
                   ),
                   const SizedBox(width: 10),
@@ -122,7 +124,7 @@ class _ModulTexFormFieldState extends State<ModulTexFormField> {
                     flex: 1,
                     child: TextFormFieldCreate(
                         controller: bedNumderController,
-                        hintText: 'Cпальные места',
+                        hintText: tr.sleepingPlacesHint,
                         keyboardType: TextInputType.number),
                   ),
                 ],
@@ -131,7 +133,7 @@ class _ModulTexFormFieldState extends State<ModulTexFormField> {
             const SizedBox(height: 10),
             TextFormFieldCreate(
                 controller: powerBoatController,
-                hintText: 'Мощность двигателя',
+                hintText: tr.enginePowerHint,
                 keyboardType: TextInputType.text),
           ],
         ));

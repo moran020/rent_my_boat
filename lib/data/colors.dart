@@ -7,4 +7,5 @@ Color inactiveButton = Color.fromRGBO(219, 219, 219, 1);
 Color todaysDate = Color.fromRGBO(254, 213, 1, 1);
 Color selectedDate = Color.fromRGBO(254, 213, 1, 0.7);
 Color basicText = Color.fromARGB(177, 0, 0, 0);
-Color hintTextColor = Color.fromRGBO(173, 173, 173, 1);
+Color photoContainer = Color.fromRGBO(219, 237, 255, 1);
+Color hintTextColor = Color.fromRGBO(163, 163, 163, 1);

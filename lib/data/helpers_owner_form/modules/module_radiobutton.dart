@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../singles/radiobutton.dart';
 import '../singles/typeboatlist.dart';
 
-class ModulRadioButton extends StatefulWidget {
-  const ModulRadioButton({Key? key}) : super(key: key);
+class ModuleRadioButton extends StatefulWidget {
+  const ModuleRadioButton({Key? key}) : super(key: key);
 
   @override
-  State<ModulRadioButton> createState() => _ModulRadioButtonState();
+  State<ModuleRadioButton> createState() => _ModuleRadioButtonState();
 }
 
 TypeBoatList type = TypeBoatList.houseboat;
 
-class _ModulRadioButtonState extends State<ModulRadioButton> {
+class _ModuleRadioButtonState extends State<ModuleRadioButton> {
   @override
   Widget build(BuildContext context) {
+    var tr = AppLocalizations.of(context)!;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,7 +35,7 @@ class _ModulRadioButtonState extends State<ModulRadioButton> {
                     });
                   },
                   groupValue: type,
-                  boatType: 'Хаусбоат',
+                  boatType: tr.houseboat,
                 )
               ],
             ),
@@ -44,7 +47,7 @@ class _ModulRadioButtonState extends State<ModulRadioButton> {
                 });
               },
               groupValue: type,
-              boatType: 'Катамаран',
+              boatType: tr.catamaran,
             ),
             RadioButtonCreate(
               value: TypeBoatList.sailboat,
@@ -54,7 +57,7 @@ class _ModulRadioButtonState extends State<ModulRadioButton> {
                 });
               },
               groupValue: type,
-              boatType: 'Парусное судно',
+              boatType: tr.sailboats,
             ),
             RadioButtonCreate(
               value: TypeBoatList.yacht,
@@ -64,7 +67,7 @@ class _ModulRadioButtonState extends State<ModulRadioButton> {
                 });
               },
               groupValue: type,
-              boatType: 'Яхта',
+              boatType: tr.yacht,
             ),
           ],
         ),
@@ -80,7 +83,7 @@ class _ModulRadioButtonState extends State<ModulRadioButton> {
                 });
               },
               groupValue: type,
-              boatType: 'Моторное судно',
+              boatType: tr.motorboat,
             ),
             RadioButtonCreate(
               value: TypeBoatList.ribboat,
@@ -90,7 +93,7 @@ class _ModulRadioButtonState extends State<ModulRadioButton> {
                 });
               },
               groupValue: type,
-              boatType: 'RIB-лодка',
+              boatType: tr.rib,
             ),
             RadioButtonCreate(
               value: TypeBoatList.hydrocycle,
@@ -100,7 +103,7 @@ class _ModulRadioButtonState extends State<ModulRadioButton> {
                 });
               },
               groupValue: type,
-              boatType: 'Гидроцикл',
+              boatType: tr.jetSki,
             )
           ],
         )
