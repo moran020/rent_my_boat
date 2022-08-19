@@ -22,6 +22,7 @@ class CheckBoxCreate extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
+                //SizedBox for get checkbox minimum padding around
                 height: 19.0,
                 width: 19.0,
                 child: Checkbox(

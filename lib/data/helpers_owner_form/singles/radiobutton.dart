@@ -24,9 +24,11 @@ class RadioButtonCreate extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(
+              //SizedBox for get radiobutton minimum padding around
               height: 19.0,
               width: 19.0,
               child: Radio(
+                  //Сolor of the radiobutton, depending on the click
                   fillColor: MaterialStateProperty.resolveWith<Color>((states) {
                     if (states.contains(MaterialState.disabled)) {
                       return background;

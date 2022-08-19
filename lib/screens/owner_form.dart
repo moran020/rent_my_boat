@@ -19,13 +19,14 @@ class OwnerForm extends StatefulWidget {
 }
 
 class FormState extends State {
+  // The entry point for accessing a Firebase Database.
   final _database = FirebaseDatabase.instance;
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    print(width);
+    //variable for accessing localization files
     var tr = AppLocalizations.of(context)!;
+    // variable for creating branch to save the data to realtime database
     final reference = _database.ref().child('Личные данные');
 
     return Scaffold(
@@ -38,6 +39,7 @@ class FormState extends State {
             }),
           ),
           actions: <Widget>[
+            //With method .set data from textfields are goind into realtime database firebase
             TextButton(
               onPressed: () {
                 reference.set({
@@ -76,6 +78,7 @@ class FormState extends State {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Center(
+                  //using the button CircleAvatarCreate, the user will be able to upload a photo of himself
                   child: CircleAvatarCreate(),
                 ),
                 const SizedBox(height: 35),
@@ -89,18 +92,22 @@ class FormState extends State {
                 const SizedBox(height: 11),
                 HeaderMiddleText(text: tr.introduction),
                 const SizedBox(height: 20),
+                //The module of textfields for the form
                 const ModuleTexFormField(),
                 const SizedBox(height: 40),
                 HeaderMiddleText(text: tr.boatCategory),
                 const SizedBox(height: 18),
+                //The module of radiobuttons with the ability to select the type of boat
                 const ModuleRadioButton(),
                 const SizedBox(height: 32),
                 HeaderMiddleText(text: tr.instructionOne),
                 const SizedBox(height: 20),
+                //The module for containers with buttons, which give the user will be able to upload a photos of his boat
                 const ModuleImages(),
                 const SizedBox(height: 32),
                 HeaderMiddleText(text: tr.instructionTwo),
                 const SizedBox(height: 20),
+                //The module of checkboxes with a choice of equipment on board the boat
                 const ModuleCheckBox(),
                 const SizedBox(height: 32),
                 HeaderMiddleText(text: tr.instructionThree),
@@ -112,6 +119,7 @@ class FormState extends State {
                 const SizedBox(height: 40),
                 HeaderMiddleText(text: tr.instructionFour),
                 const SizedBox(height: 20),
+                //Calendar
                 const Calendar(),
               ],
             ),
