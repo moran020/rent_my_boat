@@ -54,7 +54,7 @@ class _CalendarState extends State<Calendar> {
         padding: const EdgeInsets.only(left: 23, right: 23, bottom: 30),
         child: TableCalendar<Event>(
           locale: Localizations.localeOf(context).languageCode,
-          firstDay: kFirstDay,
+          firstDay: DateTime.utc(2020,10,20),
           lastDay: DateTime.utc(2025, 10, 20),
           focusedDay: _focusedDay,
           calendarFormat: _calendarFormat,
