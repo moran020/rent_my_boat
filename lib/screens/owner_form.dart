@@ -28,10 +28,17 @@ class FormState extends State {
     var tr = AppLocalizations.of(context)!;
     // variable for creating branch to save the data to realtime database
     final reference = _database.ref().child('Личные данные');
+    final currentWidth = MediaQuery.of(context).size.width ;
 
-    return Scaffold(
+    return SafeArea(child: Scaffold(
         appBar: AppBar(
+          shape: Border(
+          bottom: BorderSide(
+          color: appbarLine,
+          width: 2)),
           backgroundColor: background,
+          elevation: 0.0,
+          // shadowColor: appbarLine ,
           leading: IconButton(
             icon: Image.asset('assets/icons/chevron_left.png'),
             onPressed: (() {
@@ -72,12 +79,15 @@ class FormState extends State {
           ],
         ),
         body: SingleChildScrollView(
-          child: Padding(
+          child: Container(
+            width: currentWidth,
+            decoration: BoxDecoration(color:
+             background),
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Center(
+                 const Center(
                   //using the button CircleAvatarCreate, the user will be able to upload a photo of himself
                   child: CircleAvatarCreate(),
                 ),
@@ -124,6 +134,6 @@ class FormState extends State {
               ],
             ),
           ),
-        ));
+        )));
   }
 }
