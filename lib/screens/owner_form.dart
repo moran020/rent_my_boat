@@ -28,9 +28,6 @@ class FormState extends State {
     var tr = AppLocalizations.of(context)!;
     // variable for creating branch to save the data to realtime database
     final reference = _database.ref().child('Личные данные');
-
-    // variable for creating branch to save the data to realtime database
-    final reference = _database.ref().child('Личные данные');
     final currentWidth = MediaQuery.of(context).size.width;
 
     return SafeArea(
