@@ -29,10 +29,10 @@ class _CardScreenState extends State<CardScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // TODO: тут фильтры
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+            const Padding(
+              padding: EdgeInsets.only(top: 10.0, left: 16.0, right: 16.0),
               //TODO: Текст с локализацией + количество лодок
-              child: Text("58 boats available", style: const TextStyle(fontSize: 20.0)),
+              child: Text("58 boats available", style: TextStyle(fontSize: 20.0)),
             ),
             Expanded(
               child: FutureBuilder(
@@ -56,7 +56,7 @@ class _CardScreenState extends State<CardScreen> {
                                   ));
                             },
                             child: Container(
-                              margin: const EdgeInsets.all(16.0),
+                              margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
@@ -87,26 +87,26 @@ class _CardScreenState extends State<CardScreen> {
                                         children: [
                                           items[index].isLabel == true
                                               ? Container(
-                                            margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 18.0),
-                                            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
-                                            decoration: BoxDecoration(
-                                              color: accentRed,
-                                              borderRadius: const BorderRadius.all(Radius.circular(100.0)),
-                                            ),
-                                            child: Text(
-                                              items[index].labelTitle.toString().toUpperCase(),
-                                              style: const TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold,
-                                                letterSpacing: 0.1,
-                                              ),
-                                            ),
-                                          )
+                                                  margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 18.0),
+                                                  padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
+                                                  decoration: BoxDecoration(
+                                                    color: accentRed,
+                                                    borderRadius: const BorderRadius.all(Radius.circular(100.0)),
+                                                  ),
+                                                  child: Text(
+                                                    items[index].labelTitle.toString().toUpperCase(),
+                                                    style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 14,
+                                                      fontWeight: FontWeight.bold,
+                                                      letterSpacing: 0.1,
+                                                    ),
+                                                  ),
+                                                )
                                               : Container(),
                                           TextButton(
                                             //TODO: нажатие на лайк
-                                            onPressed:(){},
+                                            onPressed: () {},
                                             child: Image.asset(
                                               'assets/icons/like_disabled.png',
                                               // лайкнутая иконка 'assets/icons/like_active.png',
@@ -119,17 +119,13 @@ class _CardScreenState extends State<CardScreen> {
                                     ],
                                   ),
                                   Container(
-                                    // margin: const EdgeInsets.all(16.0),
+                                    margin: const EdgeInsets.only(top: 8.0),
                                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                    decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(20.0),
-                                          bottomRight: Radius.circular(20.0),
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(blurRadius: 5, color: Colors.black45, offset: Offset(0, 3))
-                                        ]),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                                      border: Border.all(color: activeButton),
+                                    ),
                                     child: Column(
                                       children: [
                                         Align(
