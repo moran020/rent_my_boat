@@ -19,7 +19,6 @@ class _MainScreenBottomMenuState extends State<MainScreenBottomMenu> {
     const HomeScreen(),
     const OwnerForm(),
     const HomeScreen(),
-    const OwnerForm(),
   ];
 
   @override
@@ -32,33 +31,57 @@ class _MainScreenBottomMenuState extends State<MainScreenBottomMenu> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: background,
-        selectedItemColor: todaysDate,
+        selectedItemColor: accentRed,
         unselectedItemColor: basicText,
-        iconSize: 30,
-        selectedFontSize: 16,
-        unselectedFontSize: 14,
+        selectedFontSize: 10,
+        unselectedFontSize: 10,
         currentIndex: currentMenuIndex,
         onTap: (index) => setState(() => currentMenuIndex = index),
-        items: const [
+        items: [
+          //TODO: locale
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Padding(
+              padding: const EdgeInsets.only(bottom: 6),
+              child: Image.asset(
+                'assets/icons/anchor.png',
+                height: 20,
+                fit: BoxFit.fill,
+              ),
+            ),
             label: "Поиск",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_outline),
+            icon: Padding(
+              padding: const EdgeInsets.only(bottom: 6),
+              child: Image.asset(
+                'assets/icons/like.png',
+                height: 20,
+                fit: BoxFit.fill,
+              ),
+            ),
             label: "Избранное",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble_outline),
-            label: "Сообщения",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.feed_outlined),
+            icon: Padding(
+              padding: const EdgeInsets.only(bottom: 6),
+              child: Image.asset(
+                'assets/icons/card.png',
+                height: 20,
+                fit: BoxFit.fill,
+              ),
+            ),
             label: "Бронирования",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: "Войти",
+            icon: Padding(
+              padding: const EdgeInsets.only(bottom: 6),
+              child: Image.asset(
+                'assets/icons/account.png',
+                height: 20,
+                fit: BoxFit.fill,
+              ),
+            ),
+            label: "Мой аккаунт",
           ),
         ],
       ),

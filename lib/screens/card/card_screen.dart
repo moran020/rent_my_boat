@@ -64,36 +64,58 @@ class _CardScreenState extends State<CardScreen> {
                                     children: [
                                       CarouselSlider(
                                         options: CarouselOptions(
-                                          height: 150,
+                                          height: 200,
                                           viewportFraction: 1,
                                         ),
-                                        items: items[index].carouselImg?.map((item) => Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: const BorderRadius.only(
-                                                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                                            image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: NetworkImage(
-                                                item,
+                                        items: items[index]
+                                            .carouselImg
+                                            ?.map((item) => Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: const BorderRadius.all(Radius.circular(5)),
+                                                    image: DecorationImage(
+                                                      fit: BoxFit.cover,
+                                                      image: NetworkImage(
+                                                        item,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ))
+                                            .toList(),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          items[index].isLabel == true
+                                              ? Container(
+                                            margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 18.0),
+                                            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 4.0),
+                                            decoration: BoxDecoration(
+                                              color: accentRed,
+                                              borderRadius: const BorderRadius.all(Radius.circular(100.0)),
+                                            ),
+                                            child: Text(
+                                              items[index].labelTitle.toString().toUpperCase(),
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold,
+                                                letterSpacing: 0.1,
                                               ),
                                             ),
+                                          )
+                                              : Container(),
+                                          TextButton(
+                                            //TODO: нажатие на лайк
+                                            onPressed:(){},
+                                            child: Image.asset(
+                                              'assets/icons/like_disabled.png',
+                                              // лайкнутая иконка 'assets/icons/like_active.png',
+                                              width: 20,
+                                              fit: BoxFit.fill,
+                                            ),
                                           ),
-                                        )).toList(),
-                                      ),
-                                      items[index].isLabel == true
-                                          ? Container(
-                                              margin: const EdgeInsets.all(16.0),
-                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                              decoration: BoxDecoration(
-                                                color: todaysDate,
-                                                borderRadius: const BorderRadius.all(Radius.circular(20.0)),
-                                              ),
-                                              child: Text(
-                                                items[index].labelTitle.toString(),
-                                                style: const TextStyle(color: Colors.white),
-                                              ),
-                                            )
-                                          : Container(),
+                                        ],
+                                      )
                                     ],
                                   ),
                                   Container(
@@ -133,8 +155,14 @@ class _CardScreenState extends State<CardScreen> {
                           );
                         });
                   } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                    return Center(
+                      child: Image.asset(
+                        'assets/icons/vector.png',
+                        width: 140,
+                        fit: BoxFit.fill,
+                        color: Colors.white.withOpacity(0.5),
+                        colorBlendMode: BlendMode.modulate,
+                      ),
                     );
                   }
                 },
