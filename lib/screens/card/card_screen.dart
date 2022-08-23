@@ -128,20 +128,84 @@ class _CardScreenState extends State<CardScreen> {
                                     ),
                                     child: Column(
                                       children: [
-                                        Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            items[index].name.toString(),
-                                            style: const TextStyle(fontSize: 18),
-                                          ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets.only(right: 9),
+                                                  child: Row(
+                                                    children: [
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(right: 4),
+                                                        child: Image.asset(
+                                                          'assets/icons/passenger.png',
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        items[index].seatsNumber.toString(),
+                                                        style: const TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight: FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right: 4),
+                                                      child: Image.asset(
+                                                        'assets/icons/anchor_sm.png',
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      items[index].city.toString(),
+                                                      style: const TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "${items[index].price.toString()} ₽",
+                                                  style: const TextStyle(
+                                                    fontSize: 22,
+                                                    fontWeight: FontWeight.bold,
+                                                    letterSpacing: 0.41,
+                                                    // height: 1.2,
+                                                  ),
+                                                ),
+                                                const Text(
+                                                  " *",
+                                                  style: TextStyle(
+                                                      fontSize: 20, color: Color.fromRGBO(147, 147, 148, 1)
+                                                      // greyDisabled,
+                                                      ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
                                         ),
                                         Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            "${items[index].price.toString()} руб.",
-                                            // style: const TextStyle(fontSize: 16),
+                                            items[index].name.toString().toUpperCase(),
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                         ),
+
                                       ],
                                     ),
                                   ),
