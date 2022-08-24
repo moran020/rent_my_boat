@@ -43,6 +43,7 @@ dependencies:
   carousel_slider: ^4.1.1
   firebase_database: ^9.1.1
   firebase_core: ^1.20.1
+  dropdown_textfield: ^1.0.3
 
 dev_dependencies:
   flutter_test:

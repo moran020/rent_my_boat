@@ -52,7 +52,8 @@ class FormState extends State {
                       tr.dateOfBirthHint: dateOfBirthController.text,
                       tr.emailHint: emailController.text,
                       tr.phoneNumberHint: phoneNumberController.text,
-                      tr.languagesHint: languagesController.text,
+                      tr.languagesHint:
+                          languagesController.dropDownValueList.toString(),
                       tr.manufactorerHint: manufBoatController.text,
                       tr.modelHint: modelBoatController.text,
                       tr.locationHint: locationController.text,
