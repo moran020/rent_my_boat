@@ -41,6 +41,7 @@ class CardItem {
   String? labelTitle;
   int? seatsNumber;
   String? city;
+  bool? isLiked;
 
   CardItem(
       {this.id,
@@ -52,7 +53,9 @@ class CardItem {
         this.isLabel,
         this.labelTitle,
         this.seatsNumber,
-        this.city});
+        this.city,
+        this.isLiked,
+      });
 
   CardItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -65,6 +68,7 @@ class CardItem {
     labelTitle = json['labelTitle'];
     seatsNumber = json['seatsNumber'];
     city = json['city'];
+    isLiked = json['isLiked'];
   }
 
   Map<String, dynamic> toJson() {
@@ -79,6 +83,7 @@ class CardItem {
     data['labelTitle'] = labelTitle;
     data['seatsNumber'] = seatsNumber;
     data['city'] = city;
+    data['isLiked'] = isLiked;
     return data;
   }
 }

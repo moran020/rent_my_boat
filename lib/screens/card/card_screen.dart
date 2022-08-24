@@ -3,6 +3,7 @@ import '../../data/card.dart';
 import '../../data/colors.dart';
 import 'card_detail.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class CardScreen extends StatefulWidget {
   const CardScreen({Key? key}) : super(key: key);
@@ -14,10 +15,14 @@ class CardScreen extends StatefulWidget {
 class _CardScreenState extends State<CardScreen> {
   late Future<CardsList> futureData;
 
+  int activeIndex = 0;
+  final CarouselController carouselController = CarouselController();
+
   @override
   void initState() {
     super.initState();
     futureData = getCardList();
+
   }
 
   @override
@@ -29,14 +34,11 @@ class _CardScreenState extends State<CardScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // TODO: тут фильтры
-            const Padding(
-              padding: EdgeInsets.only(top: 10.0, left: 16.0, right: 16.0),
-              //TODO: Текст с локализацией + количество лодок
-              child: Text("58 boats available", style: TextStyle(fontSize: 20.0)),
-            ),
+
+            const SizedBox(height: 32.0),
             Expanded(
               child: FutureBuilder(
-                future: futureData,
+                future: futureData, //TODO: получить данные из  firebase
                 builder: (BuildContext context, data) {
                   if (data.hasError) {
                     return Center(child: Text("${data.error}"));
@@ -56,31 +58,78 @@ class _CardScreenState extends State<CardScreen> {
                                   ));
                             },
                             child: Container(
-                              margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+                              margin: const EdgeInsets.symmetric(horizontal: 16.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Stack(
                                     children: [
-                                      CarouselSlider(
-                                        options: CarouselOptions(
-                                          height: 200,
-                                          viewportFraction: 1,
-                                        ),
-                                        items: items[index]
-                                            .carouselImg
-                                            ?.map((item) => Container(
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: const BorderRadius.all(Radius.circular(5)),
-                                                    image: DecorationImage(
-                                                      fit: BoxFit.cover,
-                                                      image: NetworkImage(
-                                                        item,
+                                      Stack(
+                                        alignment: AlignmentDirectional.bottomCenter,
+                                        children: [
+                                          CarouselSlider(
+                                            carouselController: carouselController,
+                                            options: CarouselOptions(
+                                                height: 200,
+                                                viewportFraction: 1,
+                                                // autoPlay: false,
+                                                enlargeCenterPage: true,
+                                                // enlargeStrategy: CenterPageEnlargeStrategy.scale,
+                                                // aspectRatio: 2.0,
+                                                onPageChanged: (index, reason) {
+                                                  setState(() {
+                                                    activeIndex = index;
+                                                  });
+                                                }),
+                                            items: items[index]
+                                                .carouselImg
+                                                ?.map((item) => Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius: const BorderRadius.all(Radius.circular(5)),
+                                                        image: DecorationImage(
+                                                          fit: BoxFit.cover,
+                                                          image: NetworkImage(
+                                                            item,
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                  ),
-                                                ))
-                                            .toList(),
+                                                    ))
+                                                .toList(),
+                                          ),
+
+                                          Container(
+                                            padding: const EdgeInsets.only(bottom: 8.0),
+                                            alignment: Alignment.bottomCenter,
+                                            child: AnimatedSmoothIndicator(
+                                              activeIndex: activeIndex,
+                                              count: items[index].carouselImg!.length,
+                                              effect: ScrollingDotsEffect(
+                                                dotWidth: 8,
+                                                dotHeight: 8,
+                                                dotColor: background,
+                                                activeDotColor: background,
+                                                activeDotScale: 1.5,
+                                              ),
+                                            ),
+                                          ),
+
+                                          // Row(
+                                          //     children: [
+                                          //       for(int i = 0; i < items[index].carouselImg!.length; i++)
+                                          //       // GestureDetector(
+                                          //       //     onTap: () => carouselController.animateToPage(activeIndex),
+                                          //       //     child:
+                                          //         Container(
+                                          //             height: 10, width: 10,
+                                          //             decoration: BoxDecoration(
+                                          //                 color: i == activeIndex ? Colors.white : Colors.grey,
+                                          //                 borderRadius: BorderRadius.circular(5)
+                                          //             )
+                                          //         )
+                                          //       // )
+                                          //     ]
+                                          // ),
+                                        ],
                                       ),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,17 +154,19 @@ class _CardScreenState extends State<CardScreen> {
                                                 )
                                               : Container(),
                                           TextButton(
-                                            //TODO: нажатие на лайк
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              setState(() {
+                                                items[index].isLiked = !items[index].isLiked!;
+                                              });
+                                            },
                                             child: Image.asset(
-                                              'assets/icons/like_disabled.png',
-                                              // лайкнутая иконка 'assets/icons/like_active.png',
+                                              items[index].isLiked == true ? 'assets/icons/like_active.png' : 'assets/icons/like_disabled.png',
                                               width: 20,
                                               fit: BoxFit.fill,
                                             ),
                                           ),
                                         ],
-                                      )
+                                      ),
                                     ],
                                   ),
                                   Container(
@@ -147,7 +198,7 @@ class _CardScreenState extends State<CardScreen> {
                                                       Text(
                                                         items[index].seatsNumber.toString(),
                                                         style: const TextStyle(
-                                                          fontSize: 14,
+                                                          fontSize: 11,
                                                           fontWeight: FontWeight.w500,
                                                         ),
                                                       ),
@@ -165,7 +216,7 @@ class _CardScreenState extends State<CardScreen> {
                                                     Text(
                                                       items[index].city.toString(),
                                                       style: const TextStyle(
-                                                        fontSize: 14,
+                                                        fontSize: 11,
                                                         fontWeight: FontWeight.w500,
                                                       ),
                                                     ),
@@ -184,17 +235,18 @@ class _CardScreenState extends State<CardScreen> {
                                                     // height: 1.2,
                                                   ),
                                                 ),
-                                                const Text(
-                                                  " *",
+                                                Text(
+                                                  "*",
                                                   style: TextStyle(
-                                                      fontSize: 20, color: Color.fromRGBO(147, 147, 148, 1)
-                                                      // greyDisabled,
-                                                      ),
+                                                    fontSize: 18,
+                                                    color: greyDisabled,
+                                                  ),
                                                 ),
                                               ],
                                             )
                                           ],
                                         ),
+                                        const SizedBox(height: 4),
                                         Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
@@ -202,13 +254,51 @@ class _CardScreenState extends State<CardScreen> {
                                             style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
+                                              height: 1.2,
                                             ),
                                           ),
                                         ),
-
+                                        const SizedBox(height: 4),
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            "${items[index].totalPrice.toString().toUpperCase()} ₽/день",
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              height: 1.2,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Row(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "* ",
+                                              style: TextStyle(
+                                                fontSize: 11,
+                                                height: 1.2,
+                                                color: greyDisabled,
+                                              ),
+                                            ),
+                                            Flexible(
+                                              child: Text(
+                                                "Стоимость аренды лодки на 1 пассажира при заполнении всех спальных мест",
+                                                style: TextStyle(
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.w500,
+                                                  height: 1.2,
+                                                  color: greyDisabled,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        )
                                       ],
                                     ),
                                   ),
+                                  const SizedBox(height: 32.0),
                                 ],
                               ),
                             ),
