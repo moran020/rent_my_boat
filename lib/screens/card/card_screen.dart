@@ -15,14 +15,12 @@ class CardScreen extends StatefulWidget {
 class _CardScreenState extends State<CardScreen> {
   late Future<CardsList> futureData;
 
-  int activeIndex = 0;
   final CarouselController carouselController = CarouselController();
 
   @override
   void initState() {
     super.initState();
     futureData = getCardList();
-
   }
 
   @override
@@ -72,13 +70,10 @@ class _CardScreenState extends State<CardScreen> {
                                             options: CarouselOptions(
                                                 height: 200,
                                                 viewportFraction: 1,
-                                                // autoPlay: false,
                                                 enlargeCenterPage: true,
-                                                // enlargeStrategy: CenterPageEnlargeStrategy.scale,
-                                                // aspectRatio: 2.0,
-                                                onPageChanged: (index, reason) {
+                                                onPageChanged: (indexSlide, reason) {
                                                   setState(() {
-                                                    activeIndex = index;
+                                                    items[index].activeImage = indexSlide;
                                                   });
                                                 }),
                                             items: items[index]
@@ -101,7 +96,7 @@ class _CardScreenState extends State<CardScreen> {
                                             padding: const EdgeInsets.only(bottom: 8.0),
                                             alignment: Alignment.bottomCenter,
                                             child: AnimatedSmoothIndicator(
-                                              activeIndex: activeIndex,
+                                              activeIndex: items[index].activeImage,
                                               count: items[index].carouselImg!.length,
                                               effect: ScrollingDotsEffect(
                                                 dotWidth: 8,
@@ -112,25 +107,23 @@ class _CardScreenState extends State<CardScreen> {
                                               ),
                                             ),
                                           ),
-
-                                          // Row(
-                                          //     children: [
-                                          //       for(int i = 0; i < items[index].carouselImg!.length; i++)
-                                          //       // GestureDetector(
-                                          //       //     onTap: () => carouselController.animateToPage(activeIndex),
-                                          //       //     child:
-                                          //         Container(
-                                          //             height: 10, width: 10,
-                                          //             decoration: BoxDecoration(
-                                          //                 color: i == activeIndex ? Colors.white : Colors.grey,
-                                          //                 borderRadius: BorderRadius.circular(5)
-                                          //             )
-                                          //         )
-                                          //       // )
-                                          //     ]
-                                          // ),
                                         ],
                                       ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
@@ -160,7 +153,9 @@ class _CardScreenState extends State<CardScreen> {
                                               });
                                             },
                                             child: Image.asset(
-                                              items[index].isLiked == true ? 'assets/icons/like_active.png' : 'assets/icons/like_disabled.png',
+                                              items[index].isLiked == true
+                                                  ? 'assets/icons/like_active.png'
+                                                  : 'assets/icons/like_disabled.png',
                                               width: 20,
                                               fit: BoxFit.fill,
                                             ),

@@ -42,6 +42,7 @@ class CardItem {
   int? seatsNumber;
   String? city;
   bool? isLiked;
+  int activeImage = 0;
 
   CardItem(
       {this.id,
