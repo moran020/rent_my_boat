@@ -39,52 +39,25 @@ class _MainScreenBottomMenuState extends State<MainScreenBottomMenu> {
         onTap: (index) => setState(() => currentMenuIndex = index),
         items: [
           //TODO: locale
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.only(bottom: 6),
-              child: Image.asset(
-                'assets/icons/anchor.png',
-                height: 20,
-                fit: BoxFit.fill,
-              ),
-            ),
-            label: "Поиск",
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.only(bottom: 6),
-              child: Image.asset(
-                'assets/icons/like.png',
-                height: 20,
-                fit: BoxFit.fill,
-              ),
-            ),
-            label: "Избранное",
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.only(bottom: 6),
-              child: Image.asset(
-                'assets/icons/card.png',
-                height: 20,
-                fit: BoxFit.fill,
-              ),
-            ),
-            label: "Бронирования",
-          ),
-          BottomNavigationBarItem(
-            icon: Padding(
-              padding: const EdgeInsets.only(bottom: 6),
-              child: Image.asset(
-                'assets/icons/account.png',
-                height: 20,
-                fit: BoxFit.fill,
-              ),
-            ),
-            label: "Мой аккаунт",
-          ),
+          menuItem("assets/icons/anchor.png", "Поиск"),
+          menuItem("assets/icons/like.png", "Избранное"),
+          menuItem("assets/icons/card.png", "Бронирования"),
+          menuItem("assets/icons/account.png", "Мой аккаунт"),
         ],
       ),
     );
   }
+
+  BottomNavigationBarItem menuItem(String icon, String title) => BottomNavigationBarItem(
+    icon: Padding(
+      padding: const EdgeInsets.only(bottom: 6),
+      child: Image.asset(
+        icon,
+        height: 20,
+        fit: BoxFit.fill,
+      ),
+    ),
+    label: title,
+  );
+
 }
