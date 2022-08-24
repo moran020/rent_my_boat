@@ -178,7 +178,7 @@ class _CardScreenState extends State<CardScreen> {
                                                         items[index].seatsNumber.toString(),
                                                         style: const TextStyle(
                                                           fontSize: 11,
-                                                          fontWeight: FontWeight.w500,
+                                                          fontWeight: FontWeight.bold,
                                                         ),
                                                       ),
                                                     ],
@@ -196,7 +196,7 @@ class _CardScreenState extends State<CardScreen> {
                                                       items[index].city.toString(),
                                                       style: const TextStyle(
                                                         fontSize: 11,
-                                                        fontWeight: FontWeight.w500,
+                                                        fontWeight: FontWeight.bold,
                                                       ),
                                                     ),
                                                   ],
@@ -244,7 +244,7 @@ class _CardScreenState extends State<CardScreen> {
                                             "${items[index].totalPrice.toString().toUpperCase()} ₽/день",
                                             style: const TextStyle(
                                               fontSize: 14,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.bold,
                                               height: 1.2,
                                             ),
                                           ),
