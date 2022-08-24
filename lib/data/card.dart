@@ -35,27 +35,41 @@ class CardItem {
   String? name;
   String? description;
   String? price;
+  String? totalPrice;
   List<String>? carouselImg;
   bool? isLabel;
   String? labelTitle;
+  int? seatsNumber;
+  String? city;
+  bool? isLiked;
+  int activeImage = 0;
 
   CardItem(
       {this.id,
         this.name,
         this.description,
         this.price,
+        this.totalPrice,
         this.carouselImg,
         this.isLabel,
-        this.labelTitle});
+        this.labelTitle,
+        this.seatsNumber,
+        this.city,
+        this.isLiked,
+      });
 
   CardItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     description = json['description'];
     price = json['price'];
+    totalPrice = json['totalPrice'];
     carouselImg = json['carouselImg'].cast<String>();
     isLabel = json['isLabel'];
     labelTitle = json['labelTitle'];
+    seatsNumber = json['seatsNumber'];
+    city = json['city'];
+    isLiked = json['isLiked'];
   }
 
   Map<String, dynamic> toJson() {
@@ -64,9 +78,13 @@ class CardItem {
     data['name'] = name;
     data['description'] = description;
     data['price'] = price;
+    data['totalPrice'] = totalPrice;
     data['carouselImg'] = carouselImg;
     data['isLabel'] = isLabel;
     data['labelTitle'] = labelTitle;
+    data['seatsNumber'] = seatsNumber;
+    data['city'] = city;
+    data['isLiked'] = isLiked;
     return data;
   }
 }

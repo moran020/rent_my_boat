@@ -19,49 +19,42 @@ class _MainScreenBottomMenuState extends State<MainScreenBottomMenu> {
     const HomeScreen(),
     const OwnerForm(),
     const HomeScreen(),
-    const OwnerForm(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: currentMenuIndex,
-        children: screens,
-      ),
+      body: screens[currentMenuIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: background,
-        selectedItemColor: todaysDate,
+        selectedItemColor: accentRed,
         unselectedItemColor: basicText,
-        iconSize: 30,
-        selectedFontSize: 16,
-        unselectedFontSize: 14,
+        selectedFontSize: 10,
+        unselectedFontSize: 10,
         currentIndex: currentMenuIndex,
         onTap: (index) => setState(() => currentMenuIndex = index),
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: "Поиск",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_outline),
-            label: "Избранное",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble_outline),
-            label: "Сообщения",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.feed_outlined),
-            label: "Бронирования",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: "Войти",
-          ),
+        items: [
+          //TODO: locale
+          menuItem("assets/icons/anchor.png", "Поиск"),
+          menuItem("assets/icons/like.png", "Избранное"),
+          menuItem("assets/icons/card.png", "Бронирования"),
+          menuItem("assets/icons/account.png", "Мой аккаунт"),
         ],
       ),
     );
   }
+
+  BottomNavigationBarItem menuItem(String icon, String title) => BottomNavigationBarItem(
+    icon: Padding(
+      padding: const EdgeInsets.only(bottom: 6),
+      child: Image.asset(
+        icon,
+        height: 20,
+        fit: BoxFit.fill,
+      ),
+    ),
+    label: title,
+  );
+
 }
