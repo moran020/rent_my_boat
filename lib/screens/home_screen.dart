@@ -17,6 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height ; 
     var tr = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
@@ -50,81 +51,79 @@ class _HomeScreenState extends State<HomeScreen> {
           ]),
       body: Container(
         color: background,
-        padding: const EdgeInsets.all(16),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/icons/vector.png',
-                width: 32,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              SizedBox(
-                  height: 45,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: isPressed_1 ? pressedButton : activeButton,
-                        elevation: 0.0,
-                        shadowColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100)),
+        padding:  EdgeInsets.only(left: 16, right: 16, top: screenHeight*0.25 ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              'assets/icons/vector.png',
+              width: 80,
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+            SizedBox(
+                height: 45,
+                width: double.infinity,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: isPressed_1 ? pressedButton : activeButton,
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100)),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/owner_form',
+                      );
+                      setState(() {
+                        isPressed_1 = true;
+                        isPressed_2 = false;
+                      });
+                    },
+                    child: Text(
+                      tr.capitan,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.5,
                       ),
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          '/owner_form',
-                        );
-                        setState(() {
-                          isPressed_1 = true;
-                          isPressed_2 = false;
-                        });
-                      },
-                      child: Text(
-                        tr.capitan,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.5,
-                        ),
-                      ))),
-              const SizedBox(
-                height: 8,
-              ),
-              SizedBox(
-                  height: 45,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: isPressed_2 ? pressedButton : activeButton,
-                        elevation: 0.0,
-                        shadowColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(100)),
+                    ))),
+            const SizedBox(
+              height: 8,
+            ),
+            SizedBox(
+                height: 45,
+                width: double.infinity,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: isPressed_2 ? pressedButton : activeButton,
+                      elevation: 0.0,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100)),
+                    ),
+                    onPressed: () {
+                      Navigator.pushNamed(
+                        context,
+                        '/card_screen',
+                      );
+                      setState(() {
+                        isPressed_2 = true;
+                        isPressed_1 = false;
+                      });
+                    },
+                    child: Text(
+                      tr.tourist,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.5,
                       ),
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          '/card_screen',
-                        );
-                        setState(() {
-                          isPressed_2 = true;
-                          isPressed_1 = false;
-                        });
-                      },
-                      child: Text(
-                        tr.tourist,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.5,
-                        ),
-                      ))),
-            ],
-          ),
+                    ))),
+          ],
         ),
       ),
     );
