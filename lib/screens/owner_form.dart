@@ -18,9 +18,39 @@ class OwnerForm extends StatefulWidget {
   FormState createState() => FormState();
 }
 
-class FormState extends State {
+class FormState extends State with TickerProviderStateMixin {
   // The entry point for accessing a Firebase Database.
   final _database = FirebaseDatabase.instance;
+  bool _showBackToTopButton = false;
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController()
+    ..addListener(() {
+        setState(() {
+          if (_scrollController.offset >= 400) {
+            _showBackToTopButton = true; // show the back-to-top button
+          } else {
+            _showBackToTopButton = false; // hide the back-to-top button
+          }
+        });
+      });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose(); // dispose the controller
+    super.dispose();
+  }
+
+  // This function is triggered when the user presses the back-to-top button
+  void _scrollToTop() {
+    _scrollController.animateTo(0,
+        duration: const Duration(seconds: 1), curve: Curves.linear);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,6 +102,7 @@ class FormState extends State {
           ],
         ),
         body: SingleChildScrollView(
+          controller: _scrollController,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -124,6 +155,17 @@ class FormState extends State {
               ],
             ),
           ),
-        ));
+        ),
+        floatingActionButton: _showBackToTopButton == false
+          ? null: SizedBox(
+          width: 36,
+          height: 36,
+          child: FloatingActionButton(
+            onPressed: _scrollToTop,
+            child: Image.asset("assets/icons/uptotop.png"),
+            backgroundColor: upToTopButton,
+            elevation: 0,
+            ),
+        ),);
   }
 }
