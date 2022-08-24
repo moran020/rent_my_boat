@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:rent_my_boat/data/helpers_owner_form/singles/dropdownbutton_multiselection.dart';
+import 'package:rent_my_boat/data/helpers_owner_form/singles/package_dropdownbutton.dart';
 import '../singles/textformfield.dart';
 
 class ModuleTexFormField extends StatefulWidget {
@@ -16,7 +17,8 @@ final TextEditingController nameController = TextEditingController();
 final TextEditingController dateOfBirthController = TextEditingController();
 final TextEditingController emailController = TextEditingController();
 final TextEditingController phoneNumberController = TextEditingController();
-final TextEditingController languagesController = TextEditingController();
+final MultiValueDropDownController languagesController =
+    MultiValueDropDownController();
 final TextEditingController manufBoatController = TextEditingController();
 final TextEditingController modelBoatController = TextEditingController();
 final TextEditingController locationController = TextEditingController();
@@ -67,10 +69,14 @@ class _ModuleTexFormFieldState extends State<ModuleTexFormField> {
                 hintText: tr.phoneNumberHint,
                 keyboardType: TextInputType.number),
             const SizedBox(height: 10),
-            TextFormFieldCreate(
-                controller: languagesController,
-                hintText: tr.languagesHint,
-                keyboardType: TextInputType.text),
+            //DropdownTextField with multiselection of user language
+            DropDownButtonCreate(
+              submitButtonText: tr.button_save,
+              hintText: tr.languagesHint,
+              onChanged: (val) {
+                setState(() {});
+              },
+            ),
             const SizedBox(height: 10),
             TextFormFieldCreate(
                 controller: manufBoatController,
