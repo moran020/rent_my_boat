@@ -45,6 +45,7 @@ dependencies:
   firebase_core: ^1.20.1
   dropdown_textfield: ^1.0.1
   equatable: ^2.0.5
+  searchable_listview: ^2.0.0
 
 dev_dependencies:
   flutter_test:
