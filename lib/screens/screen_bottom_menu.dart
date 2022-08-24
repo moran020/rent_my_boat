@@ -24,10 +24,7 @@ class _MainScreenBottomMenuState extends State<MainScreenBottomMenu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: currentMenuIndex,
-        children: screens,
-      ),
+      body: screens[currentMenuIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: background,

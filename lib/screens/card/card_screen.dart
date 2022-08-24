@@ -32,7 +32,6 @@ class _CardScreenState extends State<CardScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // TODO: тут фильтры
-
             const SizedBox(height: 32.0),
             Expanded(
               child: FutureBuilder(
@@ -109,21 +108,6 @@ class _CardScreenState extends State<CardScreen> {
                                           ),
                                         ],
                                       ),
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
