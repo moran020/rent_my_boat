@@ -3,6 +3,7 @@ import '../../data/card.dart';
 import '../../data/colors.dart';
 import 'card_detail.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'filters.dart';
 
 class CardScreen extends StatefulWidget {
   const CardScreen({Key? key}) : super(key: key);
@@ -29,10 +30,13 @@ class _CardScreenState extends State<CardScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // TODO: тут фильтры
+            Filters(),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
               //TODO: Текст с локализацией + количество лодок
-              child: Text("58 boats available", style: const TextStyle(fontSize: 20.0)),
+              child: Text("58 boats available",
+                  style: const TextStyle(fontSize: 20.0)),
             ),
             Expanded(
               child: FutureBuilder(
@@ -52,7 +56,8 @@ class _CardScreenState extends State<CardScreen> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const CardDetailsScreen(),
+                                    builder: (context) =>
+                                        const CardDetailsScreen(),
                                   ));
                             },
                             child: Container(
@@ -67,30 +72,48 @@ class _CardScreenState extends State<CardScreen> {
                                           height: 150,
                                           viewportFraction: 1,
                                         ),
-                                        items: items[index].carouselImg?.map((item) => Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: const BorderRadius.only(
-                                                topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                                            image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: NetworkImage(
-                                                item,
-                                              ),
-                                            ),
-                                          ),
-                                        )).toList(),
+                                        items: items[index]
+                                            .carouselImg
+                                            ?.map((item) => Container(
+                                                  decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        const BorderRadius.only(
+                                                            topLeft:
+                                                                Radius.circular(
+                                                                    20),
+                                                            topRight:
+                                                                Radius.circular(
+                                                                    20)),
+                                                    image: DecorationImage(
+                                                      fit: BoxFit.cover,
+                                                      image: NetworkImage(
+                                                        item,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ))
+                                            .toList(),
                                       ),
                                       items[index].isLabel == true
                                           ? Container(
-                                              margin: const EdgeInsets.all(16.0),
-                                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                              margin:
+                                                  const EdgeInsets.all(16.0),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 16,
+                                                      vertical: 8),
                                               decoration: BoxDecoration(
                                                 color: todaysDate,
-                                                borderRadius: const BorderRadius.all(Radius.circular(20.0)),
+                                                borderRadius:
+                                                    const BorderRadius.all(
+                                                        Radius.circular(20.0)),
                                               ),
                                               child: Text(
-                                                items[index].labelTitle.toString(),
-                                                style: const TextStyle(color: Colors.white),
+                                                items[index]
+                                                    .labelTitle
+                                                    .toString(),
+                                                style: const TextStyle(
+                                                    color: Colors.white),
                                               ),
                                             )
                                           : Container(),
@@ -98,7 +121,8 @@ class _CardScreenState extends State<CardScreen> {
                                   ),
                                   Container(
                                     // margin: const EdgeInsets.all(16.0),
-                                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 8),
                                     decoration: const BoxDecoration(
                                         color: Colors.white,
                                         borderRadius: BorderRadius.only(
@@ -106,7 +130,10 @@ class _CardScreenState extends State<CardScreen> {
                                           bottomRight: Radius.circular(20.0),
                                         ),
                                         boxShadow: [
-                                          BoxShadow(blurRadius: 5, color: Colors.black45, offset: Offset(0, 3))
+                                          BoxShadow(
+                                              blurRadius: 5,
+                                              color: Colors.black45,
+                                              offset: Offset(0, 3))
                                         ]),
                                     child: Column(
                                       children: [
@@ -114,7 +141,8 @@ class _CardScreenState extends State<CardScreen> {
                                           alignment: Alignment.centerLeft,
                                           child: Text(
                                             items[index].name.toString(),
-                                            style: const TextStyle(fontSize: 18),
+                                            style:
+                                                const TextStyle(fontSize: 18),
                                           ),
                                         ),
                                         Align(
