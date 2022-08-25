@@ -105,9 +105,8 @@ class FormState extends State with TickerProviderStateMixin {
                     fontSize: 16,
                     fontWeight: FontWeight.w600),
               ),
-            ),
-          )
-        ],
+            
+      ))],
       ),
       body: SingleChildScrollView(
         controller: _scrollController,
