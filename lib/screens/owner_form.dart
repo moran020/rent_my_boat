@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rent_my_boat/data/helpers_owner_form/modules/module_checkbox.dart';
 import 'package:rent_my_boat/data/helpers_owner_form/modules/module_images.dart';
@@ -5,6 +6,7 @@ import 'package:rent_my_boat/data/helpers_owner_form/modules/module_radiobutton.
 import 'package:rent_my_boat/data/helpers_owner_form/modules/module_textformfield.dart';
 import 'package:rent_my_boat/data/helpers_owner_form/singles/circle_avatar.dart';
 import 'package:rent_my_boat/data/helpers_owner_form/singles/header_middle_text.dart';
+import '../data/helpers_owner_form/modules/textfield.dart';
 import '/data/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '/data/calendar.dart';
@@ -130,7 +132,7 @@ class FormState extends State with TickerProviderStateMixin {
               HeaderMiddleText(text: tr.introduction),
               const SizedBox(height: 20),
               //The module of textfields for the form
-              const ModuleTexFormField(),
+              const TextFormValidation(),
               const SizedBox(height: 40),
               HeaderMiddleText(text: tr.boatCategory),
               const SizedBox(height: 18),
@@ -158,9 +160,11 @@ class FormState extends State with TickerProviderStateMixin {
               const SizedBox(height: 20),
               //Calendar
               const Calendar(),
+              const SizedBox(height: 30),
+              const SaveButton()
             ],
           ),
-        ),
+        ), 
       ),
       floatingActionButton: _showBackToTopButton == false
           ? null
@@ -172,8 +176,9 @@ class FormState extends State with TickerProviderStateMixin {
                 child: Image.asset("assets/icons/uptotop.png"),
                 backgroundColor: upToTopButton,
                 elevation: 0,
-              ),
+              ), 
             ),
-    ));
+            
+    ) );
   }
 }

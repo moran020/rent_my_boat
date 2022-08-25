@@ -12,6 +12,6 @@ class HeaderMiddleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(text,
         style: const TextStyle(
-            fontSize: 18, fontWeight: FontWeight.w600, letterSpacing: 0.5));
+            fontSize: 16, fontWeight: FontWeight.w500, letterSpacing: -0.41, ));
   }
 }

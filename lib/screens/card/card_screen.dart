@@ -3,6 +3,7 @@ import '../../data/card.dart';
 import '../../data/colors.dart';
 import 'card_detail.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'filters.dart';
 
 class CardScreen extends StatefulWidget {
@@ -14,6 +15,8 @@ class CardScreen extends StatefulWidget {
 
 class _CardScreenState extends State<CardScreen> {
   late Future<CardsList> futureData;
+
+  final CarouselController carouselController = CarouselController();
 
   @override
   void initState() {
@@ -30,17 +33,10 @@ class _CardScreenState extends State<CardScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // TODO: тут фильтры
-            Filters(),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
-              //TODO: Текст с локализацией + количество лодок
-              child: Text("58 boats available",
-                  style: const TextStyle(fontSize: 20.0)),
-            ),
+            const SizedBox(height: 32.0),
             Expanded(
               child: FutureBuilder(
-                future: futureData,
+                future: futureData, //TODO: получить данные из  firebase
                 builder: (BuildContext context, data) {
                   if (data.hasError) {
                     return Center(child: Text("${data.error}"));
@@ -61,108 +57,290 @@ class _CardScreenState extends State<CardScreen> {
                                   ));
                             },
                             child: Container(
-                              margin: const EdgeInsets.all(16.0),
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 16.0),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Stack(
                                     children: [
-                                      CarouselSlider(
-                                        options: CarouselOptions(
-                                          height: 150,
-                                          viewportFraction: 1,
-                                        ),
-                                        items: items[index]
-                                            .carouselImg
-                                            ?.map((item) => Container(
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        const BorderRadius.only(
-                                                            topLeft:
+                                      Stack(
+                                        alignment:
+                                            AlignmentDirectional.bottomCenter,
+                                        children: [
+                                          CarouselSlider(
+                                            carouselController:
+                                                carouselController,
+                                            options: CarouselOptions(
+                                                height: 200,
+                                                viewportFraction: 1,
+                                                enlargeCenterPage: true,
+                                                onPageChanged:
+                                                    (indexSlide, reason) {
+                                                  setState(() {
+                                                    items[index].activeImage =
+                                                        indexSlide;
+                                                  });
+                                                }),
+                                            items: items[index]
+                                                .carouselImg
+                                                ?.map((item) => Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                    .all(
                                                                 Radius.circular(
-                                                                    20),
-                                                            topRight:
-                                                                Radius.circular(
-                                                                    20)),
-                                                    image: DecorationImage(
-                                                      fit: BoxFit.cover,
-                                                      image: NetworkImage(
-                                                        item,
+                                                                    5)),
+                                                        image: DecorationImage(
+                                                          fit: BoxFit.cover,
+                                                          image: NetworkImage(
+                                                            item,
+                                                          ),
+                                                        ),
                                                       ),
+                                                    ))
+                                                .toList(),
+                                          ),
+                                          Container(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8.0),
+                                            alignment: Alignment.bottomCenter,
+                                            child: AnimatedSmoothIndicator(
+                                              activeIndex:
+                                                  items[index].activeImage,
+                                              count: items[index]
+                                                  .carouselImg!
+                                                  .length,
+                                              effect: ScrollingDotsEffect(
+                                                dotWidth: 8,
+                                                dotHeight: 8,
+                                                dotColor: background,
+                                                activeDotColor: background,
+                                                activeDotScale: 1.5,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          items[index].isLabel == true
+                                              ? Container(
+                                                  margin: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 16.0,
+                                                      vertical: 18.0),
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 12.0,
+                                                      vertical: 4.0),
+                                                  decoration: BoxDecoration(
+                                                    color: accentRed,
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(
+                                                                100.0)),
+                                                  ),
+                                                  child: Text(
+                                                    items[index]
+                                                        .labelTitle
+                                                        .toString()
+                                                        .toUpperCase(),
+                                                    style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      letterSpacing: 0.1,
                                                     ),
                                                   ),
-                                                ))
-                                            .toList(),
+                                                )
+                                              : Container(),
+                                          TextButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                items[index].isLiked =
+                                                    !items[index].isLiked!;
+                                              });
+                                            },
+                                            child: Image.asset(
+                                              items[index].isLiked == true
+                                                  ? 'assets/icons/like_active.png'
+                                                  : 'assets/icons/like_disabled.png',
+                                              width: 20,
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      items[index].isLabel == true
-                                          ? Container(
-                                              margin:
-                                                  const EdgeInsets.all(16.0),
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 16,
-                                                      vertical: 8),
-                                              decoration: BoxDecoration(
-                                                color: todaysDate,
-                                                borderRadius:
-                                                    const BorderRadius.all(
-                                                        Radius.circular(20.0)),
-                                              ),
-                                              child: Text(
-                                                items[index]
-                                                    .labelTitle
-                                                    .toString(),
-                                                style: const TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                            )
-                                          : Container(),
                                     ],
                                   ),
                                   Container(
-                                    // margin: const EdgeInsets.all(16.0),
+                                    margin: const EdgeInsets.only(top: 8.0),
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 16, vertical: 8),
-                                    decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(20.0),
-                                          bottomRight: Radius.circular(20.0),
-                                        ),
-                                        boxShadow: [
-                                          BoxShadow(
-                                              blurRadius: 5,
-                                              color: Colors.black45,
-                                              offset: Offset(0, 3))
-                                        ]),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(5.0)),
+                                      border: Border.all(color: activeButton),
+                                    ),
                                     child: Column(
                                       children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 9),
+                                                  child: Row(
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(right: 4),
+                                                        child: Image.asset(
+                                                          'assets/icons/passenger.png',
+                                                        ),
+                                                      ),
+                                                      Text(
+                                                        items[index]
+                                                            .seatsNumber
+                                                            .toString(),
+                                                        style: const TextStyle(
+                                                          fontSize: 11,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 4),
+                                                      child: Image.asset(
+                                                        'assets/icons/anchor_sm.png',
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      items[index]
+                                                          .city
+                                                          .toString(),
+                                                      style: const TextStyle(
+                                                        fontSize: 11,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "${items[index].price.toString()} ₽",
+                                                  style: const TextStyle(
+                                                    fontSize: 22,
+                                                    fontWeight: FontWeight.bold,
+                                                    letterSpacing: 0.41,
+                                                    // height: 1.2,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "*",
+                                                  style: TextStyle(
+                                                    fontSize: 18,
+                                                    color: greyDisabled,
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                        const SizedBox(height: 4),
                                         Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            items[index].name.toString(),
-                                            style:
-                                                const TextStyle(fontSize: 18),
+                                            items[index]
+                                                .name
+                                                .toString()
+                                                .toUpperCase(),
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                              height: 1.2,
+                                            ),
                                           ),
                                         ),
+                                        const SizedBox(height: 4),
                                         Align(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            "${items[index].price.toString()} руб.",
-                                            // style: const TextStyle(fontSize: 16),
+                                            "${items[index].totalPrice.toString().toUpperCase()} ₽/день",
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              height: 1.2,
+                                            ),
                                           ),
                                         ),
+                                        const SizedBox(height: 4),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "* ",
+                                              style: TextStyle(
+                                                fontSize: 11,
+                                                height: 1.2,
+                                                color: greyDisabled,
+                                              ),
+                                            ),
+                                            Flexible(
+                                              child: Text(
+                                                "Стоимость аренды лодки на 1 пассажира при заполнении всех спальных мест",
+                                                style: TextStyle(
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.w500,
+                                                  height: 1.2,
+                                                  color: greyDisabled,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        )
                                       ],
                                     ),
                                   ),
+                                  const SizedBox(height: 32.0),
                                 ],
                               ),
                             ),
                           );
                         });
                   } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
+                    return Center(
+                      child: Image.asset(
+                        'assets/icons/vector.png',
+                        width: 140,
+                        fit: BoxFit.fill,
+                        color: Colors.white.withOpacity(0.5),
+                        colorBlendMode: BlendMode.modulate,
+                      ),
                     );
                   }
                 },
