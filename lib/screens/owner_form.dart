@@ -6,7 +6,7 @@ import 'package:rent_my_boat/data/helpers_owner_form/modules/module_radiobutton.
 import 'package:rent_my_boat/data/helpers_owner_form/modules/module_textformfield.dart';
 import 'package:rent_my_boat/data/helpers_owner_form/singles/circle_avatar.dart';
 import 'package:rent_my_boat/data/helpers_owner_form/singles/header_middle_text.dart';
-import '../data/helpers_owner_form/modules/textfield.dart';
+import 'package:rent_my_boat/data/helpers_owner_form/singles/label_text.dart';
 import '/data/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '/data/calendar.dart';
@@ -20,11 +20,14 @@ class OwnerForm extends StatefulWidget {
   FormState createState() => FormState();
 }
 
+final GlobalKey<FormState> _form17Key = GlobalKey();
+
 class FormState extends State with TickerProviderStateMixin {
   // The entry point for accessing a Firebase Database.
   final _database = FirebaseDatabase.instance;
   bool _showBackToTopButton = false;
   late ScrollController _scrollController;
+  late String equipment;
 
   @override
   void initState() {
@@ -132,7 +135,7 @@ class FormState extends State with TickerProviderStateMixin {
               HeaderMiddleText(text: tr.introduction),
               const SizedBox(height: 20),
               //The module of textfields for the form
-              const TextFormValidation(),
+              const ModuleTextFormField(),
               const SizedBox(height: 40),
               HeaderMiddleText(text: tr.boatCategory),
               const SizedBox(height: 18),
@@ -151,10 +154,29 @@ class FormState extends State with TickerProviderStateMixin {
               const SizedBox(height: 32),
               HeaderMiddleText(text: tr.instructionThree),
               const SizedBox(height: 24),
-              TextFormFieldCreate(
-                  controller: addEquipment,
-                  hintText: tr.instructionThreeHint,
-                  keyboardType: TextInputType.text),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  LabelText(text: 'Дополнительное оборудование на борту'),
+                  Form(
+                    key: _form17Key,
+                    child: TextFormFieldCreate(
+                        maxLines: 3,
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Введите данные';
+                          }
+                          return null;
+                        },
+                        onSaved: (value) {
+                          equipment = value!;
+                        },
+                        controller: addEquipment,
+                        hintText: tr.instructionThreeHint,
+                        keyboardType: TextInputType.text),
+                  ),
+                ],
+              ),
               const SizedBox(height: 40),
               HeaderMiddleText(text: tr.instructionFour),
               const SizedBox(height: 20),

@@ -56,16 +56,6 @@ class _ModuleRadioButtonState extends State<ModuleRadioButton> {
                 groupValue: type,
                 boatType: tr.sailboats,
               ),
-              RadioButtonCreate(
-                value: TypeBoatList.yacht,
-                onChanged: (TypeBoatList? value) {
-                  setState(() {
-                    type = value!;
-                  });
-                },
-                groupValue: type,
-                boatType: tr.yacht,
-              ),
             ],
           ),
         ),
@@ -96,14 +86,14 @@ class _ModuleRadioButtonState extends State<ModuleRadioButton> {
                 boatType: tr.rib,
               ),
               RadioButtonCreate(
-                value: TypeBoatList.hydrocycle,
+                value: TypeBoatList.yacht,
                 onChanged: (TypeBoatList? value) {
                   setState(() {
                     type = value!;
                   });
                 },
                 groupValue: type,
-                boatType: tr.jetSki,
+                boatType: tr.yacht,
               )
             ],
           ),
