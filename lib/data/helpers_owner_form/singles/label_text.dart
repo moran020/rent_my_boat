@@ -15,7 +15,7 @@ class LabelText extends StatelessWidget {
         Text(text,
             style: const TextStyle(
               fontSize: 13,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
               letterSpacing: -0.41,
             )),
         const SizedBox(height: 5)
