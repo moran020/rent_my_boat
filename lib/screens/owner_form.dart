@@ -47,11 +47,11 @@ class FormState extends State with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _scrollController.dispose(); // dispose the controller
+    _scrollController.dispose(); 
     super.dispose();
   }
 
-  // This function is triggered when the user presses the back-to-top button
+  //  function for the back-to-top button
   void _scrollToTop() {
     _scrollController.animateTo(0,
         duration: const Duration(seconds: 1), curve: Curves.linear);
@@ -79,24 +79,24 @@ class FormState extends State with TickerProviderStateMixin {
           }),
         ),
         actions: <Widget>[
-          //With method .set data from textfields are goind into realtime database firebase
+          //With method .set data from textfields are going into realtime database firebase
           TextButton(
             onPressed: () {
               reference.set({
-                tr.nameHint: nameController.text,
-                tr.dateOfBirthHint: dateOfBirthController.text,
-                tr.emailHint: emailController.text,
-                tr.phoneNumberHint: phoneNumberController.text,
-                tr.languagesHint:
+                tr.name: nameController.text,
+                tr.dateOfBirth: dateOfBirthController.text,
+                tr.email: emailController.text,
+                tr.phoneNumber: phoneNumberController.text,
+                tr.languages:
                     languagesController.dropDownValueList.toString(),
-                tr.manufactorerHint: manufBoatController.text,
-                tr.modelHint: modelBoatController.text,
-                tr.locationHint: locationController.text,
+                tr.manufactorer: manufBoatController.text,
+                tr.model: modelBoatController.text,
+                tr.location: locationController.text,
                 tr.year: capacityController.text,
-                tr.lengthHint: lenghtBoatController.text,
-                tr.cabinsHint: cabinsNumberController.text,
-                tr.sleepingPlacesHint: bedNumderController.text,
-                tr.enginePowerHint: powerBoatController.text,
+                tr.length: lenghtBoatController.text,
+                tr.cabins: cabinsNumberController.text,
+                tr.sleepingPlaces: bedNumderController.text,
+                tr.enginePower: powerBoatController.text,
               }).asStream();
             },
             child: Padding(
@@ -156,14 +156,14 @@ class FormState extends State with TickerProviderStateMixin {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LabelText(text: 'Дополнительное оборудование на борту'),
+                  LabelText(text: tr.instructionThreeHint),
                   Form(
                     key: _form17Key,
                     child: TextFormFieldCreate(
                         maxLines: 3,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Введите данные';
+                            return tr.errorMessage;
                           }
                           return null;
                         },
