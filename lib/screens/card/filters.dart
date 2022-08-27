@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '/data/colors.dart';
 // import 'package:searchable_listview/searchable_listview.dart';
 
 class Filters extends StatelessWidget {
@@ -7,12 +8,25 @@ class Filters extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SearchField(),
+        SizedBox(height: 16),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [CheckBox(), FiltersButton()],
         ),
-        Text('Выберите лодку'),
+        SizedBox(height: 32),
+        Text(
+          'Выберите лодку',
+          textAlign: TextAlign.start,
+          style: TextStyle(
+            color: titleText,
+            fontWeight: FontWeight.w600,
+            fontSize: 20,
+            letterSpacing: 0.41,
+          ),
+        ),
         BoatsList(),
       ],
     );
@@ -24,16 +38,98 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return TextFormField(
+      keyboardType: TextInputType.text,
+      // controller: nameController,
+      cursorColor: activeButton,
+      decoration: InputDecoration(
+        labelText: 'Введите город отправления',
+        // labelStyle: TextStyle(fontWeight: 14),
+        border: InputBorder.none,
+        contentPadding: const EdgeInsets.only(top: 8, bottom: 8),
+        enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: BorderSide(
+              color: activeButton,
+            )),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: BorderSide(width: 2.5, color: activeButton),
+        ),
+        isDense: true,
+      ),
+    );
   }
 }
 
-class CheckBox extends StatelessWidget {
+class CheckBox extends StatefulWidget {
   const CheckBox({Key? key}) : super(key: key);
 
   @override
+  State<CheckBox> createState() => _CheckBoxState();
+}
+
+class _CheckBoxState extends State<CheckBox> {
+  late bool value;
+  bool _withCap = false;
+  bool _withoutCap = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Container();
+    return Row(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              // //SizedBox for get checkbox minimum padding around
+              height: 19.0,
+              width: 19.0,
+              child: Checkbox(
+                value: _withCap,
+                onChanged: (bool? value) => setState(() => _withCap = value!),
+                side: BorderSide(color: activeButton),
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                activeColor: activeButton,
+              ),
+            ),
+            const SizedBox(width: 4),
+            Text(
+              'С капитаном',
+              style: const TextStyle(fontSize: 14, letterSpacing: 0.24),
+            ),
+          ],
+        ),
+        const SizedBox(width: 12),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(
+              // //SizedBox for get checkbox minimum padding around
+              height: 19.0,
+              width: 19.0,
+              child: Checkbox(
+                value: _withoutCap,
+                onChanged: (bool? value) =>
+                    setState(() => _withoutCap = value!),
+                side: BorderSide(color: activeButton),
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(5.0))),
+                activeColor: activeButton,
+              ),
+            ),
+            const SizedBox(width: 4),
+            Text(
+              'Без капитана',
+              style: const TextStyle(fontSize: 14, letterSpacing: 0.24),
+            ),
+          ],
+        ),
+      ],
+    );
   }
 }
 
@@ -42,7 +138,39 @@ class FiltersButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      // height: 32,
+      // width: 39,
+      child: OutlinedButton(
+        style: ButtonStyle(
+          fixedSize: MaterialStateProperty.all(const Size(39, 32)),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+          ),
+          side: MaterialStateProperty.all(
+            BorderSide(
+              color: activeButton,
+              width: 1,
+            ),
+          ),
+        ),
+        onPressed: () {
+          Navigator.pushNamed(
+            context,
+            '/filters',
+          );
+        },
+        child: Container(
+          child: Image.asset(
+            'assets/icons/filters.png',
+            // height: 14,
+            // width: 29,
+          ),
+        ),
+      ),
+    );
   }
 }
 
