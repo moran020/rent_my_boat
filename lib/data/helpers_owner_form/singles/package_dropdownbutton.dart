@@ -457,7 +457,7 @@ class _DropDownTextFieldState extends State<DropDownTextField>
                             child: Image.asset(
                               'assets/icons/dropdown.png',
                               alignment: Alignment.centerRight,
-                              color: activeButton,
+                              color: hintTextColor,
                             ),
                           )
                         : Padding(
