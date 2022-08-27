@@ -46,6 +46,8 @@ dependencies:
   smooth_page_indicator: ^1.0.0+2
   dropdown_textfield: ^1.0.1
   equatable: ^2.0.5
+  searchable_listview: ^2.0.0
+  syncfusion_flutter_core: ^20.2.45
 
 dev_dependencies:
   flutter_test:
