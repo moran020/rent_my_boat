@@ -18,3 +18,4 @@ Color calendarSymbols = const Color.fromRGBO(0, 0, 0, 1);
 Color errorBorder = const Color.fromRGBO(209, 82, 61, 1);
 Color titleText = const Color.fromRGBO(44, 44, 44, 1);
 Color borderColor = const Color.fromRGBO(163, 163, 163, 1);
+Color inactiveSlider = const Color.fromRGBO(214, 214, 214, 1);

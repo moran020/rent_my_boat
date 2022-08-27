@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rent_my_boat/screens/home_screen.dart';
 import 'package:rent_my_boat/screens/owner_form.dart';
 import '../../data/colors.dart';
-import 'card/card_screen.dart';
+import 'card_screen.dart';
 
 class MainScreenBottomMenu extends StatefulWidget {
   const MainScreenBottomMenu({Key? key}) : super(key: key);
@@ -45,16 +45,16 @@ class _MainScreenBottomMenuState extends State<MainScreenBottomMenu> {
     );
   }
 
-  BottomNavigationBarItem menuItem(String icon, String title) => BottomNavigationBarItem(
-    icon: Padding(
-      padding: const EdgeInsets.only(bottom: 6),
-      child: Image.asset(
-        icon,
-        height: 20,
-        fit: BoxFit.fill,
-      ),
-    ),
-    label: title,
-  );
-
+  BottomNavigationBarItem menuItem(String icon, String title) =>
+      BottomNavigationBarItem(
+        icon: Padding(
+          padding: const EdgeInsets.only(bottom: 6),
+          child: Image.asset(
+            icon,
+            height: 20,
+            fit: BoxFit.fill,
+          ),
+        ),
+        label: title,
+      );
 }

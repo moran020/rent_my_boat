@@ -3,11 +3,9 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'screens/home_screen.dart';
 import 'screens/owner_form.dart';
 import 'screens/screen_bottom_menu.dart';
-import 'screens/card/card_detail.dart';
-import 'screens/card/card_screen.dart';
-import 'screens/card/filters_screen.dart';
-import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
+import 'screens/card_detail.dart';
+import 'screens/card_screen.dart';
+import 'screens/filters_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import '../data/language.dart';
@@ -20,7 +18,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();

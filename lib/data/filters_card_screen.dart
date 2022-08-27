@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '/data/colors.dart';
-// import 'package:searchable_listview/searchable_listview.dart';
 
 class Filters extends StatelessWidget {
   const Filters({Key? key}) : super(key: key);
@@ -40,13 +39,19 @@ class SearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       keyboardType: TextInputType.text,
-      // controller: nameController,
+      // controller: controller,
       cursorColor: activeButton,
+
       decoration: InputDecoration(
-        labelText: 'Введите город отправления',
-        // labelStyle: TextStyle(fontWeight: 14),
+        prefixIcon: Image.asset('assets/icons/anchor_search.png'),
+        hintText: 'Введите город отправления',
+        hintStyle: TextStyle(
+            fontSize: 15,
+            color: hintTextColor,
+            fontWeight: FontWeight.w400,
+            letterSpacing: -0.0024),
         border: InputBorder.none,
-        contentPadding: const EdgeInsets.only(top: 8, bottom: 8),
+        contentPadding: const EdgeInsets.symmetric(vertical: 8),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
             borderSide: BorderSide(
@@ -138,12 +143,12 @@ class FiltersButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // height: 32,
-      // width: 39,
+    return SizedBox(
+      height: 32,
+      width: 39,
       child: OutlinedButton(
         style: ButtonStyle(
-          fixedSize: MaterialStateProperty.all(const Size(39, 32)),
+          padding: MaterialStateProperty.all(EdgeInsets.zero),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
@@ -162,12 +167,10 @@ class FiltersButton extends StatelessWidget {
             '/filters',
           );
         },
-        child: Container(
-          child: Image.asset(
-            'assets/icons/filters.png',
-            // height: 14,
-            // width: 29,
-          ),
+        child: Image.asset(
+          'assets/icons/filters.png',
+          height: 14,
+          width: 29,
         ),
       ),
     );

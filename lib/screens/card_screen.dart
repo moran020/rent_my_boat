@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../data/card.dart';
-import '../../data/colors.dart';
+import '../data/card.dart';
+import '../data/colors.dart';
 import 'card_detail.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'filters.dart';
+import '../data/filters_card_screen.dart';
 
 class CardScreen extends StatefulWidget {
   const CardScreen({Key? key}) : super(key: key);
@@ -34,7 +34,6 @@ class _CardScreenState extends State<CardScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              // TODO: тут фильтры
               Filters(),
               const SizedBox(height: 26.0),
               Expanded(
