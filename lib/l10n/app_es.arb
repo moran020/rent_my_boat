@@ -95,5 +95,10 @@
     "price3per_week": "Boat rental costs per week",
     "message_price3": "Boat trips last normally at least 7 days",
     "price4_skipper": "Skipper's fee per day",
-    "message_price4": "If no one in your group has a skipper's license, you can rent a boat with a skipper only."
+    "message_price4": "If no one in your group has a skipper's license, you can rent a boat with a skipper only.",
+    "withCaptain": "With captain",
+    "withoutCaptain": "Without captain",
+    "departure": "Departure",
+    "day": "day",
+    "action_sign":"Special offer"
 }

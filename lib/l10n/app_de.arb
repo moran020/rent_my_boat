@@ -90,5 +90,10 @@
     "price3per_week": "Bootsmietkosten  pro Woche",
     "message_price3": "Normalerweise dauern Bootsfahrten mindestens 7 Tage",
     "price4_skipper": "Kosten für Kapitan an Bord pro Tag",
-    "message_price4": "Wenn keiner aus Ihrer Gruppe über eine Kapitänslizenz verfügt, können Sie ein Boot nur mit Kapitän mieten."
+    "message_price4": "Wenn keiner aus Ihrer Gruppe über eine Kapitänslizenz verfügt, können Sie ein Boot nur mit Kapitän mieten.",
+    "withCaptain": "Mit Kapitan",
+    "withoutCaptain": "Ohne Kapitan",
+    "departure": "Abfahrtort",
+    "day": "Tag",
+    "action_sign":"Angebot"
 }
