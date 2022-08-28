@@ -28,7 +28,7 @@ class _MainScreenBottomMenuState extends State<MainScreenBottomMenu> {
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: background,
-        selectedItemColor: accentRed,
+        selectedItemColor: activeButton,
         unselectedItemColor: basicText,
         selectedFontSize: 10,
         unselectedFontSize: 10,

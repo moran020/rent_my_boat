@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '/data/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:syncfusion_flutter_core/core.dart';
+// import 'package:syncfusion_flutter_core/core.dart';
 
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({Key? key}) : super(key: key);
@@ -38,7 +38,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(right: 16.0),
                 child: Text(
-                  'Удалить',
+                  tr.button_delete,
                   style: TextStyle(
                       letterSpacing: -0.41,
                       color: basicText,
@@ -60,59 +60,56 @@ class _FiltersScreenState extends State<FiltersScreen> {
                     right: 16,
                   ),
                   child: const TextFields()),
-              const Title(
+              Title(
                 marginTop: 32,
-                title: 'Цена аренды лодки за день на 1 человека',
+                title: tr.price1per_person,
               ),
               const Sliders(),
-              const Comment(
-                comment:
-                    'Стоимость аренды лодки на 1 пассажира при заполнении всех спальных мест на лодке',
+              Comment(
+                comment: tr.message_price1,
               ),
-              const Title(
+              Title(
                 marginTop: 32,
-                title: 'Цена аренды лодки за день',
+                title: tr.price2per_day,
               ),
               const Sliders(),
-              const Comment(
-                comment:
-                    'Стоимость аренды лодки на сутки безотносительно заполнения спальных мест',
+              Comment(
+                comment: tr.message_price2,
               ),
-              const Title(
+              Title(
                 marginTop: 32,
-                title: 'Цена аренды лодки за неделю',
+                title: tr.price3per_week,
               ),
               const Sliders(),
-              const Comment(
-                comment: 'Обычно, путешествия на лодках длятся не менее 7 дней',
+              Comment(
+                comment: tr.message_price3,
               ),
-              const Title(
+              Title(
                 marginTop: 32,
-                title: 'Цена работы капитана за сутки',
+                title: tr.price4_skipper,
               ),
               const Sliders(),
-              const Comment(
-                comment:
-                    'Если ни у Вас ни у ког-то из вашей команды нет капитанских прав, то Вы можете арендовать лодку только с услугами капитана',
+              Comment(
+                comment: tr.message_price4,
               ),
               const SizedBox(
                 height: 16,
               ),
-              const TextFieldText(
+              TextFieldText(
                 hintText: 'Lagoon',
-                title: 'Производитель лодки',
+                title: tr.manufactorer,
               ),
-              const TextFieldText(
+              TextFieldText(
                 hintText: '52',
-                title: 'Модель лодки',
+                title: tr.model,
               ),
-              const TextFieldText(
+              TextFieldText(
                 hintText: '2019',
-                title: 'Год лодки',
+                title: tr.year,
               ),
-              const TextFieldText(
-                hintText: '90 лошадиных сил',
-                title: 'Мощность двигателя',
+              TextFieldText(
+                hintText: tr.enginePowerHint,
+                title: tr.enginePower,
               ),
             ],
           ),
@@ -132,12 +129,14 @@ class ApplyFiltersButton extends StatefulWidget {
 class _ApplyFiltersButtonState extends State<ApplyFiltersButton> {
   @override
   Widget build(BuildContext context) {
+    var tr = AppLocalizations.of(context)!;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       height: 40,
       child: ElevatedButton(
-          child: const Text(
-            "Применить фильтры",
+          child: Text(
+            tr.button_useFilters,
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.1),
@@ -168,14 +167,14 @@ class TextFields extends StatelessWidget {
         SizedBox(
           child: Row(
             children: [
-              const TextFieldInt(
+              TextFieldInt(
                 hintText: '12',
-                title: 'Вместимость',
+                title: tr.capacity,
               ),
               const SizedBox(width: 8),
               TextFieldInt(
                 hintText: '4',
-                title: tr.cabinsHint,
+                title: tr.cabins,
               ),
             ],
           ),
@@ -186,11 +185,11 @@ class TextFields extends StatelessWidget {
             children: [
               TextFieldInt(
                 hintText: '8',
-                title: tr.sleepingPlacesHint,
+                title: tr.sleepingPlaces,
               ),
               const SizedBox(width: 8),
               TextFieldInt(
-                hintText: '13.99 метров',
+                hintText: tr.lengthHint,
                 title: tr.lengthHint,
               ),
             ],

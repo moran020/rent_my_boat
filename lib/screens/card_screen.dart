@@ -34,7 +34,7 @@ class _CardScreenState extends State<CardScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Filters(),
+              const Filters(),
               const SizedBox(height: 26.0),
               Expanded(
                 child: FutureBuilder(
@@ -225,7 +225,7 @@ class _CardScreenState extends State<CardScreen> {
                                                               const TextStyle(
                                                             fontSize: 11,
                                                             fontWeight:
-                                                                FontWeight.w500,
+                                                                FontWeight.w600,
                                                           ),
                                                         ),
                                                       ],
@@ -248,7 +248,7 @@ class _CardScreenState extends State<CardScreen> {
                                                         style: const TextStyle(
                                                           fontSize: 11,
                                                           fontWeight:
-                                                              FontWeight.w500,
+                                                              FontWeight.w600,
                                                         ),
                                                       ),
                                                     ],
@@ -290,18 +290,20 @@ class _CardScreenState extends State<CardScreen> {
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.bold,
                                                 height: 1.2,
+                                                letterSpacing: 0.3,
                                               ),
                                             ),
                                           ),
                                           const SizedBox(height: 4),
-                                          Align(
+                                          Container(
                                             alignment: Alignment.centerLeft,
                                             child: Text(
                                               "${items[index].totalPrice.toString().toUpperCase()} ₽/день",
                                               style: const TextStyle(
                                                 fontSize: 14,
-                                                fontWeight: FontWeight.w500,
+                                                fontWeight: FontWeight.w600,
                                                 height: 1.2,
+                                                letterSpacing: 0.3,
                                               ),
                                             ),
                                           ),
@@ -325,6 +327,7 @@ class _CardScreenState extends State<CardScreen> {
                                                     fontSize: 11,
                                                     fontWeight: FontWeight.w500,
                                                     height: 1.2,
+                                                    letterSpacing: 0.3,
                                                     color: greyDisabled,
                                                   ),
                                                 ),
