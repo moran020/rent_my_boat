@@ -98,5 +98,7 @@
     "message_price4": "* If no one in your group has a skipper's license, you can rent a boat with a skipper only.",
     "withCaptain": "With captain",
     "withoutCaptain": "Without captain",
-    "departure": "Departure"
+    "departure": "Departure",
+    "day": "day",
+    "action_sign":"Special offer"
 }
