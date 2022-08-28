@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       Navigator.pushNamed(
                         context,
-                        '/card_screen',
+                        '/main_screen_bottom_menu',
                       );
                       setState(() {
                         isPressed_2 = true;

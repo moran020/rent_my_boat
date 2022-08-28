@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/data/colors.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class Filters extends StatelessWidget {
   const Filters({Key? key}) : super(key: key);
@@ -9,14 +10,15 @@ class Filters extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SearchField(),
-        SizedBox(height: 16),
+        const SearchField(),
+        const SizedBox(height: 16),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [CheckBox(), FiltersButton()],
+          children: const [CheckBox(), FiltersButton()],
         ),
-        SizedBox(height: 32),
+        const SizedBox(height: 32),
         Text(
+          // TODO: добавить локализацию
           'Выберите лодку',
           textAlign: TextAlign.start,
           style: TextStyle(
@@ -26,7 +28,8 @@ class Filters extends StatelessWidget {
             letterSpacing: 0.41,
           ),
         ),
-        BoatsList(),
+        const SizedBox(height: 16),
+        const BoatsList(),
       ],
     );
   }
@@ -44,6 +47,7 @@ class SearchField extends StatelessWidget {
 
       decoration: InputDecoration(
         prefixIcon: Image.asset('assets/icons/anchor_search.png'),
+        // TODO: добавить локализацию
         hintText: 'Введите город отправления',
         hintStyle: TextStyle(
             fontSize: 15,
@@ -101,9 +105,10 @@ class _CheckBoxState extends State<CheckBox> {
               ),
             ),
             const SizedBox(width: 4),
-            Text(
+            const Text(
+              // TODO: добавить локализацию
               'С капитаном',
-              style: const TextStyle(fontSize: 14, letterSpacing: 0.24),
+              style: TextStyle(fontSize: 14, letterSpacing: 0.24),
             ),
           ],
         ),
@@ -127,9 +132,10 @@ class _CheckBoxState extends State<CheckBox> {
               ),
             ),
             const SizedBox(width: 4),
-            Text(
+            const Text(
+              // TODO: добавить локализацию
               'Без капитана',
-              style: const TextStyle(fontSize: 14, letterSpacing: 0.24),
+              style: TextStyle(fontSize: 14, letterSpacing: 0.24),
             ),
           ],
         ),
@@ -177,228 +183,83 @@ class FiltersButton extends StatelessWidget {
   }
 }
 
-class BoatsList extends StatelessWidget {
+class BoatsList extends StatefulWidget {
   const BoatsList({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
+  State<BoatsList> createState() => _BoatsListState();
 }
 
-// class SearchField extends StatefulWidget {
-//   const SearchField({Key? key}) : super(key: key);
+class _BoatsListState extends State<BoatsList> {
+  @override
+  Widget build(BuildContext context) {
+    var tr = AppLocalizations.of(context)!;
+    List<String> boatName = <String>[
+      tr.catamaran,
+      tr.sailboats,
+      tr.houseboat,
+      tr.rib,
+      tr.yacht
+    ];
 
-//   @override
-//   State<SearchField> createState() => _SearchFieldState();
-// }
+    List<String> boatImage = <String>[
+      'assets/images/catamaran.png',
+      'assets/images/sailboats.png',
+      'assets/images/houseboat.png',
+      'assets/images/rib.png',
+      'assets/images/yacht.png'
+    ];
 
-// class _SearchFieldState extends State<SearchField> {
-//   final List<Actor> actors = [
-//     Actor(age: 47, name: 'Leonardo', lastName: 'DiCaprio'),
-//     Actor(age: 58, name: 'Johnny', lastName: 'Depp'),
-//     Actor(age: 78, name: 'Robert', lastName: 'De Niro'),
-//     Actor(age: 44, name: 'Tom', lastName: 'Hardy'),
-//     Actor(age: 66, name: 'Denzel', lastName: 'Washington'),
-//     Actor(age: 49, name: 'Ben', lastName: 'Affleck'),
-//   ];
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       width: double.infinity,
-//       child: Column(
-//         children: [
-//           const Text('Searchable list with divider'),
-//           Expanded(
-//             child: Padding(
-//               padding: const EdgeInsets.all(15),
-//               child: SearchableList<Actor>(
-//                 onPaginate: () async {
-//                   await Future.delayed(const Duration(milliseconds: 1000));
-//                   setState(() {
-//                     actors.addAll([
-//                       Actor(age: 22, name: 'Fathi', lastName: 'Hadawi'),
-//                       Actor(age: 22, name: 'Hichem', lastName: 'Rostom'),
-//                       Actor(age: 22, name: 'Kamel', lastName: 'Twati'),
-//                     ]);
-//                   });
-//                 },
-//                 builder: (Actor actor) => ActorItem(actor: actor),
-//                 loadingWidget: Column(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   children: const [
-//                     CircularProgressIndicator(),
-//                     SizedBox(
-//                       height: 20,
-//                     ),
-//                     Text('Loading actors...')
-//                   ],
-//                 ),
-//                 errorWidget: Column(
-//                   mainAxisAlignment: MainAxisAlignment.center,
-//                   children: const [
-//                     Icon(
-//                       Icons.error,
-//                       color: Colors.red,
-//                     ),
-//                     SizedBox(
-//                       height: 20,
-//                     ),
-//                     Text('Error while fetching actors')
-//                   ],
-//                 ),
-//                 asyncListCallback: () async {
-//                   await Future.delayed(
-//                     const Duration(
-//                       milliseconds: 10000,
-//                     ),
-//                   );
-//                   return actors;
-//                 },
-//                 asyncListFilter: (q, list) {
-//                   return list
-//                       .where((element) => element.name.contains(q))
-//                       .toList();
-//                 },
-//                 emptyWidget: const EmptyView(),
-//                 onRefresh: () async {},
-//                 onItemSelected: (Actor item) {},
-//                 inputDecoration: InputDecoration(
-//                   labelText: "Search Actor",
-//                   fillColor: Colors.white,
-//                   focusedBorder: OutlineInputBorder(
-//                     borderSide: const BorderSide(
-//                       color: Colors.blue,
-//                       width: 1.0,
-//                     ),
-//                     borderRadius: BorderRadius.circular(10.0),
-//                   ),
-//                 ),
-//               ),
-//             ),
-//           ),
-//           Align(
-//             alignment: Alignment.center,
-//             child: ElevatedButton(
-//               onPressed: addActor,
-//               child: const Text('Add actor'),
-//             ),
-//           )
-//         ],
-//       ),
-//     );
-//   }
-
-//   List<Actor> _filterUserList(String searchTerm) {
-//     return actors
-//         .where(
-//           (element) =>
-//               element.name.toLowerCase().contains(searchTerm) ||
-//               element.lastName.contains(searchTerm),
-//         )
-//         .toList();
-//   }
-
-//   void addActor() {
-//     actors.add(Actor(
-//       age: 10,
-//       lastName: 'Ali',
-//       name: 'ALi',
-//     ));
-//     setState(() {});
-//   }
-// }
-
-// class ActorItem extends StatelessWidget {
-//   final Actor actor;
-
-//   const ActorItem({
-//     Key? key,
-//     required this.actor,
-//   }) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.all(8.0),
-//       child: Container(
-//         height: 60,
-//         decoration: BoxDecoration(
-//           color: Colors.grey[200],
-//           borderRadius: BorderRadius.circular(10),
-//         ),
-//         child: Row(
-//           children: [
-//             const SizedBox(
-//               width: 10,
-//             ),
-//             Icon(
-//               Icons.star,
-//               color: Colors.yellow[700],
-//             ),
-//             const SizedBox(
-//               width: 10,
-//             ),
-//             Column(
-//               crossAxisAlignment: CrossAxisAlignment.start,
-//               mainAxisAlignment: MainAxisAlignment.center,
-//               children: [
-//                 Text(
-//                   'Firstname: ${actor.name}',
-//                   style: const TextStyle(
-//                     color: Colors.black,
-//                     fontWeight: FontWeight.bold,
-//                   ),
-//                 ),
-//                 Text(
-//                   'Lastname: ${actor.lastName}',
-//                   style: const TextStyle(
-//                     color: Colors.black,
-//                     fontWeight: FontWeight.bold,
-//                   ),
-//                 ),
-//                 Text(
-//                   'Age: ${actor.age}',
-//                   style: const TextStyle(
-//                     color: Colors.black,
-//                   ),
-//                 ),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class EmptyView extends StatelessWidget {
-//   const EmptyView({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: const [
-//         Icon(
-//           Icons.error,
-//           color: Colors.red,
-//         ),
-//         Text('no actor is found with this name'),
-//       ],
-//     );
-//   }
-// }
-
-// class Actor {
-//   int age;
-//   String name;
-//   String lastName;
-
-//   Actor({
-//     required this.age,
-//     required this.name,
-//     required this.lastName,
-//   });
-// }
+    return SizedBox(
+        height: 96,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: boatName.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(right: 7),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        minimumSize: Size.zero,
+                        padding: EdgeInsets.zero,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      ),
+                      child: SizedBox(
+                        height: 75,
+                        width: 110,
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8.0),
+                              image: DecorationImage(
+                                fit: BoxFit.fill,
+                                alignment: FractionalOffset.topCenter,
+                                image: AssetImage(
+                                  boatImage[index],
+                                ),
+                              )),
+                        ),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          // TODO: обновление списка при выборе вида судна
+                        });
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    boatName[index],
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 11,
+                        letterSpacing: -0.5),
+                  ),
+                ],
+              );
+            }));
+  }
+}

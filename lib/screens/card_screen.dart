@@ -34,7 +34,7 @@ class _CardScreenState extends State<CardScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Filters(),
+              const Filters(),
               const SizedBox(height: 26.0),
               Expanded(
                 child: FutureBuilder(
