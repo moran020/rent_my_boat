@@ -95,5 +95,6 @@
     "withoutCaptain": "Ohne Kapitan",
     "departure": "Abfahrtort",
     "day": "Tag",
-    "action_sign":"Angebot"
+    "action_sign":"Angebot",
+    "choose_boat":"Wählen Sie ein Boot"
 }

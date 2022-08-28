@@ -100,6 +100,8 @@
     "withoutCaptain": "Without captain",
     "departure": "Departure",
     "day": "day",
-    "action_sign":"Special offer"
+    "action_sign":"Special offer",
+    "choose_boat":"Choose a boat"
+
 
 }

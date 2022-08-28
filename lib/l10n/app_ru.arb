@@ -95,5 +95,7 @@
     "withoutCaptain": "Без капитана",
     "departure": "Введите город отправления",
     "day": "день",
-    "action_sign":"Акция"
+    "action_sign":"Акция",
+    "choose_boat":"Выберите лодку"
+
 }

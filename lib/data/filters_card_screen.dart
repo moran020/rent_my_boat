@@ -7,6 +7,7 @@ class Filters extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var tr = AppLocalizations.of(context)!;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -18,8 +19,7 @@ class Filters extends StatelessWidget {
         ),
         const SizedBox(height: 32),
         Text(
-          // TODO: добавить локализацию
-          'Выберите лодку',
+          tr.choose_boat,
           textAlign: TextAlign.start,
           style: TextStyle(
             color: titleText,
@@ -40,15 +40,14 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var tr = AppLocalizations.of(context)!;
     return TextFormField(
       keyboardType: TextInputType.text,
       // controller: controller,
       cursorColor: activeButton,
-
       decoration: InputDecoration(
         prefixIcon: Image.asset('assets/icons/anchor_search.png'),
-        // TODO: добавить локализацию
-        hintText: 'Введите город отправления',
+        hintText: tr.departure,
         hintStyle: TextStyle(
             fontSize: 15,
             color: hintTextColor,
@@ -85,6 +84,8 @@ class _CheckBoxState extends State<CheckBox> {
 
   @override
   Widget build(BuildContext context) {
+    var tr = AppLocalizations.of(context)!;
+
     return Row(
       children: [
         Row(
@@ -105,9 +106,8 @@ class _CheckBoxState extends State<CheckBox> {
               ),
             ),
             const SizedBox(width: 4),
-            const Text(
-              // TODO: добавить локализацию
-              'С капитаном',
+            Text(
+              tr.withCaptain,
               style: TextStyle(fontSize: 14, letterSpacing: 0.24),
             ),
           ],
@@ -132,9 +132,8 @@ class _CheckBoxState extends State<CheckBox> {
               ),
             ),
             const SizedBox(width: 4),
-            const Text(
-              // TODO: добавить локализацию
-              'Без капитана',
+            Text(
+              tr.withoutCaptain,
               style: TextStyle(fontSize: 14, letterSpacing: 0.24),
             ),
           ],
