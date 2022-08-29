@@ -43,7 +43,6 @@ class DropDownButtonCreate extends StatelessWidget {
               color: calendarSymbols,
               fontSize: 10,
               fontWeight: FontWeight.w500,
-              fontFamily: 'Montserrat',
               letterSpacing: 0.5),
           errorBorder:
               OutlineInputBorder(borderSide: BorderSide(color: errorBorder)),
