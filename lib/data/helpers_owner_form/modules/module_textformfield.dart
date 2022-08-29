@@ -30,6 +30,7 @@ final GlobalKey<FormState> _form13Key = GlobalKey();
 final GlobalKey<FormState> _form14Key = GlobalKey();
 final GlobalKey<FormState> _form15Key = GlobalKey();
 final GlobalKey<FormState> _form16Key = GlobalKey();
+final GlobalKey<FormState> form17Key = GlobalKey();
 
 final TextEditingController nameController = TextEditingController();
 final TextEditingController dateOfBirthController = TextEditingController();
@@ -48,7 +49,8 @@ final MultiValueDropDownController languagesController =
     MultiValueDropDownController();
 final TextEditingController boatNameController = TextEditingController();
 final TextEditingController rentalPriceController = TextEditingController();
-final TextEditingController capitanNameController = TextEditingController();
+final TextEditingController capitanPaymentController = TextEditingController();
+final TextEditingController yearBoatController = TextEditingController();
 
 class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
   late var click = "English";
@@ -67,7 +69,9 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
       length,
       enginePower,
       rentalPrice,
-      capitanPrice;
+      capitanPayment,
+      yearOfBoat,
+      equipment;
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +150,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                                 RegExp(r'(^[0-9]*$)').hasMatch(value!);
                             if (!mobileValid) {
                               return tr.errorMessage;
-                            } else if (value.length != 7) {
+                            } else if (value.length < 7) {
                               return tr.errorMessage;
                             } else {
                               return null;
@@ -262,7 +266,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
           Form(
             key: _form8Key,
             child: TextFormFieldCreate(
-              controller: modelBoatController,
+              controller: yearBoatController,
               hintText: '2019',
               keyboardType: TextInputType.number,
               maxLines: 1,
@@ -273,7 +277,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                 return null;
               },
               onSaved: (value) {
-                model = value!;
+                yearOfBoat = value!;
               },
             ),
           ),
@@ -452,7 +456,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
             Form(
               key: _form15Key,
               child: TextFormFieldCreate(
-                controller: powerBoatController,
+                controller: rentalPriceController,
                 hintText: '200 000 Р',
                 keyboardType: TextInputType.text,
                 maxLines: 1,
@@ -477,7 +481,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
             Form(
               key: _form16Key,
               child: TextFormFieldCreate(
-                controller: powerBoatController,
+                controller: capitanPaymentController,
                 hintText: '10 000 Р',
                 keyboardType: TextInputType.text,
                 maxLines: 1,
@@ -488,7 +492,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                   return null;
                 },
                 onSaved: (value) {
-                  capitanPrice = value!;
+                  capitanPayment = value!;
                 },
               ),
             ),
@@ -519,7 +523,7 @@ class _SaveButtonState extends State<SaveButton> {
             tr.button_save,
             textAlign: TextAlign.center,
             style: TextStyle(
-                color: inactiveButtonText,
+                color: background,
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0.1),
@@ -541,11 +545,12 @@ class _SaveButtonState extends State<SaveButton> {
             _form14Key.currentState?.validate();
             _form15Key.currentState?.validate();
             _form16Key.currentState?.validate();
+            form17Key.currentState?.validate();
 
             {}
           },
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(inactiveButton),
+            backgroundColor: MaterialStateProperty.all(activeButton),
             elevation: MaterialStateProperty.all(0),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(100))),

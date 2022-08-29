@@ -26,7 +26,7 @@ class TextFormFieldCreate extends StatelessWidget {
       controller: controller,
       validator: validator,
       keyboardType: keyboardType,
-      onSaved: onSaved,
+      onFieldSubmitted: onSaved,
       cursorColor: basicText,
       decoration: InputDecoration(
         border: InputBorder.none,

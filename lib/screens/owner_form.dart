@@ -20,11 +20,7 @@ class OwnerForm extends StatefulWidget {
   FormState createState() => FormState();
 }
 
-final GlobalKey<FormState> _form17Key = GlobalKey();
-
 class FormState extends State with TickerProviderStateMixin {
-  // The entry point for accessing a Firebase Database.
-  final _database = FirebaseDatabase.instance;
   bool _showBackToTopButton = false;
   late ScrollController _scrollController;
   late String equipment;
@@ -47,7 +43,7 @@ class FormState extends State with TickerProviderStateMixin {
 
   @override
   void dispose() {
-    _scrollController.dispose(); 
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -59,6 +55,8 @@ class FormState extends State with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    // The entry point for accessing a Firebase Database.
+    final _database = FirebaseDatabase.instance;
     //variable for accessing localization files
     var tr = AppLocalizations.of(context)!;
     // variable for creating branch to save the data to realtime database
@@ -80,36 +78,37 @@ class FormState extends State with TickerProviderStateMixin {
         ),
         actions: <Widget>[
           //With method .set data from textfields are going into realtime database firebase
+          // TODO Добавить валидацию
           TextButton(
-            onPressed: () {
-              reference.set({
-                tr.name: nameController.text,
-                tr.dateOfBirth: dateOfBirthController.text,
-                tr.email: emailController.text,
-                tr.phoneNumber: phoneNumberController.text,
-                tr.languages:
-                    languagesController.dropDownValueList.toString(),
-                tr.manufactorer: manufBoatController.text,
-                tr.model: modelBoatController.text,
-                tr.location: locationController.text,
-                tr.year: capacityController.text,
-                tr.length: lenghtBoatController.text,
-                tr.cabins: cabinsNumberController.text,
-                tr.sleepingPlaces: bedNumderController.text,
-                tr.enginePower: powerBoatController.text,
-              }).asStream();
-            },
-            child: Padding(
-              padding: const EdgeInsets.only(right: 16.0),
-              child: Text(
-                tr.button_save,
-                style: TextStyle(
-                    color: basicText,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600),
-              ),
-            
-      ))],
+              onPressed: () {
+                reference.set({
+                  tr.name: nameController,
+                  tr.dateOfBirth: dateOfBirthController.text,
+                  tr.email: emailController.text,
+                  tr.phoneNumber: phoneNumberController.text,
+                  tr.languages:
+                      languagesController.dropDownValueList.toString(),
+                  tr.manufactorer: manufBoatController.text,
+                  tr.model: modelBoatController.text,
+                  tr.location: locationController.text,
+                  tr.year: capacityController.text,
+                  tr.length: lenghtBoatController.text,
+                  tr.cabins: cabinsNumberController.text,
+                  tr.sleepingPlaces: bedNumderController.text,
+                  tr.enginePower: powerBoatController.text,
+                }).asStream();
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(right: 16.0),
+                child: Text(
+                  tr.button_save,
+                  style: TextStyle(
+                      color: basicText,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600),
+                ),
+              ))
+        ],
       ),
       body: SingleChildScrollView(
         controller: _scrollController,
@@ -158,7 +157,7 @@ class FormState extends State with TickerProviderStateMixin {
                 children: [
                   LabelText(text: tr.instructionThreeHint),
                   Form(
-                    key: _form17Key,
+                    key: form17Key,
                     child: TextFormFieldCreate(
                         maxLines: 3,
                         validator: (value) {
@@ -182,6 +181,7 @@ class FormState extends State with TickerProviderStateMixin {
               //Calendar
               const Calendar(),
               const SizedBox(height: 30),
+              // TODO Добавить передачу данных в Firebase
               const SaveButton()
             ],
           ),
