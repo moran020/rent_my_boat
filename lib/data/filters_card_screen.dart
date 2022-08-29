@@ -108,7 +108,7 @@ class _CheckBoxState extends State<CheckBox> {
             const SizedBox(width: 4),
             Text(
               tr.withCaptain,
-              style: TextStyle(fontSize: 14, letterSpacing: 0.24),
+              style: const TextStyle(fontSize: 14, letterSpacing: 0.24),
             ),
           ],
         ),
@@ -134,7 +134,7 @@ class _CheckBoxState extends State<CheckBox> {
             const SizedBox(width: 4),
             Text(
               tr.withoutCaptain,
-              style: TextStyle(fontSize: 14, letterSpacing: 0.24),
+              style: const TextStyle(fontSize: 14, letterSpacing: 0.24),
             ),
           ],
         ),
@@ -247,12 +247,12 @@ class _BoatsListState extends State<BoatsList> {
                       },
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Text(
                     boatName[index],
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 11,
                         letterSpacing: -0.5),
