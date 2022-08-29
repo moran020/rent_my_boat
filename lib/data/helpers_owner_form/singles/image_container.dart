@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rent_my_boat/data/colors.dart';
 
 class ImageContainerButtonCreate extends StatelessWidget {
   final ImageProvider file;
@@ -18,12 +17,12 @@ class ImageContainerButtonCreate extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5.0),
           image: DecorationImage(
-            fit: BoxFit.fill,
-            alignment: FractionalOffset.topCenter,
+            fit: BoxFit.cover,
+            alignment: FractionalOffset.center,
             image: file,
           )),
       child: TextButton(
-        child: Text(''),
+        child: const Text(''),
         onPressed: onPressed,
       ),
     );

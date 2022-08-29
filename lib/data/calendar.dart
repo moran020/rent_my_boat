@@ -80,18 +80,18 @@ class _CalendarState extends State<Calendar> {
             _focusedDay = focusedDay;
           },
           calendarStyle: CalendarStyle(
-            defaultTextStyle:  TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                letterSpacing: -0.24,
-                color: calendarSymbols,
-                fontFamily: 'Montserrat'),
-                holidayTextStyle:  TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                letterSpacing: -0.24,
-                color: calendarSymbols,
-                fontFamily: 'Montserrat'),
+            defaultTextStyle: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              letterSpacing: -0.24,
+              color: calendarSymbols,
+            ),
+            holidayTextStyle: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              letterSpacing: -0.24,
+              color: calendarSymbols,
+            ),
             isTodayHighlighted: true,
             selectedDecoration: BoxDecoration(
               color: selectedDate,
@@ -116,9 +116,9 @@ class _CalendarState extends State<Calendar> {
               headerPadding: EdgeInsets.symmetric(horizontal: 1),
               formatButtonShowsNext: false,
               titleTextStyle: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Montserrat'),
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+              ),
               rightChevronPadding: EdgeInsets.only(right: 20),
               leftChevronPadding: EdgeInsets.only(left: 20),
               leftChevronMargin: EdgeInsets.symmetric(horizontal: 7.0),

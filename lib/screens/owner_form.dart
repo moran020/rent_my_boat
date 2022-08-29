@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rent_my_boat/data/helpers_owner_form/modules/module_checkbox.dart';
 import 'package:rent_my_boat/data/helpers_owner_form/modules/module_images.dart';
@@ -61,7 +60,6 @@ class FormState extends State with TickerProviderStateMixin {
     var tr = AppLocalizations.of(context)!;
     // variable for creating branch to save the data to realtime database
     final reference = _database.ref().child('Личные данные');
-    final currentWidth = MediaQuery.of(context).size.width;
 
     return SafeArea(
         child: Scaffold(

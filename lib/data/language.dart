@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 //import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class Language {
   final int id;
   final String name;
@@ -44,7 +43,6 @@ const String russian = 'ru';
 const String german = 'de';
 const String spanish = 'es';
 
-
 //local storage
 Future<Locale> setLocale(String languageCode) async {
   SharedPreferences _prefs = await SharedPreferences.getInstance();
@@ -72,6 +70,3 @@ Locale _locale(String languageCode) {
       return const Locale(english, '');
   }
 }
-
-
-
