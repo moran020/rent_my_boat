@@ -325,6 +325,7 @@ class _SliderSectionState extends State<SliderSection> {
           ),
         ),
         SliderTheme(
+          // TODO: нарисовать ползунок в соответствии с макетом
           data: SliderTheme.of(context).copyWith(
             trackHeight: 6.0,
             activeTrackColor: activeButton,
