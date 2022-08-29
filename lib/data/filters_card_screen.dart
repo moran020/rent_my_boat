@@ -35,6 +35,7 @@ class Filters extends StatelessWidget {
   }
 }
 
+// поисковое поле для города
 class SearchField extends StatelessWidget {
   const SearchField({Key? key}) : super(key: key);
 
@@ -70,6 +71,7 @@ class SearchField extends StatelessWidget {
   }
 }
 
+// чекбоксы с/без капитана
 class CheckBox extends StatefulWidget {
   const CheckBox({Key? key}) : super(key: key);
 
@@ -143,6 +145,7 @@ class _CheckBoxState extends State<CheckBox> {
   }
 }
 
+// кнопка с остальными фильтрами
 class FiltersButton extends StatelessWidget {
   const FiltersButton({Key? key}) : super(key: key);
 
@@ -182,6 +185,7 @@ class FiltersButton extends StatelessWidget {
   }
 }
 
+// прокручивающийся список фильтров с видами лодок
 class BoatsList extends StatefulWidget {
   const BoatsList({Key? key}) : super(key: key);
 

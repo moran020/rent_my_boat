@@ -373,6 +373,7 @@ class _CardScreenState extends State<CardScreen> {
             ],
           ),
         ),
+        // TODO: не отображается кнопка возврата наверх
         floatingActionButton: _showBackToTopButton == false
             ? null
             : SizedBox(
