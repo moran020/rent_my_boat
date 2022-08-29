@@ -15,13 +15,36 @@ class CardScreen extends StatefulWidget {
 
 class _CardScreenState extends State<CardScreen> {
   late Future<CardsList> futureData;
-
   final CarouselController carouselController = CarouselController();
+  bool _showBackToTopButton = false;
+  late ScrollController _scrollController;
 
   @override
   void initState() {
-    super.initState();
     futureData = getCardList();
+    _scrollController = ScrollController()
+      ..addListener(() {
+        setState(() {
+          if (_scrollController.offset >= 400) {
+            _showBackToTopButton = true; // show the back-to-top button
+          } else {
+            _showBackToTopButton = false; // hide the back-to-top button
+          }
+        });
+      });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  //  function for the back-to-top button
+  void _scrollToTop() {
+    _scrollController.animateTo(0,
+        duration: const Duration(seconds: 1), curve: Curves.linear);
   }
 
   @override
@@ -58,192 +81,161 @@ class _CardScreenState extends State<CardScreen> {
                                           const CardDetailsScreen(),
                                     ));
                               },
-                              child: Container(
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Stack(
-                                      children: [
-                                        Stack(
-                                          alignment:
-                                              AlignmentDirectional.bottomCenter,
-                                          children: [
-                                            CarouselSlider(
-                                              carouselController:
-                                                  carouselController,
-                                              options: CarouselOptions(
-                                                  height: 200,
-                                                  viewportFraction: 1,
-                                                  enlargeCenterPage: true,
-                                                  onPageChanged:
-                                                      (indexSlide, reason) {
-                                                    setState(() {
-                                                      items[index].activeImage =
-                                                          indexSlide;
-                                                    });
-                                                  }),
-                                              items: items[index]
-                                                  .carouselImg
-                                                  ?.map((item) => Container(
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          borderRadius:
-                                                              const BorderRadius
-                                                                      .all(
-                                                                  Radius
-                                                                      .circular(
-                                                                          5)),
-                                                          image:
-                                                              DecorationImage(
-                                                            fit: BoxFit.cover,
-                                                            image: NetworkImage(
-                                                              item,
-                                                            ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Stack(
+                                    children: [
+                                      Stack(
+                                        alignment:
+                                            AlignmentDirectional.bottomCenter,
+                                        children: [
+                                          CarouselSlider(
+                                            carouselController:
+                                                carouselController,
+                                            options: CarouselOptions(
+                                                height: 200,
+                                                viewportFraction: 1,
+                                                enlargeCenterPage: true,
+                                                onPageChanged:
+                                                    (indexSlide, reason) {
+                                                  setState(() {
+                                                    items[index].activeImage =
+                                                        indexSlide;
+                                                  });
+                                                }),
+                                            items: items[index]
+                                                .carouselImg
+                                                ?.map((item) => Container(
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            const BorderRadius
+                                                                    .all(
+                                                                Radius.circular(
+                                                                    5)),
+                                                        image: DecorationImage(
+                                                          fit: BoxFit.cover,
+                                                          image: NetworkImage(
+                                                            item,
                                                           ),
                                                         ),
-                                                      ))
-                                                  .toList(),
-                                            ),
-                                            Container(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 8.0),
-                                              alignment: Alignment.bottomCenter,
-                                              child: AnimatedSmoothIndicator(
-                                                activeIndex:
-                                                    items[index].activeImage,
-                                                count: items[index]
-                                                    .carouselImg!
-                                                    .length,
-                                                effect: ScrollingDotsEffect(
-                                                  dotWidth: 8,
-                                                  dotHeight: 8,
-                                                  dotColor: background,
-                                                  activeDotColor: background,
-                                                  activeDotScale: 1.5,
-                                                ),
+                                                      ),
+                                                    ))
+                                                .toList(),
+                                          ),
+                                          Container(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 8.0),
+                                            alignment: Alignment.bottomCenter,
+                                            child: AnimatedSmoothIndicator(
+                                              activeIndex:
+                                                  items[index].activeImage,
+                                              count: items[index]
+                                                  .carouselImg!
+                                                  .length,
+                                              effect: ScrollingDotsEffect(
+                                                dotWidth: 8,
+                                                dotHeight: 8,
+                                                dotColor: background,
+                                                activeDotColor: background,
+                                                activeDotScale: 1.5,
                                               ),
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          items[index].isLabel == true
+                                              ? Container(
+                                                  margin: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 16.0,
+                                                      vertical: 18.0),
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 12.0,
+                                                      vertical: 4.0),
+                                                  decoration: BoxDecoration(
+                                                    color: accentRed,
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(
+                                                                100.0)),
+                                                  ),
+                                                  child: Text(
+                                                    items[index]
+                                                        .labelTitle
+                                                        .toString()
+                                                        .toUpperCase(),
+                                                    style: const TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      letterSpacing: 0.1,
+                                                    ),
+                                                  ),
+                                                )
+                                              : Container(),
+                                          TextButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                items[index].isLiked =
+                                                    !items[index].isLiked!;
+                                              });
+                                            },
+                                            child: Image.asset(
+                                              items[index].isLiked == true
+                                                  ? 'assets/icons/like_active.png'
+                                                  : 'assets/icons/like_disabled.png',
+                                              width: 20,
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 8.0),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 8),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(5.0)),
+                                      border: Border.all(color: activeButton),
+                                    ),
+                                    child: Column(
+                                      children: [
                                         Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            items[index].isLabel == true
-                                                ? Container(
-                                                    margin: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 16.0,
-                                                        vertical: 18.0),
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 12.0,
-                                                        vertical: 4.0),
-                                                    decoration: BoxDecoration(
-                                                      color: accentRed,
-                                                      borderRadius:
-                                                          const BorderRadius
-                                                                  .all(
-                                                              Radius.circular(
-                                                                  100.0)),
-                                                    ),
-                                                    child: Text(
-                                                      items[index]
-                                                          .labelTitle
-                                                          .toString()
-                                                          .toUpperCase(),
-                                                      style: const TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        letterSpacing: 0.1,
-                                                      ),
-                                                    ),
-                                                  )
-                                                : Container(),
-                                            TextButton(
-                                              onPressed: () {
-                                                setState(() {
-                                                  items[index].isLiked =
-                                                      !items[index].isLiked!;
-                                                });
-                                              },
-                                              child: Image.asset(
-                                                items[index].isLiked == true
-                                                    ? 'assets/icons/like_active.png'
-                                                    : 'assets/icons/like_disabled.png',
-                                                width: 20,
-                                                fit: BoxFit.fill,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    Container(
-                                      margin: const EdgeInsets.only(top: 8.0),
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 16, vertical: 8),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: const BorderRadius.all(
-                                            Radius.circular(5.0)),
-                                        border: Border.all(color: activeButton),
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            right: 9),
-                                                    child: Row(
-                                                      children: [
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  right: 4),
-                                                          child: Image.asset(
-                                                            'assets/icons/passenger.png',
-                                                          ),
-                                                        ),
-                                                        Text(
-                                                          items[index]
-                                                              .seatsNumber
-                                                              .toString(),
-                                                          style:
-                                                              const TextStyle(
-                                                            fontSize: 11,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Row(
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 9),
+                                                  child: Row(
                                                     children: [
                                                       Padding(
                                                         padding:
                                                             const EdgeInsets
                                                                 .only(right: 4),
                                                         child: Image.asset(
-                                                          'assets/icons/anchor_sm.png',
+                                                          'assets/icons/passenger.png',
                                                         ),
                                                       ),
                                                       Text(
                                                         items[index]
-                                                            .city
+                                                            .seatsNumber
                                                             .toString(),
                                                         style: const TextStyle(
                                                           fontSize: 11,
@@ -252,94 +244,115 @@ class _CardScreenState extends State<CardScreen> {
                                                         ),
                                                       ),
                                                     ],
-                                                  )
-                                                ],
-                                              ),
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    "${items[index].price.toString()} ₽",
-                                                    style: const TextStyle(
-                                                      fontSize: 22,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      letterSpacing: 0.41,
-                                                      // height: 1.2,
-                                                    ),
                                                   ),
-                                                  Text(
-                                                    "*",
-                                                    style: TextStyle(
-                                                      fontSize: 18,
-                                                      color: greyDisabled,
-                                                    ),
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Text(
-                                              items[index]
-                                                  .name
-                                                  .toString()
-                                                  .toUpperCase(),
-                                              style: const TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold,
-                                                height: 1.2,
-                                                letterSpacing: 0.3,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Container(
-                                            alignment: Alignment.centerLeft,
-                                            child: Text(
-                                              "${items[index].totalPrice.toString().toUpperCase()} ₽/день",
-                                              style: const TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                                height: 1.2,
-                                                letterSpacing: 0.3,
-                                              ),
-                                            ),
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                "* ",
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                  height: 1.2,
-                                                  color: greyDisabled,
                                                 ),
-                                              ),
-                                              Flexible(
-                                                child: Text(
-                                                  "Стоимость аренды лодки на 1 пассажира при заполнении всех спальных мест",
+                                                Row(
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              right: 4),
+                                                      child: Image.asset(
+                                                        'assets/icons/anchor_sm.png',
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      items[index]
+                                                          .city
+                                                          .toString(),
+                                                      style: const TextStyle(
+                                                        fontSize: 11,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "${items[index].price.toString()} ₽",
+                                                  style: const TextStyle(
+                                                    fontSize: 22,
+                                                    fontWeight: FontWeight.bold,
+                                                    letterSpacing: 0.41,
+                                                    // height: 1.2,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "*",
                                                   style: TextStyle(
-                                                    fontSize: 11,
-                                                    fontWeight: FontWeight.w500,
-                                                    height: 1.2,
-                                                    letterSpacing: 0.3,
+                                                    fontSize: 18,
                                                     color: greyDisabled,
                                                   ),
                                                 ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            items[index]
+                                                .name
+                                                .toString()
+                                                .toUpperCase(),
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                              height: 1.2,
+                                              letterSpacing: 0.3,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Container(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text(
+                                            "${items[index].totalPrice.toString().toUpperCase()} ₽/день",
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              height: 1.2,
+                                              letterSpacing: 0.3,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(height: 4),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "* ",
+                                              style: TextStyle(
+                                                fontSize: 11,
+                                                height: 1.2,
+                                                color: greyDisabled,
                                               ),
-                                            ],
-                                          )
-                                        ],
-                                      ),
+                                            ),
+                                            Flexible(
+                                              child: Text(
+                                                "Стоимость аренды лодки на 1 пассажира при заполнении всех спальных мест",
+                                                style: TextStyle(
+                                                  fontSize: 11,
+                                                  fontWeight: FontWeight.w500,
+                                                  height: 1.2,
+                                                  letterSpacing: 0.3,
+                                                  color: greyDisabled,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
                                     ),
-                                    const SizedBox(height: 32.0),
-                                  ],
-                                ),
+                                  ),
+                                  const SizedBox(height: 32.0),
+                                ],
                               ),
                             );
                           });
@@ -360,6 +373,18 @@ class _CardScreenState extends State<CardScreen> {
             ],
           ),
         ),
+        floatingActionButton: _showBackToTopButton == false
+            ? null
+            : SizedBox(
+                width: 36,
+                height: 36,
+                child: FloatingActionButton(
+                  onPressed: _scrollToTop,
+                  child: Image.asset("assets/icons/uptotop.png"),
+                  backgroundColor: upToTopButton,
+                  elevation: 0,
+                ),
+              ),
       ),
     );
   }

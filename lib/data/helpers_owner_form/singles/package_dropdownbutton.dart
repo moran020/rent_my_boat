@@ -284,7 +284,7 @@ class _DropDownTextFieldState extends State<DropDownTextField>
     Function eq = const DeepCollectionEquality().equals;
     _dropDownList = List.from(widget.dropDownList);
     _listPadding = widget.listPadding ?? ListPadding();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (widget.isMultiSelection) {
         if (oldWidget != null && !eq(oldWidget.dropDownList, _dropDownList)) {
           _multiSelectionValue = [];
@@ -425,7 +425,7 @@ class _DropDownTextFieldState extends State<DropDownTextField>
     return KeyboardVisibilityBuilder(
       builder: (context, isKeyboardVisible) {
         if (!isKeyboardVisible && _isExpanded && _isScrollPadding) {
-          WidgetsBinding.instance?.addPostFrameCallback((_) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
             shiftOverlayEntry2to1();
           });
         }
@@ -1162,19 +1162,19 @@ class _KeyboardVisibilityBuilderState extends State<KeyboardVisibilityBuilder>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
   @override
   void didChangeMetrics() {
-    final bottomInset = WidgetsBinding.instance?.window.viewInsets.bottom;
-    final newValue = bottomInset! > 0.0;
+    final bottomInset = WidgetsBinding.instance.window.viewInsets.bottom;
+    final newValue = bottomInset> 0.0;
     if (newValue != _isKeyboardVisible) {
       setState(() {
         _isKeyboardVisible = newValue;

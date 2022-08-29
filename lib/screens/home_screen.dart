@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height ; 
+    double screenHeight = MediaQuery.of(context).size.height;
     var tr = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ]),
       body: Container(
         color: background,
-        padding:  EdgeInsets.only(left: 16, right: 16, top: screenHeight*0.25 ),
+        padding: EdgeInsets.only(left: 16, right: 16, top: screenHeight * 0.25),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
