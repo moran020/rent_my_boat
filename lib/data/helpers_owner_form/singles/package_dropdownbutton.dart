@@ -1174,7 +1174,7 @@ class _KeyboardVisibilityBuilderState extends State<KeyboardVisibilityBuilder>
   @override
   void didChangeMetrics() {
     final bottomInset = WidgetsBinding.instance.window.viewInsets.bottom;
-    final newValue = bottomInset> 0.0;
+    final newValue = bottomInset > 0.0;
     if (newValue != _isKeyboardVisible) {
       setState(() {
         _isKeyboardVisible = newValue;

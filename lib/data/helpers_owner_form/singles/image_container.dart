@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:rent_my_boat/data/colors.dart';
 
 class ImageContainerButtonCreate extends StatelessWidget {
-  final Widget icon;
+  final ImageProvider file;
   final void Function()? onPressed;
 
   const ImageContainerButtonCreate({
     Key? key,
-    required this.icon,
+    required this.file,
     required this.onPressed,
   }) : super(key: key);
 
@@ -15,9 +15,17 @@ class ImageContainerButtonCreate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 100,
-      child: IconButton(icon: icon, onPressed: onPressed),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5), color: photoContainer),
+          borderRadius: BorderRadius.circular(5.0),
+          image: DecorationImage(
+            fit: BoxFit.fill,
+            alignment: FractionalOffset.topCenter,
+            image: file,
+          )),
+      child: TextButton(
+        child: Text(''),
+        onPressed: onPressed,
+      ),
     );
   }
 }
