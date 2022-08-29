@@ -70,6 +70,7 @@ class _CardScreenState extends State<CardScreen> {
                       var items = cards.cards as List<CardItem>;
                       return ListView.builder(
                           itemCount: items.length,
+                          controller: _scrollController,
                           itemBuilder: (BuildContext context, int index) {
                             return GestureDetector(
                               onTap: () {
@@ -373,7 +374,6 @@ class _CardScreenState extends State<CardScreen> {
             ],
           ),
         ),
-        // TODO: не отображается кнопка возврата наверх
         floatingActionButton: _showBackToTopButton == false
             ? null
             : SizedBox(
