@@ -30,6 +30,7 @@ final GlobalKey<FormState> _form13Key = GlobalKey();
 final GlobalKey<FormState> _form14Key = GlobalKey();
 final GlobalKey<FormState> _form15Key = GlobalKey();
 final GlobalKey<FormState> _form16Key = GlobalKey();
+final GlobalKey<FormState> form17Key = GlobalKey();
 
 final TextEditingController nameController = TextEditingController();
 final TextEditingController dateOfBirthController = TextEditingController();
@@ -48,9 +49,11 @@ final MultiValueDropDownController languagesController =
     MultiValueDropDownController();
 final TextEditingController boatNameController = TextEditingController();
 final TextEditingController rentalPriceController = TextEditingController();
-final TextEditingController capitanNameController = TextEditingController();
+final TextEditingController capitanPaymentController = TextEditingController();
+final TextEditingController yearBoatController = TextEditingController();
 
 class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
+  late var click = "English";
   late String name,
       mobile,
       dateOfBirth,
@@ -66,7 +69,9 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
       length,
       enginePower,
       rentalPrice,
-      capitanPrice;
+      capitanPayment,
+      yearOfBoat,
+      equipment;
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +81,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LabelText(text: tr.nameHint),
+            LabelText(text: tr.name),
             Form(
               key: _form1Key,
               child: TextFormFieldCreate(
@@ -86,7 +91,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                 maxLines: 1,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Введите данные';
+                    return tr.errorMessage;
                   }
                   return null;
                 },
@@ -106,7 +111,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      LabelText(text: tr.dateOfBirthHint),
+                      LabelText(text: tr.dateOfBirth),
                       Form(
                         key: _form2Key,
                         child: TextFormFieldCreate(
@@ -116,7 +121,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                             maxLines: 1,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Введите данные';
+                                return tr.errorMessage;
                               }
                               return null;
                             },
@@ -132,7 +137,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      LabelText(text: tr.phoneNumberHint),
+                      LabelText(text: tr.phoneNumber),
                       Form(
                         key: _form3Key,
                         child: TextFormFieldCreate(
@@ -144,9 +149,9 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                             bool mobileValid =
                                 RegExp(r'(^[0-9]*$)').hasMatch(value!);
                             if (!mobileValid) {
-                              return 'Введите данные';
-                            } else if (value.length != 7) {
-                              return 'Введите данные';
+                              return tr.errorMessage;
+                            } else if (value.length < 7) {
+                              return tr.errorMessage;
                             } else {
                               return null;
                             }
@@ -163,7 +168,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
         ),
         const SizedBox(height: 16),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          LabelText(text: tr.emailHint),
+          LabelText(text: tr.email),
           Form(
             key: _form4Key,
             child: TextFormFieldCreate(
@@ -176,7 +181,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                     .hasMatch(value!);
                 if (!emailValid) {
-                  return 'Введите данные';
+                  return tr.errorMessage;
                 } else {
                   return null;
                 }
@@ -190,13 +195,13 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
         const SizedBox(height: 16),
         //DropdownTextField with multiselection of user language
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          LabelText(text: tr.languagesHint),
+          LabelText(text: tr.languages),
           Form(
             key: _form5Key,
             child: DropDownButtonCreate(
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Выберите хотя бы один язык';
+                  return tr.errorMessage;
                 }
                 return null;
               },
@@ -207,13 +212,13 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                 setState(() {});
               },
               submitButtonText: tr.button_save,
-              hintText: 'English...',
+              hintText: click,
             ),
           ),
         ]),
         const SizedBox(height: 16),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          LabelText(text: tr.manufactorerHint),
+          LabelText(text: tr.manufactorer),
           Form(
             key: _form6Key,
             child: TextFormFieldCreate(
@@ -223,7 +228,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
               maxLines: 1,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Введите данные';
+                  return tr.errorMessage;
                 }
                 return null;
               },
@@ -235,7 +240,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
         ]),
         const SizedBox(height: 16),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          LabelText(text: tr.modelHint),
+          LabelText(text: tr.model),
           Form(
             key: _form7Key,
             child: TextFormFieldCreate(
@@ -245,7 +250,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
               maxLines: 1,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Введите данные';
+                  return tr.errorMessage;
                 }
                 return null;
               },
@@ -261,35 +266,35 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
           Form(
             key: _form8Key,
             child: TextFormFieldCreate(
-              controller: modelBoatController,
+              controller: yearBoatController,
               hintText: '2019',
               keyboardType: TextInputType.number,
               maxLines: 1,
               validator: (value) {
                 if (value == null || value.isEmpty) {
-                  return 'Введите данные';
+                  return tr.errorMessage;
                 }
                 return null;
               },
               onSaved: (value) {
-                model = value!;
+                yearOfBoat = value!;
               },
             ),
           ),
         ]),
         const SizedBox(height: 16),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          LabelText(text: tr.locationHint),
+          LabelText(text: tr.location),
           Form(
             key: _form9Key,
             child: TextFormFieldCreate(
                 controller: locationController,
-                hintText: 'Россия, Санкт-Петербург, Крестовс...',
+                hintText: tr.locationHint,
                 keyboardType: TextInputType.text,
                 maxLines: 1,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Введите данные';
+                    return tr.errorMessage;
                   }
                   return null;
                 },
@@ -307,7 +312,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      LabelText(text: 'Вместимость'),
+                      LabelText(text: tr.capacity),
                       Form(
                         key: _form10Key,
                         child: TextFormFieldCreate(
@@ -317,7 +322,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                           maxLines: 1,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Введите данные';
+                              return tr.errorMessage;
                             }
                             return null;
                           },
@@ -334,7 +339,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    LabelText(text: tr.cabinsHint),
+                    LabelText(text: tr.cabins),
                     Form(
                       key: _form11Key,
                       child: TextFormFieldCreate(
@@ -344,7 +349,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                           maxLines: 1,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Введите данные';
+                              return tr.errorMessage;
                             }
                             return null;
                           },
@@ -367,7 +372,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    LabelText(text: tr.sleepingPlacesHint),
+                    LabelText(text: tr.sleepingPlaces),
                     Form(
                       key: _form12Key,
                       child: TextFormFieldCreate(
@@ -377,7 +382,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                           maxLines: 1,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Введите данные';
+                              return tr.errorMessage;
                             }
                             return null;
                           },
@@ -394,17 +399,17 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    LabelText(text: tr.lengthHint),
+                    LabelText(text: tr.length),
                     Form(
                       key: _form13Key,
                       child: TextFormFieldCreate(
                           controller: lenghtBoatController,
-                          hintText: '13.99 метров',
+                          hintText: tr.lengthHint,
                           keyboardType: TextInputType.text,
                           maxLines: 1,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Введите данные';
+                              return tr.errorMessage;
                             }
                             return null;
                           },
@@ -422,17 +427,17 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LabelText(text: tr.enginePowerHint),
+            LabelText(text: tr.enginePower),
             Form(
               key: _form14Key,
               child: TextFormFieldCreate(
                 controller: powerBoatController,
-                hintText: '90 лошадиных сил',
+                hintText: tr.enginePowerHint,
                 keyboardType: TextInputType.text,
                 maxLines: 1,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Введите данные';
+                    return tr.errorMessage;
                   }
                   return null;
                 },
@@ -447,17 +452,17 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LabelText(text: 'Цена аренды лодки за неделю'),
+            LabelText(text: tr.boatWeekPrice),
             Form(
               key: _form15Key,
               child: TextFormFieldCreate(
-                controller: powerBoatController,
+                controller: rentalPriceController,
                 hintText: '200 000 Р',
                 keyboardType: TextInputType.text,
                 maxLines: 1,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Введите данные';
+                    return tr.errorMessage;
                   }
                   return null;
                 },
@@ -472,22 +477,22 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            LabelText(text: 'Цена работы капитана за сутки'),
+            LabelText(text: tr.captainDayPrice),
             Form(
               key: _form16Key,
               child: TextFormFieldCreate(
-                controller: powerBoatController,
+                controller: capitanPaymentController,
                 hintText: '10 000 Р',
                 keyboardType: TextInputType.text,
                 maxLines: 1,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Введите данные';
+                    return tr.errorMessage;
                   }
                   return null;
                 },
                 onSaved: (value) {
-                  capitanPrice = value!;
+                  capitanPayment = value!;
                 },
               ),
             ),
@@ -508,16 +513,17 @@ class SaveButton extends StatefulWidget {
 class _SaveButtonState extends State<SaveButton> {
   @override
   Widget build(BuildContext context) {
+    var tr = AppLocalizations.of(context)!;
     return Center(
         child: SizedBox(
       width: 350,
       height: 40,
       child: ElevatedButton(
           child: Text(
-            "Сохранить",
+            tr.button_save,
             textAlign: TextAlign.center,
             style: TextStyle(
-                color: inactiveButtonText,
+                color: background,
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 letterSpacing: 0.1),
@@ -539,11 +545,12 @@ class _SaveButtonState extends State<SaveButton> {
             _form14Key.currentState?.validate();
             _form15Key.currentState?.validate();
             _form16Key.currentState?.validate();
+            form17Key.currentState?.validate();
 
             {}
           },
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(inactiveButton),
+            backgroundColor: MaterialStateProperty.all(activeButton),
             elevation: MaterialStateProperty.all(0),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(100))),

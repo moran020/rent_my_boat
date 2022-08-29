@@ -48,6 +48,8 @@ dependencies:
   equatable: ^2.0.5
   searchable_listview: ^2.0.0
   syncfusion_flutter_core: ^20.2.45
+  file_picker: ^5.0.1
+  firebase_storage: ^10.3.7
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +79,12 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/json/card.json
+    - assets/images/catamaran.png
+    - assets/images/sailboats.png
+    - assets/images/houseboat.png
+    - assets/images/rib.png
+    - assets/images/yacht.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

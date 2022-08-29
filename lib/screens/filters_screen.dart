@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '/data/colors.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:syncfusion_flutter_core/core.dart';
 
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({Key? key}) : super(key: key);
@@ -23,7 +22,6 @@ class _FiltersScreenState extends State<FiltersScreen> {
           shape: Border(bottom: BorderSide(color: appbarLine, width: 2)),
           backgroundColor: background,
           elevation: 0.0,
-          // shadowColor: appbarLine ,
           leading: IconButton(
             icon: Image.asset('assets/icons/cross.png'),
             onPressed: (() {
@@ -38,7 +36,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
               child: Padding(
                 padding: const EdgeInsets.only(right: 16.0),
                 child: Text(
-                  'Удалить',
+                  tr.button_delete,
                   style: TextStyle(
                       letterSpacing: -0.41,
                       color: basicText,
@@ -60,59 +58,32 @@ class _FiltersScreenState extends State<FiltersScreen> {
                     right: 16,
                   ),
                   child: const TextFields()),
-              const Title(
-                marginTop: 32,
-                title: 'Цена аренды лодки за день на 1 человека',
-              ),
-              const Sliders(),
-              const Comment(
-                comment:
-                    'Стоимость аренды лодки на 1 пассажира при заполнении всех спальных мест на лодке',
-              ),
-              const Title(
-                marginTop: 32,
-                title: 'Цена аренды лодки за день',
-              ),
-              const Sliders(),
-              const Comment(
-                comment:
-                    'Стоимость аренды лодки на сутки безотносительно заполнения спальных мест',
-              ),
-              const Title(
-                marginTop: 32,
-                title: 'Цена аренды лодки за неделю',
-              ),
-              const Sliders(),
-              const Comment(
-                comment: 'Обычно, путешествия на лодках длятся не менее 7 дней',
-              ),
-              const Title(
-                marginTop: 32,
-                title: 'Цена работы капитана за сутки',
-              ),
-              const Sliders(),
-              const Comment(
-                comment:
-                    'Если ни у Вас ни у ког-то из вашей команды нет капитанских прав, то Вы можете арендовать лодку только с услугами капитана',
-              ),
+              SliderSection(
+                  title: tr.price1per_person, comment: tr.message_price1),
+              SliderSection(
+                  title: tr.price2per_day, comment: tr.message_price2),
+              SliderSection(
+                  title: tr.price3per_week, comment: tr.message_price3),
+              SliderSection(
+                  title: tr.price4_skipper, comment: tr.message_price4),
               const SizedBox(
                 height: 16,
               ),
-              const TextFieldText(
+              TextFieldText(
                 hintText: 'Lagoon',
-                title: 'Производитель лодки',
+                title: tr.manufactorer,
               ),
-              const TextFieldText(
+              TextFieldText(
                 hintText: '52',
-                title: 'Модель лодки',
+                title: tr.model,
               ),
-              const TextFieldText(
+              TextFieldText(
                 hintText: '2019',
-                title: 'Год лодки',
+                title: tr.year,
               ),
-              const TextFieldText(
-                hintText: '90 лошадиных сил',
-                title: 'Мощность двигателя',
+              TextFieldText(
+                hintText: tr.enginePowerHint,
+                title: tr.enginePower,
               ),
             ],
           ),
@@ -122,6 +93,7 @@ class _FiltersScreenState extends State<FiltersScreen> {
   }
 }
 
+// кнопка 'применить фильтры'
 class ApplyFiltersButton extends StatefulWidget {
   const ApplyFiltersButton({Key? key}) : super(key: key);
 
@@ -132,14 +104,16 @@ class ApplyFiltersButton extends StatefulWidget {
 class _ApplyFiltersButtonState extends State<ApplyFiltersButton> {
   @override
   Widget build(BuildContext context) {
+    var tr = AppLocalizations.of(context)!;
+
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16),
       height: 40,
       child: ElevatedButton(
-          child: const Text(
-            "Применить фильтры",
+          child: Text(
+            tr.button_useFilters,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 14, fontWeight: FontWeight.w600, letterSpacing: 0.1),
           ),
           onPressed: () {
@@ -156,6 +130,7 @@ class _ApplyFiltersButtonState extends State<ApplyFiltersButton> {
   }
 }
 
+// блок текстфилдов 'Вместимость', 'Кол-во кают', 'Спальные места', 'Длина в метрах/футах'
 class TextFields extends StatelessWidget {
   const TextFields({Key? key}) : super(key: key);
 
@@ -168,14 +143,14 @@ class TextFields extends StatelessWidget {
         SizedBox(
           child: Row(
             children: [
-              const TextFieldInt(
+              TextFieldInt(
                 hintText: '12',
-                title: 'Вместимость',
+                title: tr.capacity,
               ),
               const SizedBox(width: 8),
               TextFieldInt(
                 hintText: '4',
-                title: tr.cabinsHint,
+                title: tr.cabins,
               ),
             ],
           ),
@@ -186,11 +161,11 @@ class TextFields extends StatelessWidget {
             children: [
               TextFieldInt(
                 hintText: '8',
-                title: tr.sleepingPlacesHint,
+                title: tr.sleepingPlaces,
               ),
               const SizedBox(width: 8),
               TextFieldInt(
-                hintText: '13.99 метров',
+                hintText: tr.lengthHint,
                 title: tr.lengthHint,
               ),
             ],
@@ -202,6 +177,7 @@ class TextFields extends StatelessWidget {
   }
 }
 
+// конструктор текстфилда с числовой клавиатурой
 class TextFieldInt extends StatefulWidget {
   const TextFieldInt({Key? key, required this.title, required this.hintText})
       : super(key: key);
@@ -258,6 +234,7 @@ class _TextFieldIntState extends State<TextFieldInt> {
   }
 }
 
+// конструктор текстфилда с текстовой клавиатурой
 class TextFieldText extends StatefulWidget {
   const TextFieldText({Key? key, required this.title, required this.hintText})
       : super(key: key);
@@ -314,14 +291,19 @@ class _TextFieldTextState extends State<TextFieldText> {
   }
 }
 
-class Sliders extends StatefulWidget {
-  const Sliders({Key? key}) : super(key: key);
+// конструктор фильтров по цене с названием, ползунком, диапазоном и комментарием
+class SliderSection extends StatefulWidget {
+  const SliderSection({Key? key, required this.title, required this.comment})
+      : super(key: key);
+
+  final String title;
+  final String comment;
 
   @override
-  State<Sliders> createState() => _SlidersState();
+  State<SliderSection> createState() => _SliderSectionState();
 }
 
-class _SlidersState extends State<Sliders> {
+class _SliderSectionState extends State<SliderSection> {
   // TODO: изменить значения в зависимости от списка
   double _startValue = 30000.0;
   double _endValue = 70000.0;
@@ -331,7 +313,19 @@ class _SlidersState extends State<Sliders> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
+        Container(
+          alignment: Alignment.centerLeft,
+          margin: const EdgeInsets.only(left: 16, right: 16, top: 32),
+          child: Text(
+            widget.title,
+            style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                letterSpacing: -0.005),
+          ),
+        ),
         SliderTheme(
+          // TODO: нарисовать ползунок в соответствии с макетом
           data: SliderTheme.of(context).copyWith(
             trackHeight: 6.0,
             activeTrackColor: activeButton,
@@ -362,172 +356,38 @@ class _SlidersState extends State<Sliders> {
                   fontSize: 13,
                   fontWeight: FontWeight.w600,
                   letterSpacing: -0.005),
-            ))
+            )),
+        Container(
+          margin: const EdgeInsets.only(left: 16, right: 16, top: 4),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '*',
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                  height: 1.2,
+                  color: greyDisabled,
+                ),
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              Flexible(
+                  child: Text(
+                widget.comment,
+                style: TextStyle(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w500,
+                  height: 1.2,
+                  color: greyDisabled,
+                ),
+              ))
+            ],
+          ),
+        )
       ],
     );
   }
 }
-
-class Title extends StatelessWidget {
-  const Title({Key? key, required this.marginTop, required this.title})
-      : super(key: key);
-  final double marginTop;
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.centerLeft,
-      margin: EdgeInsets.only(left: 16, right: 16, top: marginTop),
-      child: Text(
-        title,
-        style: const TextStyle(
-            fontSize: 13, fontWeight: FontWeight.w600, letterSpacing: -0.005),
-      ),
-    );
-  }
-}
-
-class Comment extends StatelessWidget {
-  const Comment({Key? key, required this.comment}) : super(key: key);
-  final String comment;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(left: 16, right: 16, top: 4),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '*',
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-              height: 1.2,
-              color: greyDisabled,
-            ),
-          ),
-          const SizedBox(
-            width: 5,
-          ),
-          Flexible(
-              child: Text(
-            comment,
-            style: TextStyle(
-              fontSize: 11,
-              fontWeight: FontWeight.w500,
-              height: 1.2,
-              color: greyDisabled,
-            ),
-          ))
-        ],
-      ),
-    );
-  }
-}
-
-// объединенный код (не работает конструктор)
-
-// class SliderModule extends StatefulWidget {
-//   const SliderModule(
-//       {Key? key,
-//       required this.marginTop,
-//       required this.title,
-//       required this.comment})
-//       : super(key: key);
-//   final double marginTop;
-//   final String title;
-//   final String comment;
-
-//   @override
-//   State<SliderModule> createState() => _SliderModuleState();
-// }
-
-// class _SliderModuleState extends State<SliderModule> {
-//   // TODO: изменить значения в зависимости от списка
-//   double _startValue = 30000.0;
-//   double _endValue = 70000.0;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.end,
-//       children: [
-//         SliderTheme(
-//           data: SliderTheme.of(context).copyWith(
-//             trackHeight: 6.0,
-//             activeTrackColor: activeButton,
-//             inactiveTrackColor: inactiveSlider,
-//             thumbColor: activeButton,
-//           ),
-//           child: RangeSlider(
-//             // TODO: изменить значения в зависимости от списка
-//             min: 0.0,
-//             max: 100000.0,
-//             values: RangeValues(_startValue, _endValue),
-//             onChanged: (values) {
-//               setState(() {
-//                 _startValue = values.start;
-//                 _endValue = values.end;
-//               });
-//             },
-//           ),
-//         ),
-//         Container(
-//             margin: EdgeInsets.only(
-//               left: 16,
-//               right: 16,
-//             ),
-//             child: Text(
-//               '${_startValue.toInt()} ₽  - ${_endValue.toInt()} ₽',
-//               style: TextStyle(
-//                   fontSize: 13,
-//                   fontWeight: FontWeight.w600,
-//                   letterSpacing: -0.005),
-//             )),
-//         Container(
-//           alignment: Alignment.centerLeft,
-//           margin: EdgeInsets.only(left: 16, right: 16, top: marginTop),
-//           child: Text(
-//             title,
-//             style: TextStyle(
-//                 fontSize: 13,
-//                 fontWeight: FontWeight.w600,
-//                 letterSpacing: -0.005),
-//           ),
-//         ),
-//         Container(
-//           margin: EdgeInsets.only(left: 16, right: 16, top: 4),
-//           child: Row(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children: [
-//               Text(
-//                 '*',
-//                 style: TextStyle(
-//                   fontSize: 11,
-//                   fontWeight: FontWeight.w500,
-//                   height: 1.2,
-//                   color: greyDisabled,
-//                 ),
-//               ),
-//               SizedBox(
-//                 width: 5,
-//               ),
-//               Flexible(
-//                   child: Text(
-//                 comment,
-//                 style: TextStyle(
-//                   fontSize: 11,
-//                   fontWeight: FontWeight.w500,
-//                   height: 1.2,
-//                   color: greyDisabled,
-//                 ),
-//               ))
-//             ],
-//           ),
-//         )
-//       ],
-//     );
-//   }
-// }
