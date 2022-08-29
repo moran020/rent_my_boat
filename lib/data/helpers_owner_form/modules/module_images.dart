@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:rent_my_boat/data/colors.dart';
 import 'package:rent_my_boat/data/helpers_owner_form/singles/image_container.dart';

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rent_my_boat/screens/home_screen.dart';
-import 'package:rent_my_boat/screens/owner_form.dart';
 import '../../data/colors.dart';
 import 'card_screen.dart';
+import 'card_detail.dart';
 
 class MainScreenBottomMenu extends StatefulWidget {
   const MainScreenBottomMenu({Key? key}) : super(key: key);
@@ -15,10 +14,10 @@ class _MainScreenBottomMenuState extends State<MainScreenBottomMenu> {
   int currentMenuIndex = 0;
   final screens = [
     const CardScreen(),
-    //временно эти экраны, пока других нет:
-    const HomeScreen(),
-    const OwnerForm(),
-    const HomeScreen(),
+    //TODO: временно эти экраны, пока других нет
+    const CardDetailsScreen(),
+    const CardDetailsScreen(),
+    const CardDetailsScreen(),
   ];
 
   @override
@@ -35,7 +34,7 @@ class _MainScreenBottomMenuState extends State<MainScreenBottomMenu> {
         currentIndex: currentMenuIndex,
         onTap: (index) => setState(() => currentMenuIndex = index),
         items: [
-          //TODO: locale
+          //TODO: добавить локализацию
           menuItem("assets/icons/anchor.png", "Поиск"),
           menuItem("assets/icons/like.png", "Избранное"),
           menuItem("assets/icons/card.png", "Бронирования"),

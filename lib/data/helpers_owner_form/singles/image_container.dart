@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rent_my_boat/data/colors.dart';
 
 class ImageContainerButtonCreate extends StatelessWidget {
   final ImageProvider file;
@@ -23,7 +22,7 @@ class ImageContainerButtonCreate extends StatelessWidget {
             image: file,
           )),
       child: TextButton(
-        child: Text(''),
+        child: const Text(''),
         onPressed: onPressed,
       ),
     );
