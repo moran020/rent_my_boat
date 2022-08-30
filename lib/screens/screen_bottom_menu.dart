@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../data/colors.dart';
 import 'card_screen.dart';
 import 'card_detail.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class MainScreenBottomMenu extends StatefulWidget {
   const MainScreenBottomMenu({Key? key}) : super(key: key);
@@ -22,6 +24,7 @@ class _MainScreenBottomMenuState extends State<MainScreenBottomMenu> {
 
   @override
   Widget build(BuildContext context) {
+    var tr = AppLocalizations.of(context)!;
     return Scaffold(
       body: screens[currentMenuIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -35,10 +38,10 @@ class _MainScreenBottomMenuState extends State<MainScreenBottomMenu> {
         onTap: (index) => setState(() => currentMenuIndex = index),
         items: [
           //TODO: добавить локализацию
-          menuItem("assets/icons/anchor.png", "Поиск"),
-          menuItem("assets/icons/like.png", "Избранное"),
-          menuItem("assets/icons/card.png", "Бронирования"),
-          menuItem("assets/icons/account.png", "Мой аккаунт"),
+          menuItem("assets/icons/anchor.png", tr.menu_search),
+          menuItem("assets/icons/like.png", tr.menu_favourites),
+          menuItem("assets/icons/card.png", tr.menu_bookings),
+          menuItem("assets/icons/account.png", tr.menu_profile),
         ],
       ),
     );
