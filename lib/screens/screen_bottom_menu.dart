@@ -37,7 +37,6 @@ class _MainScreenBottomMenuState extends State<MainScreenBottomMenu> {
         currentIndex: currentMenuIndex,
         onTap: (index) => setState(() => currentMenuIndex = index),
         items: [
-          //TODO: добавить локализацию
           menuItem("assets/icons/anchor.png", tr.menu_search),
           menuItem("assets/icons/like.png", tr.menu_favourites),
           menuItem("assets/icons/card.png", tr.menu_bookings),
