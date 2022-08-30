@@ -10,6 +10,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import '../data/language.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // Разрешение на инициализацию Firebase после вызова runApp
 void main() {
@@ -55,7 +56,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Rent My Boat',
       theme: ThemeData(
-        fontFamily: 'Montserrat',
+        textTheme: GoogleFonts.montserratTextTheme(Theme.of(context).textTheme),
       ),
       // успешное построение страницы относительно инициализации  Firebase
       // удалить debagPrint позже
