@@ -69,7 +69,10 @@ class FormState extends State with TickerProviderStateMixin {
         elevation: 0.0,
         // shadowColor: appbarLine ,
         leading: IconButton(
-          icon: Image.asset('assets/icons/chevron_left.png'),
+          icon: Image.asset(
+            'assets/icons/chevron_left.png',
+            height: 16,
+          ),
           onPressed: (() {
             Navigator.pop(context);
           }),
@@ -192,7 +195,7 @@ class FormState extends State with TickerProviderStateMixin {
               height: 36,
               child: FloatingActionButton(
                 onPressed: _scrollToTop,
-                child: Image.asset("assets/icons/uptotop.png"),
+                child: Image.asset("assets/icons/uptotop.png", height: 6.81),
                 backgroundColor: upToTopButton,
                 elevation: 0,
               ),

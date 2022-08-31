@@ -46,14 +46,18 @@ class SearchField extends StatelessWidget {
       keyboardType: TextInputType.text,
       // controller: controller,
       cursorColor: activeButton,
+
       decoration: InputDecoration(
-        prefixIcon: Image.asset('assets/icons/anchor_search.png'),
+        prefixIcon: Image.asset(
+          'assets/icons/anchor_search.png',
+        ),
         hintText: tr.departure,
         hintStyle: TextStyle(
-            fontSize: 15,
-            color: hintTextColor,
-            fontWeight: FontWeight.w400,
-            letterSpacing: -0.0024),
+          fontSize: 15,
+          color: hintTextColor,
+          fontWeight: FontWeight.w400,
+          letterSpacing: -0.0024,
+        ),
         border: InputBorder.none,
         contentPadding: const EdgeInsets.symmetric(vertical: 8),
         enabledBorder: OutlineInputBorder(
