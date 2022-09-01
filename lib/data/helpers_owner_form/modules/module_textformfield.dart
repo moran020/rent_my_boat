@@ -3,6 +3,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:rent_my_boat/data/helpers_owner_form/singles/dropdownbutton_multiselection.dart';
 import 'package:rent_my_boat/data/helpers_owner_form/singles/label_text.dart';
 import 'package:rent_my_boat/data/helpers_owner_form/singles/package_dropdownbutton.dart';
+import 'package:rent_my_boat/data/helpers_owner_form/modules/module_images.dart';
 import '../singles/textformfield.dart';
 
 import '../../colors.dart';
@@ -457,7 +458,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
               key: _form15Key,
               child: TextFormFieldCreate(
                 controller: rentalPriceController,
-                hintText: '200 000 Р',
+                hintText: '200 000 ₽',
                 keyboardType: TextInputType.text,
                 maxLines: 1,
                 validator: (value) {
@@ -482,7 +483,7 @@ class _ModuleTextFormFieldState extends State<ModuleTextFormField> {
               key: _form16Key,
               child: TextFormFieldCreate(
                 controller: capitanPaymentController,
-                hintText: '10 000 Р',
+                hintText: '10 000 ₽',
                 keyboardType: TextInputType.text,
                 maxLines: 1,
                 validator: (value) {

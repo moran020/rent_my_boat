@@ -23,7 +23,10 @@ class _FiltersScreenState extends State<FiltersScreen> {
           backgroundColor: background,
           elevation: 0.0,
           leading: IconButton(
-            icon: Image.asset('assets/icons/cross.png'),
+            icon: Image.asset(
+              'assets/icons/cross.png',
+              height: 11,
+            ),
             onPressed: (() {
               Navigator.pop(context);
             }),
@@ -166,7 +169,7 @@ class TextFields extends StatelessWidget {
               const SizedBox(width: 8),
               TextFieldInt(
                 hintText: tr.lengthHint,
-                title: tr.lengthHint,
+                title: tr.length,
               ),
             ],
           ),
@@ -305,8 +308,8 @@ class SliderSection extends StatefulWidget {
 
 class _SliderSectionState extends State<SliderSection> {
   // TODO: изменить значения в зависимости от списка
-  double _startValue = 30000.0;
-  double _endValue = 70000.0;
+  double _startValue = 0.0;
+  double _endValue = 100000.0;
 
   @override
   Widget build(BuildContext context) {

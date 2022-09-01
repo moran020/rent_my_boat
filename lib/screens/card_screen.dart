@@ -5,6 +5,7 @@ import 'card_detail.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../data/filters_card_screen.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CardScreen extends StatefulWidget {
   const CardScreen({Key? key}) : super(key: key);
@@ -49,6 +50,7 @@ class _CardScreenState extends State<CardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var tr = AppLocalizations.of(context)!;
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -192,7 +194,7 @@ class _CardScreenState extends State<CardScreen> {
                                               items[index].isLiked == true
                                                   ? 'assets/icons/like_active.png'
                                                   : 'assets/icons/like_disabled.png',
-                                              width: 20,
+                                              width: 24,
                                               fit: BoxFit.fill,
                                             ),
                                           ),
@@ -231,8 +233,8 @@ class _CardScreenState extends State<CardScreen> {
                                                             const EdgeInsets
                                                                 .only(right: 4),
                                                         child: Image.asset(
-                                                          'assets/icons/passenger.png',
-                                                        ),
+                                                            'assets/icons/passenger.png',
+                                                            height: 16),
                                                       ),
                                                       Text(
                                                         items[index]
@@ -255,6 +257,7 @@ class _CardScreenState extends State<CardScreen> {
                                                               right: 4),
                                                       child: Image.asset(
                                                         'assets/icons/anchor_sm.png',
+                                                        height: 16,
                                                       ),
                                                     ),
                                                     Text(
@@ -313,7 +316,7 @@ class _CardScreenState extends State<CardScreen> {
                                         Container(
                                           alignment: Alignment.centerLeft,
                                           child: Text(
-                                            "${items[index].totalPrice.toString().toUpperCase()} ₽/день",
+                                            "${items[index].totalPrice.toString().toUpperCase()} ₽/ ${tr.day}",
                                             style: const TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
@@ -337,7 +340,7 @@ class _CardScreenState extends State<CardScreen> {
                                             ),
                                             Flexible(
                                               child: Text(
-                                                "Стоимость аренды лодки на 1 пассажира при заполнении всех спальных мест",
+                                                tr.message_price1,
                                                 style: TextStyle(
                                                   fontSize: 11,
                                                   fontWeight: FontWeight.w500,
@@ -381,7 +384,10 @@ class _CardScreenState extends State<CardScreen> {
                 height: 36,
                 child: FloatingActionButton(
                   onPressed: _scrollToTop,
-                  child: Image.asset("assets/icons/uptotop.png"),
+                  child: Image.asset(
+                    "assets/icons/uptotop.png",
+                    height: 6.81,
+                  ),
                   backgroundColor: upToTopButton,
                   elevation: 0,
                 ),

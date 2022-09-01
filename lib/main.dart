@@ -11,6 +11,7 @@ import 'firebase_options.dart';
 import '../data/language.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'screens/splash_screen.dart';
 
 // Разрешение на инициализацию Firebase после вызова runApp
 void main() {
@@ -68,7 +69,7 @@ class _MyAppState extends State<MyApp> {
               return const Text('Something went wrong!');
             } else if (snapshot.hasData) {
               debugPrint('Firebase initialization is successful!');
-              return const HomeScreen();
+              return const SplashScreen();
             } else {
               return const Center(
                 child: CircularProgressIndicator(),
