@@ -169,7 +169,7 @@ class TextFields extends StatelessWidget {
               const SizedBox(width: 8),
               TextFieldInt(
                 hintText: tr.lengthHint,
-                title: tr.lengthHint,
+                title: tr.length,
               ),
             ],
           ),

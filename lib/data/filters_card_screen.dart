@@ -63,7 +63,7 @@ class SearchField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
             borderSide: BorderSide(
-              color: activeButton,
+              color: hintTextColor,
             )),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
