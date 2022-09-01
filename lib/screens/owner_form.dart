@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:rent_my_boat/data/helpers_owner_form/modules/module_checkbox.dart';
 import 'package:rent_my_boat/data/helpers_owner_form/modules/module_images.dart';
@@ -23,6 +27,8 @@ class FormState extends State with TickerProviderStateMixin {
   bool _showBackToTopButton = false;
   late ScrollController _scrollController;
   late String equipment;
+  PlatformFile? pickedAvatarFile;
+  UploadTask? uploadTask;
 
   @override
   void initState() {
@@ -115,10 +121,17 @@ class FormState extends State with TickerProviderStateMixin {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Center(
-                //using the button CircleAvatarCreate, the user will be able to upload a photo of himself
-                child: CircleAvatarCreate(),
-              ),
+              Center(
+                  //using the button CircleAvatarCreate, the user will be able to upload a photo of himself
+                  child: (pickedAvatarFile != null)
+                      ? CircleAvatarCreate(
+                          file: FileImage(
+                            File('${pickedAvatarFile!.path}'),
+                          ),
+                          onPressed: selectUploadAvatarFile,
+                        )
+                      : CircleAvatarCreate(
+                          onPressed: selectUploadAvatarFile, file: null)),
               const SizedBox(height: 35),
               Text(
                 tr.greeting,
@@ -198,5 +211,29 @@ class FormState extends State with TickerProviderStateMixin {
               ),
             ),
     ));
+  }
+
+  Future selectUploadAvatarFile() async {
+    final result = await FilePicker.platform.pickFiles(
+      allowMultiple: false,
+      type: FileType.custom,
+      allowedExtensions: [
+        'png',
+        'jpeg',
+        'jpg',
+        'JPG',
+        'JPEG',
+      ],
+    );
+    if (result == null) return;
+
+    setState(() {
+      pickedAvatarFile = result.files.first;
+    });
+
+    final path = 'files/avatar/${pickedAvatarFile!.name}';
+    final file = File('${pickedAvatarFile!.path}');
+    final ref = FirebaseStorage.instance.ref().child(path);
+    uploadTask = ref.putFile(file);
   }
 }
