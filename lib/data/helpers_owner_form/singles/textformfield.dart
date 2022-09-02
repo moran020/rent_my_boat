@@ -40,9 +40,11 @@ class TextFormFieldCreate extends StatelessWidget {
             letterSpacing: 0.5),
         errorBorder:
             OutlineInputBorder(borderSide: BorderSide(color: errorBorder)),
-        contentPadding: const EdgeInsets.only(top: 9, bottom: 9,),
-        prefix: const Padding(
-        padding: EdgeInsets.only(left: 11.0)),
+        contentPadding: const EdgeInsets.only(
+          top: 9,
+          bottom: 9,
+        ),
+        prefix: const Padding(padding: EdgeInsets.only(left: 11.0)),
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5),
             borderSide: BorderSide(color: hintTextColor)),
