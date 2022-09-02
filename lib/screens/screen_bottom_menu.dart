@@ -4,7 +4,6 @@ import 'card_screen.dart';
 import 'card_detail.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class MainScreenBottomMenu extends StatefulWidget {
   const MainScreenBottomMenu({Key? key}) : super(key: key);
 
